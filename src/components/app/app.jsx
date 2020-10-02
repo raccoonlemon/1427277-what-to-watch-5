@@ -1,9 +1,9 @@
 import React from "react";
-import MainPage from "../main-page/main-page";
+import MainScreen from "../main-screen/main-screen";
 import PropTypes from 'prop-types';
 
 const App = (props) =>{
-  return (<MainPage movieInfo = {props.movieInfo}/>);
+  return (<MainScreen movieInfo = {props.movieInfo}/>);
 };
 
 App.propTypes = {
