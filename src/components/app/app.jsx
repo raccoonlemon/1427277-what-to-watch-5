@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
-import ReviewScreen from "../../review-screen/review-screen";
+import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
@@ -22,7 +22,7 @@ const App = (props) =>{
           <MyListScreen/>
         </Route>
         <Route exact path="/films/:id/review">
-          <ReviewScreen/>
+          <AddReviewScreen/>
         </Route>
         <Route exact path="/films/:id">
           <FilmScreen/>
