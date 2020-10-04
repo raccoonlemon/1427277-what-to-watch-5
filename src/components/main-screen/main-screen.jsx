@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const MainPage = (props) => {
+const MainScreen = (props) => {
   const {title, genre, year} = props.movieInfo;
 
   return (
@@ -308,7 +308,7 @@ const MainPage = (props) => {
   );
 };
 
-MainPage.propTypes = {
+MainScreen.propTypes = {
   movieInfo: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
@@ -316,4 +316,4 @@ MainPage.propTypes = {
   }).isRequired
 };
 
-export default MainPage;
+export default MainScreen;
