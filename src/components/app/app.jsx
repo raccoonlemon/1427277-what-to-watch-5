@@ -13,7 +13,9 @@ const App = (props) =>{
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainScreen movieInfo = {props.movieInfo}/>
+          <MainScreen
+            movieInfo = {props.movieInfo}
+            films = {props.films}/>
         </Route>
         <Route exact path="/login">
           <SignInScreen/>
@@ -48,7 +50,8 @@ App.propTypes = {
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
-  }).isRequired
+  }).isRequired,
+  films: PropTypes.array.isRequired
 };
 
 export default App;
