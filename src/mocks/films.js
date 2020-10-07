@@ -108,7 +108,7 @@ export const films = [
 
   {
     id: `4`,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    title: `Aviator`,
     genre: `biography`,
     year: 2004,
     director: `Martin Scorsese`,
