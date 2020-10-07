@@ -1,0 +1,1 @@
+export const SHORT_LIST_STARRING_COUNT = 4;
