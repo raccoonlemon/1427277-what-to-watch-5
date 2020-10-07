@@ -1,6 +1,6 @@
 export const films = [
   {
-    id: `1`,
+    id: `0`,
     title: `The Grand Budapest Hotel`,
     genre: `drama`,
     year: 2014,
@@ -29,7 +29,7 @@ export const films = [
   },
 
   {
-    id: `2`,
+    id: `1`,
     title: `Pulp fiction`,
     genre: `crime`,
     year: 1994,
@@ -47,15 +47,15 @@ export const films = [
       `Bruce Willis`
     ],
     description: `The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.`,
-    background: `img/bg-the-grand-budapest-hotel.jpg`,
-    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    background: `img/pulp-fiction.jpg`,
+    poster: `img/pulp-fiction.jpg`,
     posterSmall: `img/pulp-fiction.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 
   {
-    id: `3`,
+    id: `2`,
     title: `Moonrise Kingdom`,
     genre: `romance`,
     year: 2012,
@@ -73,15 +73,15 @@ export const films = [
       `Bob Balaban`
     ],
     description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
-    background: `img/bg-the-grand-budapest-hotel.jpg`,
-    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    background: `img/moonrise-kingdom.jpg`,
+    poster: `img/moonrise-kingdom.jpg`,
     posterSmall: `img/moonrise-kingdom.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 
   {
-    id: `4`,
+    id: `3`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     genre: `fantasy`,
     year: 2018,
@@ -99,15 +99,15 @@ export const films = [
       `Cornell John`
     ],
     description: `The second installment of the "Fantastic Beasts" series featuring the adventures of Magizoologist Newt Scamander.`,
-    background: `img/bg-the-grand-budapest-hotel.jpg`,
-    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    background: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     posterSmall: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 
   {
-    id: `5`,
+    id: `4`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     genre: `biography`,
     year: 2004,
@@ -123,14 +123,14 @@ export const films = [
       `Jude Law`,
     ],
     description: `A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.`,
-    background: `img/bg-the-grand-budapest-hotel.jpg`,
-    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    background: `img/aviator.jpg`,
+    poster: `img/aviator.jpg`,
     posterSmall: `img/aviator.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
-    id: `6`,
+    id: `5`,
     title: `Shutter Island`,
     genre: `thriller `,
     year: 2010,
@@ -146,15 +146,15 @@ export const films = [
       `Max von Sydow`,
     ],
     description: `In 1954, a U.S. Marshal investigates the disappearance of a murderer who escaped from a hospital for the criminally insane.`,
-    background: `img/bg-the-grand-budapest-hotel.jpg`,
-    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    background: `img/shutter-island.jpg`,
+    poster: `img/shutter-island.jpg`,
     posterSmall: `img/shutter-island.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 
   {
-    id: `7`,
+    id: `6`,
     title: `Johnny English`,
     genre: `comedy `,
     year: 2003,
@@ -171,15 +171,15 @@ export const films = [
       `Derek Riddell`,
     ],
     description: `After a cyber-attack reveals the identity of all of the active undercover agents in Britain, Johnny English (Rowan Atkinson) is forced to come out of retirement to find the mastermind hacker.`,
-    background: `img/bg-the-grand-budapest-hotel.jpg`,
-    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    background: `img/johnny-english.jpg`,
+    poster: `img/johnny-english.jpg`,
     posterSmall: `img/johnny-english.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 
   {
-    id: `8`,
+    id: `7`,
     title: `Seven Years in Tibet`,
     genre: `drama`,
     year: 1997,
@@ -196,8 +196,8 @@ export const films = [
       `Jetsun Pema`,
     ],
     description: `True story of Heinrich Harrer, an Austrian mountain climber who became friends with the Dalai Lama at the time of China's takeover of Tibet.`,
-    background: `img/bg-the-grand-budapest-hotel.jpg`,
-    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    background: `img/seven-years-in-tibet.jpg`,
+    poster: `img/seven-years-in-tibet.jpg`,
     posterSmall: `img/seven-years-in-tibet.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
