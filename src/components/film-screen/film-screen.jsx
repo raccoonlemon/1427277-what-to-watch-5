@@ -1,17 +1,52 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {SHORT_LIST_STARRING_COUNT} from "../../const";
-import {films} from "../../mocks/films";
+import PropTypes from 'prop-types';
+
+const gevaverageRating = (reviews)=>{
+  const rewiewsCount = reviews.length;
+
+  if (!rewiewsCount) {
+    return 0;
+  }
+
+  const totalRating = reviews.reduce((result, review)=>{
+    return result + review.rating;
+  }, 0);
+  const averageRating = Math.round(totalRating / rewiewsCount * 10) / 10;
+
+  return averageRating;
+};
+
+const getShortStarringLine = (starring)=>{
+  return starring.slice(0, SHORT_LIST_STARRING_COUNT).join(`, `);
+};
+
+const getRatingDescription = (rating) =>{
+  if (rating === 10) {
+    return `Awesome`;
+  }
+
+  if (rating >= 8) {
+    return `Very good`;
+  }
+
+  if (rating >= 5) {
+    return `Normal`;
+  }
+
+  return `Bad`;
+};
 
 const FilmScreen = (props) => {
+  const {film, reviews} = props;
 
-  // temp mock
-  // eslint-disable-next-line react/prop-types
-  const id = props.match.params.id;
-  const film = films[id];
-  // temp mock ---
   const {title, genre, director, year, description, poster, background} = film;
-  const starring = film.starring.slice(0, SHORT_LIST_STARRING_COUNT).join(`, `);
+
+  const starring = getShortStarringLine(film.starring);
+  const averageRating = gevaverageRating(reviews);
+  const rewiewsCount = reviews.length;
+  const ratingDescription = getRatingDescription(averageRating);
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full">
@@ -87,10 +122,10 @@ const FilmScreen = (props) => {
             </nav>
 
             <div className="movie-rating">
-              <div className="movie-rating__score">8,9</div>
+              <div className="movie-rating__score">{averageRating}</div>
               <p className="movie-rating__meta">
-                <span className="movie-rating__level">Very good</span>
-                <span className="movie-rating__count">240 ratings</span>
+                <span className="movie-rating__level">{ratingDescription}</span>
+                <span className="movie-rating__count">{rewiewsCount} ratings</span>
               </p>
             </div>
 
@@ -164,6 +199,22 @@ const FilmScreen = (props) => {
       </footer>
     </div>
   </React.Fragment>);
+};
+
+FilmScreen.propTypes = {
+  film: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    director: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    background: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    posterSmall: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
+  }).isRequired,
+  reviews: PropTypes.array.isRequired
 };
 
 export default FilmScreen;

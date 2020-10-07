@@ -26,7 +26,16 @@ const App = (props) =>{
         <Route exact path="/films/:id/review">
           <AddReviewScreen/>
         </Route>
-        <Route exact path="/films/:id" component={FilmScreen}>
+        <Route exact path="/films/:id"
+          render={(routerProps)=>{
+            const id = routerProps.match.params.id;
+            const film = props.films[id];
+            const reviews = props.reviews.filter((review)=>review.filmID === id);
+            return <FilmScreen
+              film = {film}
+              reviews = {reviews}>
+            </FilmScreen>;
+          }}>
         </Route>
         <Route exact path="/player/:id">
           <PlayerScreen/>
@@ -50,7 +59,8 @@ App.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   }).isRequired,
-  films: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired
 };
 
 export default App;
