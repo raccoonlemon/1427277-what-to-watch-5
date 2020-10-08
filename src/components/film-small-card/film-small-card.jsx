@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from 'react-router-dom';
+import {filmShape} from '../../utils/props-validation';
 
 const FilmSmallCard = ({film, onMouseEnter, onMouseLeave})=>{
   const {title, posterSmall, id} = film;
@@ -19,10 +20,7 @@ const FilmSmallCard = ({film, onMouseEnter, onMouseLeave})=>{
 FilmSmallCard.propTypes = {
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    posterSmall: PropTypes.string.isRequired}).isRequired
+  film: filmShape.isRequired
 };
 
 export default FilmSmallCard;

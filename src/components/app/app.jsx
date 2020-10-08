@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import {filmShape, reviewShape} from '../../utils/props-validation';
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
@@ -54,13 +55,9 @@ const App = (props) =>{
 };
 
 App.propTypes = {
-  promoFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-  }).isRequired,
-  films: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired
+  promoFilm: filmShape.isRequired,
+  films: PropTypes.arrayOf(filmShape).isRequired,
+  reviews: PropTypes.arrayOf(reviewShape).isRequired
 };
 
 export default App;

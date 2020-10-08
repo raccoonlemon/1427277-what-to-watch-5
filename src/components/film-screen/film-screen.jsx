@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from "react-router-dom";
 import {SHORT_LIST_STARRING_COUNT} from "../../const";
-import PropTypes from 'prop-types';
+import {filmShape, reviewShape} from "../../utils/props-validation";
 
 const gevaverageRating = (reviews)=>{
   const rewiewsCount = reviews.length;
@@ -202,19 +203,8 @@ const FilmScreen = (props) => {
 };
 
 FilmScreen.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    director: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    posterSmall: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired,
-  }).isRequired,
-  reviews: PropTypes.array.isRequired
+  film: filmShape.isRequired,
+  reviews: PropTypes.arrayOf(reviewShape).isRequired
 };
 
 export default FilmScreen;
