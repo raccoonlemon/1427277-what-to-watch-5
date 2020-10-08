@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { filmShape } from "../../utils/props-validation";
+import {filmShape} from "../../utils/props-validation";
 
 const AddReviewScreen = (props) => {
 
