@@ -22,7 +22,7 @@ const App = (props) =>{
           <SignInScreen/>
         </Route>
         <Route exact path="/mylist" >
-          <MyListScreen/>
+          <MyListScreen films = {props.films}/>
         </Route>
         <Route exact path="/films/:id/review"
           render={(routerProps)=>{
