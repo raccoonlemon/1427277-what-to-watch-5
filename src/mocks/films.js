@@ -5,6 +5,7 @@ export const films = [
     genre: `drama`,
     year: 2014,
     director: `Wes Andreson`,
+    duration: 124,
     starring:
     [
       `Bill Murray`,
@@ -34,6 +35,7 @@ export const films = [
     genre: `crime`,
     year: 1994,
     director: `Quentin Tarantino`,
+    duration: 118,
     starring:
     [
       `Tim Roth`,
@@ -60,6 +62,7 @@ export const films = [
     genre: `romance`,
     year: 2012,
     director: `Wes Anderson`,
+    duration: 98,
     starring:
     [
       `Bruce Willis`,
@@ -86,6 +89,7 @@ export const films = [
     genre: `fantasy`,
     year: 2018,
     director: `David Yates`,
+    duration: 134,
     starring:
     [
       `Johnny Depp`,
@@ -112,6 +116,7 @@ export const films = [
     genre: `biography`,
     year: 2004,
     director: `Martin Scorsese`,
+    duration: 110,
     starring:
     [
       `Leonardo DiCaprio`,
@@ -135,6 +140,7 @@ export const films = [
     genre: `thriller `,
     year: 2010,
     director: `Martin Scorsese`,
+    duration: 142,
     starring:
     [
       `Leonardo DiCaprio`,
@@ -159,6 +165,7 @@ export const films = [
     genre: `comedy `,
     year: 2003,
     director: `Peter Howitt`,
+    duration: 109,
     starring:
     [
       `Rowan Atkinson`,
@@ -184,6 +191,7 @@ export const films = [
     genre: `drama`,
     year: 1997,
     director: `Jean-Jacques Annaud`,
+    duration: 125,
     starring:
     [
       `Brad Pitt`,
