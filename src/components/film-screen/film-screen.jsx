@@ -42,7 +42,10 @@ const getRatingDescription = (rating) =>{
 const FilmScreen = (props) => {
   const {film, reviews} = props;
 
-  const {title, genre, director, year, description, poster, background} = film;
+  const {title, genre, director, year, description, poster, background, id} = film;
+
+  const addReviewlink = `/films/${id}/review`;
+  // const playerLink = `/player/${id}`;
 
   const starring = getShortStarringLine(film.starring);
   const averageRating = gevaverageRating(reviews);
@@ -53,7 +56,7 @@ const FilmScreen = (props) => {
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={background} alt="The Grand Budapest Hotel" />
+          <img src={background} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -95,7 +98,8 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              {/* <a href="add-review.html" className="btn movie-card__button">Add review</a> */}
+              <Link className="btn movie-card__button" to={addReviewlink}>Add review</Link>
             </div>
           </div>
         </div>
