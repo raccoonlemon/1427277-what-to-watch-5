@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import FilmsList from "../films-list/films-list";
+import {filmShape} from "../../utils/props-validation";
 
 const MainScreen = (props) => {
   const {title, genre, year, poster, background} = props.promoFilm;
@@ -126,14 +127,8 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  promoFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-  }).isRequired,
-  films: PropTypes.array.isRequired
+  promoFilm: filmShape.isRequired,
+  films: PropTypes.arrayOf(filmShape).isRequired
 };
 
 export default MainScreen;
