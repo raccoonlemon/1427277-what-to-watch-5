@@ -1,29 +1,37 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import { filmShape } from "../../utils/props-validation";
 
-const AddReviewScreen = () => {
+const AddReviewScreen = (props) => {
+
+  const {film} = props;
+  const {title, poster, background, id} = film;
+  const filmScreenLink = `/films/${id}`;
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={background} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link className="logo__link" to="/">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                  {/* <a className="breadcrumbs__link" href="movie-page.html">{title}</a> */}
+                  <Link className="breadcrumbs__link" to={filmScreenLink}>{title}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -39,7 +47,7 @@ const AddReviewScreen = () => {
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={poster} alt={title} width="218" height="327" />
           </div>
         </div>
 
@@ -77,6 +85,10 @@ const AddReviewScreen = () => {
       </section>
     </React.Fragment>
   );
+};
+
+AddReviewScreen.propTypes = {
+  film: filmShape.isRequired,
 };
 
 export default AddReviewScreen;

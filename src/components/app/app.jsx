@@ -21,21 +21,29 @@ const App = (props) =>{
         <Route exact path="/login">
           <SignInScreen/>
         </Route>
-        <Route exact path="/mylist">
+        <Route exact path="/mylist" >
           <MyListScreen/>
         </Route>
-        <Route exact path="/films/:id/review">
-          <AddReviewScreen/>
+        <Route exact path="/films/:id/review"
+          render={(routerProps)=>{
+            const id = routerProps.match.params.id;
+            const film = props.films[id];
+            return (
+              <AddReviewScreen
+                film = {film}>
+              </AddReviewScreen>);
+          }}>
         </Route>
         <Route exact path="/films/:id"
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
             const film = props.films[id];
             const reviews = props.reviews.filter((review)=>review.filmID === id);
-            return <FilmScreen
-              film = {film}
-              reviews = {reviews}>
-            </FilmScreen>;
+            return (
+              <FilmScreen
+                film = {film}
+                reviews = {reviews}>
+              </FilmScreen>);
           }}>
         </Route>
         <Route exact path="/player/:id">
