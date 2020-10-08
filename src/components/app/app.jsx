@@ -14,7 +14,7 @@ const App = (props) =>{
       <Switch>
         <Route exact path="/">
           <MainScreen
-            movieInfo = {props.movieInfo}
+            promoFilm = {props.promoFilm}
             films = {props.films}/>
         </Route>
         <Route exact path="/login">
@@ -54,7 +54,7 @@ const App = (props) =>{
 };
 
 App.propTypes = {
-  movieInfo: PropTypes.shape({
+  promoFilm: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,

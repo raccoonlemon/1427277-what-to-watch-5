@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import FilmsList from "../films-list/films-list";
 
 const MainScreen = (props) => {
-  const {title, genre, year} = props.movieInfo;
+  const {title, genre, year, poster, background} = props.promoFilm;
   const films = props.films;
 
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={background} alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -34,7 +34,7 @@ const MainScreen = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -126,10 +126,12 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  movieInfo: PropTypes.shape({
+  promoFilm: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
+    poster: PropTypes.string.isRequired,
+    background: PropTypes.string.isRequired,
   }).isRequired,
   films: PropTypes.array.isRequired
 };
