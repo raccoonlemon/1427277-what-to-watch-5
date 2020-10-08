@@ -9,7 +9,7 @@ const FilmSmallCard = ({film, onMouseEnter, onMouseLeave})=>{
   return (
     <article className="small-movie-card catalog__movies-card" onMouseEnter={()=>onMouseEnter(id)} onMouseLeave={onMouseLeave}>
       <div className="small-movie-card__image">
-        <img src={posterSmall} alt="Midnight Special" width="280" height="175" />
+        <img src={posterSmall} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={link}>{title}</Link>
