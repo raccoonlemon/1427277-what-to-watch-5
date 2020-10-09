@@ -1,4 +1,4 @@
-const {Random} = require(`../utils/random`);
+import {Random} from "../utils/random";
 
 const texts = [
   `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
