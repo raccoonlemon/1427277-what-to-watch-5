@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import FilmsList from "../films-list/films-list";
 import {filmShape} from "../../utils/props-validation";
+import {Link} from "react-router-dom";
 
 const MainScreen = (props) => {
   const {title, genre, year, poster, background} = props.promoFilm;
@@ -26,8 +27,11 @@ const MainScreen = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
+            {/* <div className="user-block__avatar">
               <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            </div> */}
+            <div className="user-block">
+              <Link className="user-block__link" to = "/login">Sign in</Link>
             </div>
           </div>
         </header>
