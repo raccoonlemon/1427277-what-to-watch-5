@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from "react-router-dom";
-import {SHORT_LIST_STARRING_COUNT} from "../../const";
+import {FilmRating, FILM_RATING_SCALE, SHORT_LIST_STARRING_COUNT} from "../../const";
 import {filmShape, reviewShape} from "../../utils/props-validation";
 
-const gevaverageRating = (reviews)=>{
+const getAverageRating = (reviews)=>{
   const rewiewsCount = reviews.length;
 
-  if (!rewiewsCount) {
+  if (!reviews || !reviews.length) {
     return 0;
   }
 
@@ -23,20 +23,21 @@ const getShortStarringLine = (starring)=>{
   return starring.slice(0, SHORT_LIST_STARRING_COUNT).join(`, `);
 };
 
-const getRatingDescription = (rating) =>{
-  if (rating === 10) {
-    return `Awesome`;
+const getRatingDescription = (reviews) =>{
+
+  if (!reviews || !reviews.length) {
+    return FilmRating.NOT_RATED;
+  }
+  const averageRating = getAverageRating(reviews);
+
+  for (const filmRating of FILM_RATING_SCALE) {
+    if (averageRating >= filmRating.minScore) {
+      return filmRating.rating;
+    }
   }
 
-  if (rating >= 8) {
-    return `Very good`;
-  }
+  return FilmRating.NOT_RATED;
 
-  if (rating >= 5) {
-    return `Normal`;
-  }
-
-  return `Bad`;
 };
 
 const FilmScreen = (props) => {
@@ -48,9 +49,9 @@ const FilmScreen = (props) => {
   // const playerLink = `/player/${id}`;
 
   const starring = getShortStarringLine(film.starring);
-  const averageRating = gevaverageRating(reviews);
+  const averageRating = getAverageRating(reviews);
   const rewiewsCount = reviews.length;
-  const ratingDescription = getRatingDescription(averageRating);
+  const ratingDescription = getRatingDescription(reviews);
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full">
