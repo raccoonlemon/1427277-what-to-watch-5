@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
 import {filmShape, reviewShape} from '../../utils/props-validation';
+import {Random} from '../../utils/random';
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
@@ -39,10 +40,13 @@ const App = (props) =>{
             const id = routerProps.match.params.id;
             const film = props.films[id];
             const reviews = props.reviews.filter((review)=>review.filmID === id);
+            // temp mock
+            const similarFilms = Random.getArrayElements(props.films, 4);
             return (
               <FilmScreen
                 film = {film}
-                reviews = {reviews}>
+                reviews = {reviews}
+                similarFilms = {similarFilms}>
               </FilmScreen>);
           }}>
         </Route>
