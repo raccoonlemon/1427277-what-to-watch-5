@@ -39,7 +39,7 @@ const App = (props) =>{
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
             const film = props.films.find((element)=>element.id === id);
-            const reviews = props.reviews.filter((review)=>review.filmID === id);
+            const reviews = props.reviews.filter((review)=>review.filmId === id);
             // temp mock
             const similarFilms = Random.getArrayElements(props.films, 4);
             return (

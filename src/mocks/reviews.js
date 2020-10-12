@@ -35,7 +35,7 @@ export const generateMockReviews = (films)=>{
   return reviews;
 };
 
-const generateMockReview = (filmID)=>{
+const generateMockReview = (filmId)=>{
   const MAX_SCORE = 10;
   const MIN_SCORE = 5;
 
@@ -43,7 +43,7 @@ const generateMockReview = (filmID)=>{
   const DAYS_RANGE = -500;
 
   return {
-    filmID,
+    filmId,
     date: Random.getDate(startDate, DAYS_RANGE),
     author: Random.getArrayElement(authors),
     rating: Random.getNumber(MIN_SCORE, MAX_SCORE),
