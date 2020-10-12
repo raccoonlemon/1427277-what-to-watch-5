@@ -28,7 +28,7 @@ const App = (props) =>{
         <Route exact path="/films/:id/review"
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
-            const film = props.films[id];
+            const film = props.films.find((element)=>element.id === id);
             return (
               <AddReviewScreen
                 film = {film}>
@@ -38,7 +38,7 @@ const App = (props) =>{
         <Route exact path="/films/:id"
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
-            const film = props.films[id];
+            const film = props.films.find((element)=>element.id === id);
             const reviews = props.reviews.filter((review)=>review.filmID === id);
             // temp mock
             const similarFilms = Random.getArrayElements(props.films, 4);

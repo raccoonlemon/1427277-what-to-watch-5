@@ -1,6 +1,6 @@
 export const films = [
   {
-    id: `0`,
+    id: `1`,
     title: `The Grand Budapest Hotel`,
     genre: `drama`,
     year: 2014,
@@ -30,7 +30,7 @@ export const films = [
   },
 
   {
-    id: `1`,
+    id: `2`,
     title: `Pulp fiction`,
     genre: `crime`,
     year: 1994,
@@ -57,7 +57,7 @@ export const films = [
   },
 
   {
-    id: `2`,
+    id: `3`,
     title: `Moonrise Kingdom`,
     genre: `romance`,
     year: 2012,
@@ -84,7 +84,7 @@ export const films = [
   },
 
   {
-    id: `3`,
+    id: `4`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     genre: `fantasy`,
     year: 2018,
@@ -111,7 +111,7 @@ export const films = [
   },
 
   {
-    id: `4`,
+    id: `5`,
     title: `Aviator`,
     genre: `biography`,
     year: 2004,
@@ -135,7 +135,7 @@ export const films = [
     previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
-    id: `5`,
+    id: `6`,
     title: `Shutter Island`,
     genre: `thriller `,
     year: 2010,
@@ -160,7 +160,7 @@ export const films = [
   },
 
   {
-    id: `6`,
+    id: `7`,
     title: `Johnny English`,
     genre: `comedy `,
     year: 2003,
@@ -186,7 +186,7 @@ export const films = [
   },
 
   {
-    id: `7`,
+    id: `8`,
     title: `Seven Years in Tibet`,
     genre: `drama`,
     year: 1997,
