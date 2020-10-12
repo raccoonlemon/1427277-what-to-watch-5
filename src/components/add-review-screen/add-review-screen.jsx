@@ -37,7 +37,7 @@ class AddReviewScreen extends PureComponent {
         <section className="movie-card movie-card--full">
           <div className="movie-card__header">
             <div className="movie-card__bg">
-              <img src={background} alt="The Grand Budapest Hotel" />
+              <img src={background} alt={title} />
             </div>
 
             <h1 className="visually-hidden">WTW</h1>
