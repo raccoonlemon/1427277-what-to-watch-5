@@ -30,9 +30,7 @@ const App = (props) =>{
             const id = routerProps.match.params.id;
             const film = props.films.find((element)=>element.id === id);
             return (
-              <AddReviewScreen
-                film = {film}>
-              </AddReviewScreen>);
+              <AddReviewScreen film = {film}/>);
           }}>
         </Route>
         <Route exact path="/films/:id"
@@ -46,8 +44,7 @@ const App = (props) =>{
               <FilmScreen
                 film = {film}
                 reviews = {reviews}
-                similarFilms = {similarFilms}>
-              </FilmScreen>);
+                similarFilms = {similarFilms}/>);
           }}>
         </Route>
         <Route exact path="/player/:id">
