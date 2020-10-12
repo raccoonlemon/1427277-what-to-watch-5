@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
-import {toCamelCase} from "../../utils/common";
+import {DEFAULT_RAITING_IN_REVIEW, MAX_STARS_IN_REVIEW} from "../../const";
 import {filmShape} from "../../utils/props-validation";
 
 class AddReviewScreen extends PureComponent {
@@ -9,28 +9,49 @@ class AddReviewScreen extends PureComponent {
     super(props);
 
     this.state = {
-      rating: 3,
+      rating: DEFAULT_RAITING_IN_REVIEW,
       reviewText: ``
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.handleReviewTextChange = this.handleReviewTextChange.bind(this);
+    this.handleRatingChange = this.handleRatingChange.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
   }
 
-  handleFieldChange(evt) {
+  handleRatingChange(evt) {
+    const value = parseInt(evt.target.value, 10);
+    this.setState({rating: value});
+  }
+
+  handleReviewTextChange(evt) {
     const value = evt.target.value;
-    const name = toCamelCase(evt.target.name);
-    this.setState({[name]: value});
+    this.setState({reviewText: value});
   }
 
   render() {
     const {film} = this.props;
     const {title, poster, background, id} = film;
+
     const filmScreenLink = `/films/${id}`;
+
+    const starsCount = MAX_STARS_IN_REVIEW;
+    const raitingMarkUp = [];
+
+    for (let index = 1; index <= starsCount; index++) {
+      const elementId = `star-${index}`;
+      const checked = index === this.state.rating;
+
+      raitingMarkUp.push(
+          <React.Fragment key={elementId}>
+            <input className="rating__input" id={elementId} type="radio" name="rating" value={index} defaultChecked ={checked} onChange = {this.handleRatingChange}/>
+            <label className="rating__label" htmlFor={elementId}>Rating 1</label>
+          </React.Fragment>
+      );
+    }
 
     return (
       <React.Fragment>
@@ -78,25 +99,13 @@ class AddReviewScreen extends PureComponent {
             <form action="#" className="add-review__form" onSubmit = {this.handleSubmit}>
               <div className="rating">
                 <div className="rating__stars">
-                  <input className="rating__input" id="star-1" type="radio" name="rating" value="1" onChange = {this.handleFieldChange}/>
-                  <label className="rating__label" htmlFor="star-1">Rating 1</label>
-
-                  <input className="rating__input" id="star-2" type="radio" name="rating" value="2" onChange = {this.handleFieldChange} />
-                  <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-                  <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked onChange = {this.handleFieldChange} />
-                  <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-                  <input className="rating__input" id="star-4" type="radio" name="rating" value="4" onChange = {this.handleFieldChange} />
-                  <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-                  <input className="rating__input" id="star-5" type="radio" name="rating" value="5" onChange = {this.handleFieldChange} />
-                  <label className="rating__label" htmlFor="star-5">Rating 5</label>
+                  {raitingMarkUp}
                 </div>
               </div>
 
               <div className="add-review__text">
-                <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange = {this.handleFieldChange}></textarea>
+                <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange = {this.handleReviewTextChange} value={this.state.reviewText}>
+                </textarea>
                 <div className="add-review__submit">
                   <button className="add-review__btn" type="submit">Post</button>
                 </div>
