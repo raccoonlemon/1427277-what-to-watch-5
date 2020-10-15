@@ -1,7 +1,17 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
-import {DEFAULT_RAITING_IN_REVIEW, MAX_STARS_IN_REVIEW} from "../../const";
+import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW} from "../../const";
 import {filmShape} from "../../utils/props-validation";
+
+const starsCount = MAX_RAITING_IN_REVIEW;
+const ratingItems = [];
+for (let index = 1; index <= starsCount; index++) {
+  ratingItems.push({
+    id: `star-${index}`,
+    value: index,
+    title: `Rating ${index}`
+  });
+}
 
 class AddReviewScreen extends PureComponent {
 
@@ -22,14 +32,12 @@ class AddReviewScreen extends PureComponent {
     evt.preventDefault();
   }
 
-  handleRatingChange(evt) {
-    const value = parseInt(evt.target.value, 10);
-    this.setState({rating: value});
+  handleRatingChange({target}) {
+    this.setState({rating: parseInt(target.value, 10)});
   }
 
-  handleReviewTextChange(evt) {
-    const value = evt.target.value;
-    this.setState({reviewText: value});
+  handleReviewTextChange({target}) {
+    this.setState({reviewText: target.value});
   }
 
   render() {
@@ -37,21 +45,6 @@ class AddReviewScreen extends PureComponent {
     const {title, poster, background, id} = film;
 
     const filmScreenLink = `/films/${id}`;
-
-    const starsCount = MAX_STARS_IN_REVIEW;
-    const raitingMarkUp = [];
-
-    for (let index = 1; index <= starsCount; index++) {
-      const elementId = `star-${index}`;
-      const checked = index === this.state.rating;
-
-      raitingMarkUp.push(
-          <React.Fragment key={elementId}>
-            <input className="rating__input" id={elementId} type="radio" name="rating" value={index} defaultChecked ={checked} onChange = {this.handleRatingChange}/>
-            <label className="rating__label" htmlFor={elementId}>Rating 1</label>
-          </React.Fragment>
-      );
-    }
 
     return (
       <React.Fragment>
@@ -99,7 +92,18 @@ class AddReviewScreen extends PureComponent {
             <form action="#" className="add-review__form" onSubmit = {this.handleSubmit}>
               <div className="rating">
                 <div className="rating__stars">
-                  {raitingMarkUp}
+                  {ratingItems.map((item)=>(
+                    <React.Fragment key={item.id}>
+                      <input className="rating__input"
+                        id={item.id}
+                        type="radio"
+                        name="rating"
+                        value={item.value}
+                        defaultChecked ={item.value === this.state.rating}
+                        onChange = {this.handleRatingChange}/>
+                      <label className="rating__label" htmlFor={item.id}>{item.title}</label>
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
 
