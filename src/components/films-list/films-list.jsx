@@ -23,7 +23,8 @@ class FilmsList extends PureComponent {
         onMouseLeave = {()=>{
           this.setState({activeItemId: null});
         }}
-        film = {it}/>));
+        film = {it}
+        isCardActive = {it.id === this.state.activeItemId}/>));
     return (
       <div className="catalog__movies-list">
         {filmsList}
