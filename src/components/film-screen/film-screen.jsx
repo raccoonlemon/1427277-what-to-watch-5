@@ -2,8 +2,11 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from "react-router-dom";
 import {FilmRating, FILM_RATING_SCALE, SHORT_LIST_STARRING_COUNT} from "../../const";
+import {toCamelCase, splitArrayToSegments} from '../../utils/common';
+import {getDateTimeForHTML, getFormattedFilmDuration, getFormattedReviewDate} from '../../utils/date-time-formatter';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmsList from '../films-list/films-list';
+import {Tabs} from '../tabs/tabs';
 
 const getAverageRating = (reviews)=>{
   const rewiewsCount = reviews.length;
@@ -41,18 +44,49 @@ const getRatingDescription = (reviews) =>{
 
 };
 
+const splitReviewsToColumns = (reviews, columnsCount) => {
+  return splitArrayToSegments(reviews, columnsCount);
+};
+
+
+const FilmInfoTabs = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`
+};
+
+const renderTabList = (activeTab, changeTabHandler)=>{
+  return (
+    <nav className="movie-nav movie-card__nav">
+      <ul className="movie-nav__list">
+        {Object.values(FilmInfoTabs).map((tab)=>{
+          const classNames = [`movie-nav__item`];
+          if (tab === activeTab) {
+            classNames.push(`movie-nav__item--active`);
+          }
+          return (
+            <li key = {tab} className={classNames.join(` `)}>
+              <a href="#" className="movie-nav__link" data-tab = {tab} onClick = {changeTabHandler}>{tab}</a>
+            </li>);
+        })}
+      </ul>
+    </nav>);
+};
+
 const FilmScreen = (props) => {
   const {film, reviews, similarFilms} = props;
 
-  const {title, genre, director, year, description, poster, background, id} = film;
+  const {title, genre, director, year, description, poster, background, starring, duration, id} = film;
 
   const addReviewlink = `/films/${id}/review`;
-  // const playerLink = `/player/${id}`;
 
-  const starring = getShortStarringLine(film.starring);
+  const starringShortList = getShortStarringLine(starring);
   const averageRating = getAverageRating(reviews);
   const rewiewsCount = reviews.length;
   const ratingDescription = getRatingDescription(reviews);
+
+  const REVIEWS_COLUMNS_COUNT = 2;
+  const reviewsByColumns = splitReviewsToColumns(reviews, REVIEWS_COLUMNS_COUNT);
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full">
@@ -100,7 +134,6 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              {/* <a href="add-review.html" className="btn movie-card__button">Add review</a> */}
               <Link className="btn movie-card__button" to={addReviewlink}>Add review</Link>
             </div>
           </div>
@@ -112,37 +145,93 @@ const FilmScreen = (props) => {
           <div className="movie-card__poster movie-card__poster--big">
             <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
-
           <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
+            <Tabs renderTabList = {renderTabList} initialTab = {FilmInfoTabs.OVERVIEW}>
 
-            <div className="movie-rating">
-              <div className="movie-rating__score">{averageRating}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{ratingDescription}</span>
-                <span className="movie-rating__count">{rewiewsCount} ratings</span>
-              </p>
-            </div>
+              <React.Fragment key={FilmInfoTabs.OVERVIEW}>
+                <div className="movie-rating">
+                  <div className="movie-rating__score">{averageRating}</div>
+                  <p className="movie-rating__meta">
+                    <span className="movie-rating__level">{ratingDescription}</span>
+                    <span className="movie-rating__count">{rewiewsCount} ratings</span>
+                  </p>
+                </div>
 
-            <div className="movie-card__text">
-              <p>{description}</p>
+                <div className="movie-card__text">
+                  <p>{description}</p>
 
-              <p className="movie-card__director"><strong>Director: {director}</strong></p>
+                  <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
-              <p className="movie-card__starring"><strong>Starring: {starring} and other</strong></p>
-            </div>
+                  <p className="movie-card__starring"><strong>Starring: {starringShortList} and other</strong></p>
+                </div>
+              </React.Fragment>
+
+              <React.Fragment key={FilmInfoTabs.DETAILS}>
+
+                <div className="movie-card__text movie-card__row">
+                  <div className="movie-card__text-col">
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Director</strong>
+                      <span className="movie-card__details-value">{director}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Starring</strong>
+                      <span className="movie-card__details-value">
+                        {starring.map((name, index)=>{
+                          return (
+                            <React.Fragment key={`${toCamelCase(name)}${index}`}>
+                              {name}{index < starring.length - 1 && `,`}{index < starring.length - 1 && <br/>}
+                            </React.Fragment>);
+                        })}
+
+                      </span>
+                    </p>
+                  </div>
+
+                  <div className="movie-card__text-col">
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Run Time</strong>
+                      <span className="movie-card__details-value">{getFormattedFilmDuration(duration)}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Genre</strong>
+                      <span className="movie-card__details-value">{genre}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Released</strong>
+                      <span className="movie-card__details-value">{year}</span>
+                    </p>
+                  </div>
+                </div>
+              </React.Fragment>
+
+              <React.Fragment key={FilmInfoTabs.REVIEWS}>
+                <div className="movie-card__reviews movie-card__row">
+                  {reviewsByColumns.map((items, index)=>{
+                    return (
+                      <div className="movie-card__reviews-col" key={`column-` + index}>
+                        {items.map((item)=>{
+                          const {id: reviewId, date, text, author, rating} = item;
+                          return (
+                            <div className="review" key={reviewId}>
+                              <blockquote className="review__quote">
+                                <p className="review__text">{text}</p>
+
+                                <footer className="review__details">
+                                  <cite className="review__author">{author}</cite>
+                                  <time className="review__date" dateTime={getDateTimeForHTML(date)}>{getFormattedReviewDate(date)}</time>
+                                </footer>
+                              </blockquote>
+
+                              <div className="review__rating">{rating}</div>
+                            </div>
+                          );
+                        })}
+                      </div>);
+                  })}
+                </div>
+              </React.Fragment>
+            </Tabs>
           </div>
         </div>
       </div>
