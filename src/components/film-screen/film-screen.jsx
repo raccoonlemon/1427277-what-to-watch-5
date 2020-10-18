@@ -1,53 +1,21 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from "react-router-dom";
-import {FilmRating, FILM_RATING_SCALE, SHORT_LIST_STARRING_COUNT} from "../../const";
-import {toCamelCase, splitArrayToSegments} from '../../utils/common';
+import {SHORT_LIST_STARRING_COUNT} from "../../const";
+import {splitArrayToSegments, toCamelCase} from '../../utils/common';
 import {getDateTimeForHTML, getFormattedFilmDuration, getFormattedReviewDate} from '../../utils/date-time-formatter';
+import {getAverageRating, getRatingDescription} from '../../utils/films';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmsList from '../films-list/films-list';
 import {Tabs} from '../tabs/tabs';
-
-const getAverageRating = (reviews)=>{
-  const rewiewsCount = reviews.length;
-
-  if (!reviews || !reviews.length) {
-    return 0;
-  }
-
-  const totalRating = reviews.reduce((result, review)=>{
-    return result + review.rating;
-  }, 0);
-  const averageRating = Math.round(totalRating / rewiewsCount * 10) / 10;
-
-  return averageRating;
-};
 
 const getShortStarringLine = (starring)=>{
   return starring.slice(0, SHORT_LIST_STARRING_COUNT).join(`, `);
 };
 
-const getRatingDescription = (reviews) =>{
-
-  if (!reviews || !reviews.length) {
-    return FilmRating.NOT_RATED;
-  }
-  const averageRating = getAverageRating(reviews);
-
-  for (const filmRating of FILM_RATING_SCALE) {
-    if (averageRating >= filmRating.minScore) {
-      return filmRating.rating;
-    }
-  }
-
-  return FilmRating.NOT_RATED;
-
-};
-
 const splitReviewsToColumns = (reviews, columnsCount) => {
   return splitArrayToSegments(reviews, columnsCount);
 };
-
 
 const FilmInfoTabs = {
   OVERVIEW: `Overview`,
