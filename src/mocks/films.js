@@ -59,7 +59,7 @@ export const films = [
   {
     id: `3`,
     title: `Moonrise Kingdom`,
-    genre: `romance`,
+    genre: `comedy`,
     year: 2012,
     director: `Wes Anderson`,
     duration: 98,
@@ -113,7 +113,7 @@ export const films = [
   {
     id: `5`,
     title: `Aviator`,
-    genre: `biography`,
+    genre: `drama`,
     year: 2004,
     director: `Martin Scorsese`,
     duration: 110,
@@ -162,7 +162,7 @@ export const films = [
   {
     id: `7`,
     title: `Johnny English`,
-    genre: `comedy `,
+    genre: `comedy`,
     year: 2003,
     director: `Peter Howitt`,
     duration: 109,

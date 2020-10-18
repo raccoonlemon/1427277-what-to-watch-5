@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import {getSimilarFilms} from '../../utils/films';
 import {filmShape, reviewShape} from '../../utils/props-validation';
-import {Random} from '../../utils/random';
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
@@ -39,7 +39,7 @@ const App = (props) =>{
             const film = props.films.find((element)=>element.id === id);
             const reviews = props.reviews.filter((review)=>review.filmId === id);
             // temp mock
-            const similarFilms = Random.getArrayElements(props.films, 4);
+            const similarFilms = getSimilarFilms(props.films, film);
             return (
               <FilmScreen
                 film = {film}
