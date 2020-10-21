@@ -10,7 +10,7 @@ import {getGenresList} from "../../utils/films";
 
 const MainScreen = (props) => {
   const {title, genre, year, poster, background} = props.promoFilm;
-  const {films, filmsByGenre, currentGenre, onGenreFilterChange} = props;
+  const {films, filteredFilms, currentGenre, onGenreFilterChange} = props;
   const genres = getGenresList(films);
   return (
     <React.Fragment>
@@ -78,7 +78,7 @@ const MainScreen = (props) => {
 
           <GenreFilter genres={genres} onFilterChage = {onGenreFilterChange} activeFilter = {currentGenre}/>
 
-          <FilmsList films = {filmsByGenre}/>
+          <FilmsList films = {filteredFilms}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -107,19 +107,20 @@ MainScreen.propTypes = {
   currentGenre: PropTypes.string.isRequired,
   promoFilm: filmShape.isRequired,
   films: PropTypes.arrayOf(filmShape).isRequired,
-  filmsByGenre: PropTypes.arrayOf(filmShape).isRequired,
+  filteredFilms: PropTypes.arrayOf(filmShape).isRequired,
   onGenreFilterChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
+  films: state.films,
   currentGenre: state.currentGenre,
-  filmsByGenre: state.films
+  filteredFilms: state.filteredFilms
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   onGenreFilterChange(currentGenre) {
     dispatch(ActionCreator.changeCurrentGenre(currentGenre));
-    dispatch(ActionCreator.getFilmsByGenre(ownProps.films, currentGenre));
+    dispatch(ActionCreator.setFilteredFilms());
   },
 });
 

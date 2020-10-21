@@ -14,8 +14,8 @@ export const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CURRENT_GENRE:
       return extend(state, {currentGenre: action.payload});
 
-    case ActionType.GET_FILMS_BY_GENRE:
-      return extend(state, {films: getFilmsByGenre(action.payload)});
+    case ActionType.SET_FILTERED_FILMS_BY_GENRE:
+      return extend(state, {filteredFilms: getFilmsByGenre(state.films, state.currentGenre)});
   }
 
   return state;

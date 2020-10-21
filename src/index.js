@@ -10,7 +10,8 @@ import {reducer} from "./store/reducer";
 
 const preloadedState = {
   currentGenre: ALL_GENRES_FILTER,
-  films
+  films,
+  filteredFilms: films
 };
 
 const store = createStore(reducer, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
