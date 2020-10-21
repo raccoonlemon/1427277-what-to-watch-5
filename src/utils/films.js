@@ -1,11 +1,11 @@
 import {ALL_GENRES_FILTER} from "../const";
 
-export const getFilmsByGenre = ({films, genreFilter}) =>{
-  if (genreFilter === ALL_GENRES_FILTER) {
+export const getFilmsByGenre = ({films, currentGenre}) =>{
+  if (currentGenre === ALL_GENRES_FILTER) {
     return films.slice();
   }
 
-  return films.filter((film)=>film.genre === genreFilter);
+  return films.filter((film)=>film.genre === currentGenre);
 };
 
 export const getGenresList = (films)=>{

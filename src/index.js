@@ -9,7 +9,7 @@ import {generateMockReviews} from "./mocks/reviews";
 import {reducer} from "./store/reducer";
 
 const preloadedState = {
-  genreFilter: ALL_GENRES_FILTER,
+  currentGenre: ALL_GENRES_FILTER,
   films
 };
 
