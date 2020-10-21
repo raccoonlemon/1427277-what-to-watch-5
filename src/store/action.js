@@ -4,9 +4,9 @@ export const ActionType = {
 };
 
 export const ActionCreator = {
-  changeCurrentGenre: (filter)=>({
+  changeCurrentGenre: (genre)=>({
     type: ActionType.CHANGE_CURRENT_GENRE,
-    payload: filter
+    payload: genre
   }),
   getFilmsByGenre: (films, currentGenre)=>({
     type: ActionType.GET_FILMS_BY_GENRE,
