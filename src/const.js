@@ -17,3 +17,5 @@ export const FILM_RATING_SCALE = [
   {rating: FilmRating.BAD, minScore: 0}
 ];
 
+export const ALL_GENRES_FILTER = `all genres`;
+
