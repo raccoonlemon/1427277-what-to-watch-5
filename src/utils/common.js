@@ -7,6 +7,7 @@ export const toCamelCase = (s) => {
   });
 };
 
+<<<<<<< HEAD
 export const splitArrayToSegments = (array, segmentsCount)=> {
   let segmentLength = Math.ceil(array.length / segmentsCount);
 
@@ -19,4 +20,12 @@ export const splitArrayToSegments = (array, segmentsCount)=> {
   }
 
   return segments;
+=======
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+export const capitalizeFirstLetter = (string) =>{
+  return string.charAt(0).toUpperCase() + string.slice(1);
+>>>>>>> module5-task1
 };

@@ -16,8 +16,7 @@ const App = (props) =>{
       <Switch>
         <Route exact path="/">
           <MainScreen
-            promoFilm = {props.promoFilm}
-            films = {props.films}/>
+            promoFilm = {props.promoFilm}/>
         </Route>
         <Route exact path="/login">
           <SignInScreen/>
