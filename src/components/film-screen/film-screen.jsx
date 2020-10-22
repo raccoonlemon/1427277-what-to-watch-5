@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Link, useLocation} from "react-router-dom";
 import {SHORT_LIST_STARRING_COUNT} from "../../const";
 import {splitArrayToSegments, toCamelCase} from '../../utils/common';
@@ -39,7 +39,8 @@ const FilmScreen = (props) => {
   const reviewsByColumns = splitReviewsToColumns(reviews, REVIEWS_COLUMNS_COUNT);
 
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.hash.replace('#', ''));
+  const [activeTab, setActiveTab] = useState(location.hash.replace('#', '') || FilmInfoTabs.OVERVIEW);
+  useEffect(() => setActiveTab(location.hash.replace('#', '')), [location.hash])
   
   const tabContent = {
     [FilmInfoTabs.OVERVIEW]: (film) => (

@@ -7,6 +7,7 @@ import {ActionCreator} from "../../store/action";
 import {connect} from "react-redux";
 import GenreFilter from "../genre-filter/genre-filter";
 import {getGenresList} from "../../utils/films";
+import { ALL_GENRES_FILTER } from "../../const";
 
 const MainScreen = (props) => {
   const {title, genre, year, poster, background} = props.promoFilm;
@@ -113,13 +114,13 @@ MainScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   genreFilter: state.genreFilter,
-  filmsByGenre: state.films
+  filmsByGenre: state.genreFilter === ALL_GENRES_FILTER ? state.films : state.filteredFilms,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onGenreFilterChange(genreFilter) {
     dispatch(ActionCreator.changeGenreFilter(genreFilter));
-    dispatch(ActionCreator.getFilmsByGenre(ownProps.films, genreFilter));
+    dispatch(ActionCreator.filterFilmsByGenre());
   },
 });
 

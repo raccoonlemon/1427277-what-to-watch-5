@@ -5,7 +5,8 @@ import {ActionType} from "./action";
 
 const initialState = {
   genreFilter: ALL_GENRES_FILTER,
-  films: []
+  films: [],
+  filteredFilms: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -16,6 +17,13 @@ export const reducer = (state = initialState, action) => {
 
     case ActionType.GET_FILMS_BY_GENRE:
       return extend(state, {films: getFilmsByGenre(action.payload)});
+
+    case ActionType.FILTER_FILMS_BY_GENRE:
+      // пример сложной сортировки https://codesandbox.io/s/filter-90eig
+      return extend(state, {
+        filteredFilms: state.films.filter(film => film.genre === state.genreFilter)
+      }
+    );
   }
 
   return state;
