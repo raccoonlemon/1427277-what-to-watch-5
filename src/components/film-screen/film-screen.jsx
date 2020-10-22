@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {SHORT_LIST_STARRING_COUNT} from "../../const";
 import {splitArrayToSegments, toCamelCase} from '../../utils/common';
 import {getDateTimeForHTML, getFormattedFilmDuration, getFormattedReviewDate} from '../../utils/date-time-formatter';
@@ -38,8 +38,9 @@ const FilmScreen = (props) => {
   const REVIEWS_COLUMNS_COUNT = 2;
   const reviewsByColumns = splitReviewsToColumns(reviews, REVIEWS_COLUMNS_COUNT);
 
-  const [activeTab, setActiveTab] = useState(FilmInfoTabs.OVERVIEW);
-
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(location.hash.replace('#', ''));
+  
   const tabContent = {
     [FilmInfoTabs.OVERVIEW]: (film) => (
       <React.Fragment>

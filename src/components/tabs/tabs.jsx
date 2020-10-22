@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { FilmInfoTabs } from "../film-screen/film-screen";
+import { useHistory } from "react-router-dom"; // https://reactrouter.com/web/api/Hooks
 
 export const Tabs = (props) => {
   const { activeTab, onChangeTab } = props;
+  const history = useHistory();
 
   return (
     <React.Fragment>
@@ -22,6 +24,7 @@ export const Tabs = (props) => {
                   data-tab = {tab} 
                   onClick = {(event) => {
                     event.preventDefault();
+                    history.push(`#${tab}`);
                     onChangeTab(tab)
                   }}
                 >
