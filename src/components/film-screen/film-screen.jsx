@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {FilmInfoTabs} from "../../const";
+import {FilmInfoTab} from "../../const";
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfoDetails from '../film-info-details/film-info-details';
 import FilmInfoOverview from '../film-info-overview/film-info-overview';
 import FilmInfoReviews from '../film-info-reviews/film-info-reviews';
 import FilmsList from '../films-list/films-list';
-import Tabs from '../tabs/tabs';
+import FilmInfoTabs from '../film-info-tabs/film-info-tabs';
 
 
 const FilmScreen = (props) => {
@@ -17,7 +17,7 @@ const FilmScreen = (props) => {
 
   const addReviewlink = `/films/${id}/review`;
 
-  const DEFAULT_TAB = FilmInfoTabs.OVERVIEW;
+  const DEFAULT_TAB = FilmInfoTab.OVERVIEW;
 
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.hash.replace(`#`, ``) || DEFAULT_TAB);
@@ -81,10 +81,10 @@ const FilmScreen = (props) => {
             <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
           <div className="movie-card__desc">
-            <Tabs onTabChange = {setActiveTab} activeTab = {activeTab}/>
-            {activeTab === FilmInfoTabs.OVERVIEW && <FilmInfoOverview film = {film} reviews = {reviews}/>}
-            {activeTab === FilmInfoTabs.DETAILS && <FilmInfoDetails film = {film} reviews = {reviews}/> }
-            {activeTab === FilmInfoTabs.REVIEWS && <FilmInfoReviews reviews = {reviews}/>}
+            <FilmInfoTabs onTabChange = {setActiveTab} activeTab = {activeTab}/>
+            {activeTab === FilmInfoTab.OVERVIEW && <FilmInfoOverview film = {film} reviews = {reviews}/>}
+            {activeTab === FilmInfoTab.DETAILS && <FilmInfoDetails film = {film} reviews = {reviews}/> }
+            {activeTab === FilmInfoTab.REVIEWS && <FilmInfoReviews reviews = {reviews}/>}
           </div>
         </div>
       </div>

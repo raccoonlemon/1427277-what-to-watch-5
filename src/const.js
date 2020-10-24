@@ -20,7 +20,7 @@ export const FILM_RATING_SCALE = [
 export const ALL_GENRES_FILTER = `all genres`;
 
 
-export const FilmInfoTabs = {
+export const FilmInfoTab = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`

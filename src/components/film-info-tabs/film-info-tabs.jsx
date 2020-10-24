@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {FilmInfoTabs} from "../../const";
+import {FilmInfoTab} from "../../const";
 import {useHistory} from "react-router-dom";
 
-const Tabs = (props) => {
+const FilmInfoTabs = (props) => {
   const {activeTab, onTabChange} = props;
   const history = useHistory();
   return (<nav className="movie-nav movie-card__nav">
     <ul className="movie-nav__list">
-      {Object.values(FilmInfoTabs).map((tab)=>{
+      {Object.values(FilmInfoTab).map((tab)=>{
         const classNames = [`movie-nav__item`];
         if (tab === activeTab) {
           classNames.push(`movie-nav__item--active`);
@@ -27,9 +27,9 @@ const Tabs = (props) => {
   </nav>);
 };
 
-Tabs.propTypes = {
+FilmInfoTabs.propTypes = {
   onTabChange: PropTypes.func.isRequired,
   activeTab: PropTypes.string.isRequired,
 };
 
-export default Tabs;
+export default FilmInfoTabs;
