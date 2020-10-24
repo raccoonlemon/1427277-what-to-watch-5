@@ -19,3 +19,9 @@ export const FILM_RATING_SCALE = [
 
 export const ALL_GENRES_FILTER = `all genres`;
 
+
+export const FilmInfoTabs = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`
+};

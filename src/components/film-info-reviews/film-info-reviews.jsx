@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {splitArrayToSegments} from "../../utils/common";
 import {getDateTimeForHTML, getFormattedReviewDate} from "../../utils/date-time-formatter";
 import {reviewShape} from "../../utils/props-validation";
@@ -43,7 +44,7 @@ const FilmInfoReviews = (props) => {
 };
 
 FilmInfoReviews.propTypes = {
-  reviews: reviewShape,
+  reviews: PropTypes.arrayOf(reviewShape).isRequired
 };
 
 export default FilmInfoReviews;

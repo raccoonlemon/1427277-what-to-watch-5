@@ -1,40 +1,35 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {FilmInfoTabs} from "../../const";
+import {useHistory} from "react-router-dom";
 
-export class Tabs extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {activeTab: props.initialTab};
-    this.handleTabChange = this.handleTabChange.bind(this);
-  }
-
-  render() {
-    const {renderTabList} = this.props;
-
-    return (
-      <React.Fragment>
-        {renderTabList(this.state.activeTab, this.handleTabChange)}
-        {this.props.children.map((child)=>{
-          if (child.key === this.state.activeTab) {
-            return child;
-          }
-          return undefined;
-        })}
-      </React.Fragment>);
-  }
-
-  handleTabChange(evt) {
-    evt.preventDefault();
-
-    const activeTab = evt.target.dataset.tab;
-    if (activeTab !== this.setState.activeTab) {
-      this.setState({activeTab});
-    }
-  }
-}
+const Tabs = (props) => {
+  const {activeTab, onTabChange} = props;
+  const history = useHistory();
+  return (<nav className="movie-nav movie-card__nav">
+    <ul className="movie-nav__list">
+      {Object.values(FilmInfoTabs).map((tab)=>{
+        const classNames = [`movie-nav__item`];
+        if (tab === activeTab) {
+          classNames.push(`movie-nav__item--active`);
+        }
+        return (
+          <li key = {tab} className={classNames.join(` `)}>
+            <a href="#" className="movie-nav__link" data-tab = {tab}
+              onClick = {(evt)=>{
+                evt.preventDefault();
+                history.push(`#${tab}`);
+                onTabChange();
+              }}>{tab}</a>
+          </li>);
+      })}
+    </ul>
+  </nav>);
+};
 
 Tabs.propTypes = {
-  renderTabList: PropTypes.func.isRequired,
-  initialTab: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired
+  onTabChange: PropTypes.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
 };
+
+export default Tabs;
