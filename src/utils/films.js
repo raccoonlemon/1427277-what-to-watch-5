@@ -1,9 +1,7 @@
 import {FilmRating, FILM_RATING_SCALE} from "../const";
 import {ALL_GENRES_FILTER} from "../const";
 
-export const getSimilarFilms = (films, {genre, id}) =>{
-  return films.filter((film)=>film.genre === genre && film.id !== id);
-};
+export const getSimilarFilms = (films, {genre, id}) => films.filter((film)=>film.genre === genre && film.id !== id);
 
 export const getAverageRating = (reviews)=>{
   const rewiewsCount = reviews.length;
