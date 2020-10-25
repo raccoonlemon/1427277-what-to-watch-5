@@ -19,9 +19,22 @@ export const FILM_RATING_SCALE = [
 
 export const ALL_GENRES_FILTER = `all genres`;
 
-
 export const FilmInfoTab = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`
 };
+
+export const Path = {
+  MAIN_PAGE: `/`,
+  FILM_SCREEN: `/films/:id`,
+  ADD_REVIEW: `/films/:id/review`,
+  MY_LIST: `/mylist`,
+  SIGN_IN: `/login`,
+  PLAYER: `/player/:id`,
+  filmScreen: (id) => Path.FILM_SCREEN.replace(`:id`, id),
+  addReview: (id) => Path.ADD_REVIEW.replace(`:id`, id),
+  player: (id) => Path.PLAYER.replace(`:id`, id),
+};
+
+

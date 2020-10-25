@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {FilmInfoTab} from "../../const";
+import {FilmInfoTab, Path} from "../../const";
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfoDetails from '../film-info-details/film-info-details';
 import FilmInfoOverview from '../film-info-overview/film-info-overview';
@@ -15,8 +15,6 @@ const FilmScreen = (props) => {
   const {film, reviews, similarFilms} = props;
 
   const {title, genre, year, poster, background, id} = film;
-
-  const addReviewlink = `/films/${id}/review`;
 
   const DEFAULT_TAB = FilmInfoTab.OVERVIEW;
 
@@ -55,7 +53,7 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <Link className="btn movie-card__button" to={addReviewlink}>Add review</Link>
+              <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>
             </div>
           </div>
         </div>
