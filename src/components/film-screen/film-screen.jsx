@@ -9,6 +9,7 @@ import FilmInfoReviews from '../film-info-reviews/film-info-reviews';
 import FilmsList from '../films-list/films-list';
 import FilmInfoTabs from '../film-info-tabs/film-info-tabs';
 import Header from '../header/header';
+import Footer from '../footer/footer';
 
 
 const FilmScreen = (props) => {
@@ -82,19 +83,8 @@ const FilmScreen = (props) => {
           <FilmsList films = {similarFilms}/>
         </section>}
 
-      <footer className="page-footer">
-        <div className="logo">
-          <Link className="logo__link logo__link--light" to="/">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+      <Footer/>
 
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
     </div>
   </React.Fragment>);
 };

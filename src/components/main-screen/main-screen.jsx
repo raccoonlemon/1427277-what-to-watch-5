@@ -1,12 +1,12 @@
-import React from "react";
 import PropTypes from 'prop-types';
-import FilmsList from "../films-list/films-list";
-import {filmShape} from "../../utils/props-validation";
-import {Link} from "react-router-dom";
-import {ActionCreator} from "../../store/action";
+import React from "react";
 import {connect} from "react-redux";
-import GenreFilter from "../genre-filter/genre-filter";
+import {ActionCreator} from "../../store/action";
 import {getGenresList} from "../../utils/films";
+import {filmShape} from "../../utils/props-validation";
+import FilmsList from "../films-list/films-list";
+import Footer from "../footer/footer";
+import GenreFilter from "../genre-filter/genre-filter";
 import Header from "../header/header";
 
 const MainScreen = (props) => {
@@ -68,19 +68,7 @@ const MainScreen = (props) => {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </React.Fragment>
   );

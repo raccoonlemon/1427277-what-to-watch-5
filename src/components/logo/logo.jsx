@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from 'react-router-dom';
 import {Path} from '../../const';
 
-const Logo = () =>{
+const Logo = (props) =>{
+  const {className} = props;
   const isLinkActive = !(window.location.pathname === Path.MAIN_PAGE);
 
   const logo = (
@@ -13,11 +15,19 @@ const Logo = () =>{
     </React.Fragment>);
 
   return (
-    <div className="logo">
+    <div className={`logo `}>
       {isLinkActive
-        ? <Link className="logo__link" to={Path.MAIN_PAGE}>{logo}</Link>
-        : <a className="logo__link">{logo}</a>}
+        ? <Link className={`logo__link ${className}`} to={Path.MAIN_PAGE}>{logo}</Link>
+        : <a className={`logo__link ${className}`}>{logo}</a>}
     </div>);
+};
+
+Logo.defaultProps = {
+  classNames: ``,
+};
+
+Logo.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Logo;
