@@ -48,11 +48,3 @@ export const getGenresList = (films)=>{
 
   return uniqueGenres;
 };
-
-export const getFilmsByGenre = (films, currentGenre) =>{
-  if (currentGenre === ALL_GENRES_FILTER) {
-    return films.slice();
-  }
-
-  return films.filter((film)=>film.genre === currentGenre);
-};

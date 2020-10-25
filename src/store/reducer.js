@@ -1,6 +1,5 @@
 import {ALL_GENRES_FILTER} from "../const";
 import {extend} from "../utils/common";
-import {getFilmsByGenre} from "../utils/films";
 import {ActionType} from "./action";
 
 const initialState = {
@@ -15,7 +14,7 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {currentGenre: action.payload});
 
     case ActionType.SET_FILTERED_FILMS_BY_GENRE:
-      return extend(state, {filteredFilms: getFilmsByGenre(state.films, state.currentGenre)});
+      return extend(state, {filteredFilms: state.films.filter((film)=>film.genre === state.currentGenre)});
   }
 
   return state;

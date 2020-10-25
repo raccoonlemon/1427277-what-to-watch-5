@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from "react-redux";
+import {ALL_GENRES_FILTER} from '../../const';
 import {ActionCreator} from "../../store/action";
 import {getGenresList} from "../../utils/films";
 import {filmShape} from "../../utils/props-validation";
@@ -10,9 +11,9 @@ import GenreFilter from "../genre-filter/genre-filter";
 import Header from "../header/header";
 
 const MainScreen = (props) => {
-  const {title, genre, year, poster, background} = props.promoFilm;
-  const {films, filteredFilms, currentGenre, onGenreFilterChange} = props;
-  const genres = getGenresList(films);
+  const {films, currentGenre, onGenreFilterChange, genres, promoFilm} = props;
+  const {title, genre, year, poster, background} = promoFilm;
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -61,7 +62,7 @@ const MainScreen = (props) => {
 
           <GenreFilter genres={genres} onFilterChage = {onGenreFilterChange} activeFilter = {currentGenre}/>
 
-          <FilmsList films = {filteredFilms}/>
+          <FilmsList films = {films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -78,14 +79,14 @@ MainScreen.propTypes = {
   currentGenre: PropTypes.string.isRequired,
   promoFilm: filmShape.isRequired,
   films: PropTypes.arrayOf(filmShape).isRequired,
-  filteredFilms: PropTypes.arrayOf(filmShape).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   onGenreFilterChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  films: state.films,
+  films: state.currentGenre === ALL_GENRES_FILTER ? state.films : state.filteredFilms,
+  genres: getGenresList(state.films),
   currentGenre: state.currentGenre,
-  filteredFilms: state.filteredFilms
 });
 
 const mapDispatchToProps = (dispatch) => ({
