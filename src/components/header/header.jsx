@@ -10,12 +10,12 @@ const Header = (props) =>{
     <header className={`page-header ${className}`}>
       <Logo/>
       {props.children}
+      {showUserBlock &&
       <div className="user-block">
-        {showUserBlock &&
         <div className="user-block">
           <Link className="user-block__link" to = "/login">Sign in</Link>
-        </div>}
-      </div>
+        </div>
+      </div>}
     </header>);
 
   // разметка для залогиненого пользователя
@@ -25,7 +25,7 @@ const Header = (props) =>{
 };
 
 Header.defaultProps = {
-  classNames: ``,
+  className: ``,
   showUserBlock: true
 };
 
