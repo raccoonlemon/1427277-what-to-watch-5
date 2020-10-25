@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
-import { Path } from '../../const';
+import {Path} from '../../const';
 import {getSimilarFilms} from '../../utils/films';
 import {filmShape, reviewShape} from '../../utils/props-validation';
 import AddReviewScreen from "../add-review-screen/add-review-screen";

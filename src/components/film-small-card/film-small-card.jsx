@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from 'react-router-dom';
-import { Path } from '../../const';
+import {Path} from '../../const';
 import {filmShape} from '../../utils/props-validation';
 import VideoPlayer from '../video-player/video-player';
 
