@@ -7,7 +7,10 @@ const dateValueRequired = PropTypes.instanceOf(Date).isRequired;
 export const filmShape = PropTypes.shape({
   id: stringValueRequired,
   title: stringValueRequired,
-  genre: stringValueRequired,
+  genre: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]).isRequired,
   year: numberValueRequired,
   director: stringValueRequired,
   duration: numberValueRequired,

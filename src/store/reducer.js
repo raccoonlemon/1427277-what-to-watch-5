@@ -14,7 +14,12 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {currentGenre: action.payload});
 
     case ActionType.SET_FILTERED_FILMS_BY_GENRE:
-      return extend(state, {filteredFilms: state.films.filter((film)=>film.genre === state.currentGenre)});
+      return extend(state, {filteredFilms: state.films.filter((film) => {
+        return Array.isArray(film.genre)
+          ? film.genre.includes(state.currentGenre)
+          : film.genre === state.currentGenre;
+      }
+      )});
   }
 
   return state;

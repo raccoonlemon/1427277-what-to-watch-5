@@ -1,7 +1,14 @@
 import {FilmRating, FILM_RATING_SCALE} from "../const";
 import {ALL_GENRES_FILTER} from "../const";
 
-export const getSimilarFilms = (films, {genre, id}) => films.filter((film)=>film.genre === genre && film.id !== id);
+export const getSimilarFilms = (films, {genre, id}) => {
+
+  const genreToFind = Array.isArray(genre) ? genre : [genre];
+
+  return films.filter((film)=>film.id !== id && (Array.isArray(film.genre)
+    ? film.genre.find((it) => genreToFind.includes(it))
+    : genreToFind.includes(film.genre)));
+};
 
 export const getAverageRating = (reviews)=>{
   const rewiewsCount = reviews.length;
@@ -38,7 +45,13 @@ export const getRatingDescription = (reviews) =>{
 export const getGenresList = (films)=>{
   const MAX_GENRES_COUNT = 9;
 
-  const genres = films.map((film)=>film.genre.toLowerCase());
+  let genres = [];
+
+  films.forEach((film)=>{
+    genres.push(...Array.isArray(film.genre) ? film.genre : [film.genre]);
+  });
+
+  genres = genres.map((genre)=>genre.toLowerCase());
 
   let uniqueGenres = [...new Set(genres)];
 
