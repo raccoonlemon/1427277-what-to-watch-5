@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
 import {Path} from '../../const';
-import {getSimilarFilms} from '../../utils/films';
 import {filmShape, reviewShape} from '../../utils/props-validation';
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
@@ -36,15 +35,8 @@ const App = (props) =>{
         <Route exact path={Path.FILM_SCREEN}
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
-            const film = props.films.find((element)=>element.id === id);
-            const reviews = props.reviews.filter((review)=>review.filmId === id);
-            // temp mock
-            const similarFilms = getSimilarFilms(props.films, film);
             return (
-              <FilmScreen
-                film = {film}
-                reviews = {reviews}
-                similarFilms = {similarFilms}/>);
+              <FilmScreen id = {id}/>);
           }}>
         </Route>
         <Route exact path={Path.PLAYER}>

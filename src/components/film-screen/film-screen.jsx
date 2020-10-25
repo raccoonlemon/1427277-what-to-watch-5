@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {FilmInfoTab, Path} from "../../const";
+import {FilmInfoTab, MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfoDetails from '../film-info-details/film-info-details';
 import FilmInfoOverview from '../film-info-overview/film-info-overview';
@@ -10,6 +10,8 @@ import FilmsList from '../films-list/films-list';
 import FilmInfoTabs from '../film-info-tabs/film-info-tabs';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import {connect} from 'react-redux';
+import {getSimilarFilms} from '../../utils/films';
 
 
 const FilmScreen = (props) => {
@@ -89,11 +91,22 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  const film = state.films.find((element)=>element.id === id);
+  return {
+    film,
+    reviews: state.reviews.filter((review)=>review.filmId === id),
+    similarFilms: getSimilarFilms(state.films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
+  };
+};
+
 FilmScreen.propTypes = {
   film: filmShape.isRequired,
   reviews: PropTypes.arrayOf(reviewShape).isRequired,
   similarFilms: PropTypes.arrayOf(filmShape).isRequired
 };
 
-export default FilmScreen;
+export {FilmScreen};
+export default connect(mapStateToProps)(FilmScreen);
 

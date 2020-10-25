@@ -8,15 +8,16 @@ import {films, promoFilm} from "./mocks/films.js";
 import {generateMockReviews} from "./mocks/reviews";
 import {reducer} from "./store/reducer";
 
+const reviews = generateMockReviews(films);
+
 const preloadedState = {
   currentGenre: ALL_GENRES_FILTER,
   films,
+  reviews,
   filteredFilms: films
 };
 
 const store = createStore(reducer, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
-
-const reviews = generateMockReviews(films);
 
 ReactDOM.render(
     <Provider store={store}>

@@ -2,6 +2,8 @@ export const SHORT_LIST_STARRING_COUNT = 4;
 export const MAX_RAITING_IN_REVIEW = 5;
 export const DEFAULT_RAITING_IN_REVIEW = 3;
 
+export const MAX_SIMILAR_FILM_COUNT = 4;
+
 export const FilmRating = {
   AWESOME: `Awesome`,
   VERY_GOOD: `Very good`,
