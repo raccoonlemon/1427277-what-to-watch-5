@@ -1,17 +1,19 @@
-import React from "react";
 import PropTypes from 'prop-types';
-import FilmsList from "../films-list/films-list";
-import {filmShape} from "../../utils/props-validation";
-import {Link} from "react-router-dom";
-import {ActionCreator} from "../../store/action";
+import React from "react";
 import {connect} from "react-redux";
-import GenreFilter from "../genre-filter/genre-filter";
+import {ALL_GENRES_FILTER} from '../../const';
+import {ActionCreator} from "../../store/action";
 import {getGenresList} from "../../utils/films";
+import {filmShape} from "../../utils/props-validation";
+import FilmsList from "../films-list/films-list";
+import Footer from "../footer/footer";
+import GenreFilter from "../genre-filter/genre-filter";
+import Header from "../header/header";
 
 const MainScreen = (props) => {
-  const {title, genre, year, poster, background} = props.promoFilm;
-  const {films, filmsByGenre, genreFilter, onGenreFilterChange} = props;
-  const genres = getGenresList(films);
+  const {films, currentGenre, onGenreFilterChange, genres, promoFilm} = props;
+  const {title, genre, year, poster, background} = promoFilm;
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -20,25 +22,7 @@ const MainScreen = (props) => {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            {/* <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div> */}
-            <div className="user-block">
-              <Link className="user-block__link" to = "/login">Sign in</Link>
-            </div>
-          </div>
-        </header>
+        <Header className="movie-card__head" isLinkActive = {false}/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -76,50 +60,39 @@ const MainScreen = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreFilter genres={genres} onFilterChage = {onGenreFilterChange} activeFilter = {genreFilter}/>
+          <GenreFilter genres={genres} onFilterChage = {onGenreFilterChange} activeFilter = {currentGenre}/>
 
-          <FilmsList films = {filmsByGenre}/>
+          <FilmsList films = {films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </React.Fragment>
   );
 };
 
 MainScreen.propTypes = {
-  genreFilter: PropTypes.string.isRequired,
+  currentGenre: PropTypes.string.isRequired,
   promoFilm: filmShape.isRequired,
   films: PropTypes.arrayOf(filmShape).isRequired,
-  filmsByGenre: PropTypes.arrayOf(filmShape).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   onGenreFilterChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  genreFilter: state.genreFilter,
-  filmsByGenre: state.films
+  films: state.currentGenre === ALL_GENRES_FILTER ? state.films : state.filteredFilms,
+  genres: getGenresList(state.films),
+  currentGenre: state.currentGenre,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onGenreFilterChange(genreFilter) {
-    dispatch(ActionCreator.changeGenreFilter(genreFilter));
-    dispatch(ActionCreator.getFilmsByGenre(ownProps.films, genreFilter));
+const mapDispatchToProps = (dispatch) => ({
+  onGenreFilterChange(currentGenre) {
+    dispatch(ActionCreator.changeCurrentGenre(currentGenre));
+    dispatch(ActionCreator.setFilteredFilms());
   },
 });
 

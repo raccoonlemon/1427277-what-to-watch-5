@@ -1,58 +1,29 @@
 import PropTypes from 'prop-types';
-import React from "react";
-import {Link} from "react-router-dom";
-import {FilmRating, FILM_RATING_SCALE, SHORT_LIST_STARRING_COUNT} from "../../const";
+import React, {useEffect, useState} from "react";
+import {Link, useLocation} from "react-router-dom";
+import {FilmInfoTab, MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
 import {filmShape, reviewShape} from "../../utils/props-validation";
+import FilmInfoDetails from '../film-info-details/film-info-details';
+import FilmInfoOverview from '../film-info-overview/film-info-overview';
+import FilmInfoReviews from '../film-info-reviews/film-info-reviews';
 import FilmsList from '../films-list/films-list';
+import FilmInfoTabs from '../film-info-tabs/film-info-tabs';
+import Header from '../header/header';
+import Footer from '../footer/footer';
+import {connect} from 'react-redux';
+import {getSimilarFilms} from '../../utils/films';
 
-const getAverageRating = (reviews)=>{
-  const rewiewsCount = reviews.length;
-
-  if (!reviews || !reviews.length) {
-    return 0;
-  }
-
-  const totalRating = reviews.reduce((result, review)=>{
-    return result + review.rating;
-  }, 0);
-  const averageRating = Math.round(totalRating / rewiewsCount * 10) / 10;
-
-  return averageRating;
-};
-
-const getShortStarringLine = (starring)=>{
-  return starring.slice(0, SHORT_LIST_STARRING_COUNT).join(`, `);
-};
-
-const getRatingDescription = (reviews) =>{
-
-  if (!reviews || !reviews.length) {
-    return FilmRating.NOT_RATED;
-  }
-  const averageRating = getAverageRating(reviews);
-
-  for (const filmRating of FILM_RATING_SCALE) {
-    if (averageRating >= filmRating.minScore) {
-      return filmRating.rating;
-    }
-  }
-
-  return FilmRating.NOT_RATED;
-
-};
 
 const FilmScreen = (props) => {
   const {film, reviews, similarFilms} = props;
 
-  const {title, genre, director, year, description, poster, background, id} = film;
+  const {title, genre, year, poster, background, id} = film;
 
-  const addReviewlink = `/films/${id}/review`;
-  // const playerLink = `/player/${id}`;
+  const DEFAULT_TAB = FilmInfoTab.OVERVIEW;
 
-  const starring = getShortStarringLine(film.starring);
-  const averageRating = getAverageRating(reviews);
-  const rewiewsCount = reviews.length;
-  const ratingDescription = getRatingDescription(reviews);
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(location.hash.replace(`#`, ``) || DEFAULT_TAB);
+  useEffect(() => setActiveTab(location.hash.replace(`#`, ``) || DEFAULT_TAB), [location.hash]);
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full">
@@ -62,22 +33,7 @@ const FilmScreen = (props) => {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <Link className="logo__link" to="/">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header className="movie-card__head"/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
@@ -100,8 +56,7 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              {/* <a href="add-review.html" className="btn movie-card__button">Add review</a> */}
-              <Link className="btn movie-card__button" to={addReviewlink}>Add review</Link>
+              <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>
             </div>
           </div>
         </div>
@@ -112,37 +67,11 @@ const FilmScreen = (props) => {
           <div className="movie-card__poster movie-card__poster--big">
             <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
-
           <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="movie-rating">
-              <div className="movie-rating__score">{averageRating}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{ratingDescription}</span>
-                <span className="movie-rating__count">{rewiewsCount} ratings</span>
-              </p>
-            </div>
-
-            <div className="movie-card__text">
-              <p>{description}</p>
-
-              <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-              <p className="movie-card__starring"><strong>Starring: {starring} and other</strong></p>
-            </div>
+            <FilmInfoTabs onTabChange = {setActiveTab} activeTab = {activeTab}/>
+            {activeTab === FilmInfoTab.OVERVIEW && <FilmInfoOverview film = {film} reviews = {reviews}/>}
+            {activeTab === FilmInfoTab.DETAILS && <FilmInfoDetails film = {film} reviews = {reviews}/> }
+            {activeTab === FilmInfoTab.REVIEWS && <FilmInfoReviews reviews = {reviews}/>}
           </div>
         </div>
       </div>
@@ -150,26 +79,26 @@ const FilmScreen = (props) => {
 
     <div className="page-content">
 
-      <section className="catalog catalog--like-this">
-        <h2 className="catalog__title">More like this</h2>
-        <FilmsList films = {similarFilms}/>
-      </section>
+      {similarFilms.length > 0 &&
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+          <FilmsList films = {similarFilms}/>
+        </section>}
 
-      <footer className="page-footer">
-        <div className="logo">
-          <Link className="logo__link logo__link--light" to="/">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+      <Footer/>
 
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
     </div>
   </React.Fragment>);
+};
+
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps;
+  const film = state.films.find((element)=>element.id === id);
+  return {
+    film,
+    reviews: state.reviews.filter((review)=>review.filmId === id),
+    similarFilms: getSimilarFilms(state.films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
+  };
 };
 
 FilmScreen.propTypes = {
@@ -178,5 +107,6 @@ FilmScreen.propTypes = {
   similarFilms: PropTypes.arrayOf(filmShape).isRequired
 };
 
-export default FilmScreen;
+export {FilmScreen};
+export default connect(mapStateToProps)(FilmScreen);
 

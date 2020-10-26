@@ -2,7 +2,7 @@ export const films = [
   {
     id: `1`,
     title: `The Grand Budapest Hotel`,
-    genre: `drama`,
+    genre: [`crime`, `comedy`],
     year: 2014,
     director: `Wes Andreson`,
     duration: 124,
@@ -59,7 +59,7 @@ export const films = [
   {
     id: `3`,
     title: `Moonrise Kingdom`,
-    genre: `romance`,
+    genre: [`comedy`, `drama`],
     year: 2012,
     director: `Wes Anderson`,
     duration: 98,
@@ -86,7 +86,7 @@ export const films = [
   {
     id: `4`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    genre: `fantasy`,
+    genre: [`fantasy`, `adventure`],
     year: 2018,
     director: `David Yates`,
     duration: 134,
@@ -113,7 +113,7 @@ export const films = [
   {
     id: `5`,
     title: `Aviator`,
-    genre: `biography`,
+    genre: [`drama`, `biography`],
     year: 2004,
     director: `Martin Scorsese`,
     duration: 110,
@@ -137,7 +137,7 @@ export const films = [
   {
     id: `6`,
     title: `Shutter Island`,
-    genre: `thriller `,
+    genre: `thriller`,
     year: 2010,
     director: `Martin Scorsese`,
     duration: 142,
@@ -162,7 +162,7 @@ export const films = [
   {
     id: `7`,
     title: `Johnny English`,
-    genre: `comedy `,
+    genre: [`comedy`, `adventure`],
     year: 2003,
     director: `Peter Howitt`,
     duration: 109,

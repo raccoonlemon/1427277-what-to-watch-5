@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import {Path} from '../../const';
 import {filmShape, reviewShape} from '../../utils/props-validation';
-import {Random} from '../../utils/random';
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
@@ -14,18 +14,17 @@ const App = (props) =>{
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={Path.MAIN_PAGE}>
           <MainScreen
-            promoFilm = {props.promoFilm}
-            films = {props.films}/>
+            promoFilm = {props.promoFilm}/>
         </Route>
-        <Route exact path="/login">
+        <Route exact path={Path.SIGN_IN}>
           <SignInScreen/>
         </Route>
-        <Route exact path="/mylist" >
+        <Route exact path={Path.MY_LIST}>
           <MyListScreen films = {props.films}/>
         </Route>
-        <Route exact path="/films/:id/review"
+        <Route exact path={Path.ADD_REVIEW}
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
             const film = props.films.find((element)=>element.id === id);
@@ -33,21 +32,14 @@ const App = (props) =>{
               <AddReviewScreen film = {film}/>);
           }}>
         </Route>
-        <Route exact path="/films/:id"
+        <Route exact path={Path.FILM_SCREEN}
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
-            const film = props.films.find((element)=>element.id === id);
-            const reviews = props.reviews.filter((review)=>review.filmId === id);
-            // temp mock
-            const similarFilms = Random.getArrayElements(props.films, 4);
             return (
-              <FilmScreen
-                film = {film}
-                reviews = {reviews}
-                similarFilms = {similarFilms}/>);
+              <FilmScreen id = {id}/>);
           }}>
         </Route>
-        <Route exact path="/player/:id">
+        <Route exact path={Path.PLAYER}>
           <PlayerScreen/>
         </Route>
         <Route
@@ -55,7 +47,7 @@ const App = (props) =>{
             <React.Fragment>
               <h1>404.</h1>
               <p>Page not found</p>
-              <Link to="/">Go to main page</Link>
+              <Link to={Path.MAIN_PAGE}>Go to main page</Link>
             </React.Fragment>)}>
         </Route>
       </Switch>

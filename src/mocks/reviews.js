@@ -22,20 +22,20 @@ export const generateMockReviews = (films)=>{
   const reviews = [];
 
   films.forEach((film) => {
-    const MIN_REVIEWS_COUNT = 10;
-    const MAX_REVIEWS_COUNT = 50;
+    const MIN_REVIEWS_COUNT = 5;
+    const MAX_REVIEWS_COUNT = 10;
 
     const reviewsCount = Random.getNumber(MIN_REVIEWS_COUNT, MAX_REVIEWS_COUNT);
 
-    for (let index = 0; index < reviewsCount; index++) {
-      reviews.push(generateMockReview(film.id));
+    for (let index = 1; index <= reviewsCount; index++) {
+      reviews.push(generateMockReview(film.id, index));
     }
   });
 
   return reviews;
 };
 
-const generateMockReview = (filmId)=>{
+const generateMockReview = (filmId, id)=>{
   const MAX_SCORE = 10;
   const MIN_SCORE = 5;
 
@@ -43,6 +43,7 @@ const generateMockReview = (filmId)=>{
   const DAYS_RANGE = -500;
 
   return {
+    id,
     filmId,
     date: Random.getDate(startDate, DAYS_RANGE),
     author: Random.getArrayElement(authors),

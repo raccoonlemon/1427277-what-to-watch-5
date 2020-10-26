@@ -1,29 +1,29 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from 'react-router-dom';
+import {Path} from '../../const';
 import {filmShape} from '../../utils/props-validation';
 import VideoPlayer from '../video-player/video-player';
 
 const getFilmCardContent = (film, isCardActive) =>{
+  const {title, posterSmall, previewVideo} = film;
 
   if (isCardActive) {
-    return (<VideoPlayer src = {film.previewVideo} poster = {film.posterSmall} />);
+    return (<VideoPlayer src = {previewVideo} poster = {posterSmall} />);
   }
 
-  const {title, posterSmall} = film;
   return (<img src={posterSmall} alt={title} width="280" height="175" />);
 };
 
 const FilmSmallCard = ({film, isCardActive, onMouseEnter, onMouseLeave})=>{
   const {title, id} = film;
-  const link = `/films/${id}`;
   return (
     <article className="small-movie-card catalog__movies-card" onMouseEnter={()=>onMouseEnter(id)} onMouseLeave={onMouseLeave}>
       <div className="small-movie-card__image">
         {getFilmCardContent(film, isCardActive)}
       </div>
       <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to={link}>{title}</Link>
+        <Link className="small-movie-card__link" to={Path.filmScreen(id)}>{title}</Link>
       </h3>
     </article>);
 };
