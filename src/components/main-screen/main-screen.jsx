@@ -11,7 +11,7 @@ import GenreFilter from "../genre-filter/genre-filter";
 import Header from "../header/header";
 
 const MainScreen = (props) => {
-  const {films, currentGenre, onGenreFilterChange, genres, promoFilm} = props;
+  const {films, currentGenre, onGenreChangeAction, genres, promoFilm} = props;
   const {title, genre, year, poster, background} = promoFilm;
 
   return (
@@ -60,7 +60,11 @@ const MainScreen = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreFilter genres={genres} onFilterChage = {onGenreFilterChange} activeFilter = {currentGenre}/>
+          <GenreFilter genres={genres} onFilterChage = {(newGenre)=>{
+            if (newGenre !== currentGenre) {
+              onGenreChangeAction(newGenre);
+            }
+          }} activeFilter = {currentGenre}/>
 
           <FilmsList films = {films}/>
 
@@ -80,7 +84,7 @@ MainScreen.propTypes = {
   promoFilm: filmShape.isRequired,
   films: PropTypes.arrayOf(filmShape).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onGenreFilterChange: PropTypes.func.isRequired
+  onGenreChangeAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -90,7 +94,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreFilterChange(currentGenre) {
+  onGenreChangeAction(currentGenre) {
     dispatch(ActionCreator.changeCurrentGenre(currentGenre));
     dispatch(ActionCreator.setFilteredFilms());
   },
