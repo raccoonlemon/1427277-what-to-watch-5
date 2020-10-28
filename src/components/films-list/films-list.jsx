@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from "react";
-import withActiveItem from '../../HOC/with-active-item';
+import withActiveItem from '../../hocs/with-active-item';
 import {filmShape} from "../../utils/props-validation";
 import FilmSmallCard from "../film-small-card/film-small-card";
 
