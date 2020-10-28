@@ -4,7 +4,7 @@ import withActiveItem from '../../HOC/with-active-item';
 import {filmShape} from "../../utils/props-validation";
 import FilmSmallCard from "../film-small-card/film-small-card";
 
-const FilmsList = (props) => {
+export const FilmsList = (props) => {
   const {films, setActiveItem, removeActiveItem, activeItemId} = props;
 
   return (
@@ -27,6 +27,5 @@ FilmsList.propTypes = {
   films: PropTypes.arrayOf(filmShape).isRequired,
 };
 
-export {FilmsList};
 export default withActiveItem(FilmsList);
 
