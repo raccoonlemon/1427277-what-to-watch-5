@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import App from "./components/app/app";
-import {ALL_GENRES_FILTER} from "./const";
+import {ALL_GENRES_FILTER, SHOWN_FILMS_INITIAL_COUNT} from "./const";
 import {films, promoFilm} from "./mocks/films.js";
 import {generateMockReviews} from "./mocks/reviews";
 import {reducer} from "./store/reducer";
@@ -14,7 +14,8 @@ const preloadedState = {
   currentGenre: ALL_GENRES_FILTER,
   films,
   reviews,
-  filteredFilms: films
+  filteredFilms: films,
+  shownFilmCount: SHOWN_FILMS_INITIAL_COUNT
 };
 
 const store = createStore(reducer, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);

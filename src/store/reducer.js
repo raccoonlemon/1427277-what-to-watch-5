@@ -20,6 +20,12 @@ export const reducer = (state = initialState, action) => {
           : film.genre === state.currentGenre;
       }
       )});
+
+    case ActionType.INCREASE_SHOWN_FILM_COUNT:
+      return extend(state, {shownFilmCount: state.shownFilmCount + action.payload});
+
+    case ActionType.RESET_SHOWN_FILM_COUNT:
+      return extend(state, {shownFilmCount: action.payload});
   }
 
   return state;
