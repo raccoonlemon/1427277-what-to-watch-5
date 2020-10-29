@@ -1,29 +1,20 @@
 import PropTypes from 'prop-types';
-import React, {useEffect, useState} from "react";
-import {Link, useLocation} from "react-router-dom";
-import {FilmInfoTab, MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
-import {filmShape, reviewShape} from "../../utils/props-validation";
-import FilmInfoDetails from '../film-info-details/film-info-details';
-import FilmInfoOverview from '../film-info-overview/film-info-overview';
-import FilmInfoReviews from '../film-info-reviews/film-info-reviews';
-import FilmsList from '../films-list/films-list';
-import FilmInfoTabs from '../film-info-tabs/film-info-tabs';
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import React from "react";
 import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
+import {MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
 import {getSimilarFilms} from '../../utils/films';
+import {filmShape, reviewShape} from "../../utils/props-validation";
+import FilmInfo from '../film-info/film-info';
+import FilmsList from '../films-list/films-list';
+import Footer from '../footer/footer';
+import Header from '../header/header';
 
 
 const FilmScreen = (props) => {
   const {film, reviews, similarFilms} = props;
 
   const {title, genre, year, poster, background, id} = film;
-
-  const DEFAULT_TAB = FilmInfoTab.OVERVIEW;
-
-  const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.hash.replace(`#`, ``) || DEFAULT_TAB);
-  useEffect(() => setActiveTab(location.hash.replace(`#`, ``) || DEFAULT_TAB), [location.hash]);
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full">
@@ -67,12 +58,7 @@ const FilmScreen = (props) => {
           <div className="movie-card__poster movie-card__poster--big">
             <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
-          <div className="movie-card__desc">
-            <FilmInfoTabs onTabChange = {setActiveTab} activeTab = {activeTab}/>
-            {activeTab === FilmInfoTab.OVERVIEW && <FilmInfoOverview film = {film} reviews = {reviews}/>}
-            {activeTab === FilmInfoTab.DETAILS && <FilmInfoDetails film = {film} reviews = {reviews}/> }
-            {activeTab === FilmInfoTab.REVIEWS && <FilmInfoReviews reviews = {reviews}/>}
-          </div>
+          <FilmInfo film={film} reviews={reviews}/>
         </div>
       </div>
     </section>
