@@ -5,7 +5,7 @@ import {ALL_GENRES_FILTER} from '../../const';
 import {ActionCreator} from '../../store/action';
 import {getGenresList} from '../../utils/films';
 import {filmShape} from "../../utils/props-validation";
-import {FilmsList} from "../films-list/films-list";
+import FilmsList from "../films-list/films-list";
 import GenreFilter from "../genre-filter/genre-filter";
 
 export const FilmCatalog = (props) => {
@@ -43,10 +43,10 @@ FilmCatalog.propTypes = {
 
 const mapStateToProps = (state) => {
   const films = state.currentGenre === ALL_GENRES_FILTER ? state.films : state.filteredFilms;
-  const showLoadMoreButton = state.shownFilmCount < films.length;
+  const showLoadMoreButton = state.shownFilmsCount < films.length;
 
   return {
-    films: films.slice(0, state.shownFilmCount),
+    films: films.slice(0, state.shownFilmsCount),
     genres: getGenresList(state.films),
     currentGenre: state.currentGenre,
     showLoadMoreButton};
@@ -56,10 +56,10 @@ const mapDispatchToProps = (dispatch) => ({
   onGenreChangeAction(currentGenre) {
     dispatch(ActionCreator.changeCurrentGenre(currentGenre));
     dispatch(ActionCreator.setFilteredFilms());
-    dispatch(ActionCreator.resetShownFilmCount());
+    dispatch(ActionCreator.resetShownFilmsCount());
   },
   onLoadMoreButtonClickAction() {
-    dispatch(ActionCreator.increaseShownFilmCount());
+    dispatch(ActionCreator.increaseShownFilmsCount());
   },
 });
 

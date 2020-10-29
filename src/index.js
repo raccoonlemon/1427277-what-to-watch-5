@@ -15,7 +15,7 @@ const preloadedState = {
   films,
   reviews,
   filteredFilms: films,
-  shownFilmCount: SHOWN_FILMS_INITIAL_COUNT
+  shownFilmsCount: SHOWN_FILMS_INITIAL_COUNT
 };
 
 const store = createStore(reducer, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
