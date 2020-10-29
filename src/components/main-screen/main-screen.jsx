@@ -1,18 +1,10 @@
-import PropTypes from 'prop-types';
 import React from "react";
-import {connect} from "react-redux";
-import {ALL_GENRES_FILTER} from '../../const';
-import {ActionCreator} from "../../store/action";
-import {getGenresList} from "../../utils/films";
 import {filmShape} from "../../utils/props-validation";
-import FilmsList from "../films-list/films-list";
+import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
-import GenreFilter from "../genre-filter/genre-filter";
 import Header from "../header/header";
 
-const MainScreen = (props) => {
-  const {films, currentGenre, genres, promoFilm, shownFilmCount, showLoadMoreButton} = props;
-  const {onGenreChangeAction, onLoadMoreButtonClickAction} = props;
+const MainScreen = ({promoFilm}) => {
   const {title, genre, year, poster, background} = promoFilm;
 
   return (
@@ -56,26 +48,8 @@ const MainScreen = (props) => {
           </div>
         </div>
       </section>
-
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden12">Catalog {shownFilmCount}</h2>
-
-          <GenreFilter genres={genres} onFilterChage = {(newGenre)=>{
-            if (newGenre !== currentGenre) {
-              onGenreChangeAction(newGenre);
-            }
-          }} activeFilter = {currentGenre}/>
-
-          <FilmsList films = {films}/>
-
-          {showLoadMoreButton &&
-          <div className="catalog__more">
-            <button className="catalog__button" type="button" onClick={onLoadMoreButtonClickAction}>Show more</button>
-          </div>}
-
-        </section>
-
+        <FilmCatalog/>
         <Footer/>
       </div>
     </React.Fragment>
@@ -83,38 +57,7 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  currentGenre: PropTypes.string.isRequired,
   promoFilm: filmShape.isRequired,
-  films: PropTypes.arrayOf(filmShape).isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  shownFilmCount: PropTypes.number.isRequired,
-  showLoadMoreButton: PropTypes.bool.isRequired,
-  onGenreChangeAction: PropTypes.func.isRequired,
-  onLoadMoreButtonClickAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const films = state.currentGenre === ALL_GENRES_FILTER ? state.films : state.filteredFilms;
-  const showLoadMoreButton = state.shownFilmCount < films.length;
-
-  return {
-    films: films.slice(0, state.shownFilmCount),
-    genres: getGenresList(state.films),
-    currentGenre: state.currentGenre,
-    shownFilmCount: state.shownFilmCount,
-    showLoadMoreButton};
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  onGenreChangeAction(currentGenre) {
-    dispatch(ActionCreator.changeCurrentGenre(currentGenre));
-    dispatch(ActionCreator.setFilteredFilms());
-    dispatch(ActionCreator.resetShownFilmCount());
-  },
-  onLoadMoreButtonClickAction() {
-    dispatch(ActionCreator.increaseShownFilmCount());
-  },
-});
-
-export {MainScreen};
-export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
+export default MainScreen;
