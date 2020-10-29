@@ -7,6 +7,7 @@ import {getGenresList} from '../../utils/films';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";
 import GenreFilter from "../genre-filter/genre-filter";
+import ShowMoreButton from '../show-more-button/show-more-button';
 
 export const FilmCatalog = (props) => {
   const {films, currentGenre, genres, showLoadMoreButton} = props;
@@ -15,20 +16,17 @@ export const FilmCatalog = (props) => {
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-      <GenreFilter genres={genres} onFilterChage = {(newGenre)=>{
-        if (newGenre !== currentGenre) {
-          onGenreChangeAction(newGenre);
-        }
-      }} activeFilter = {currentGenre}/>
+      <GenreFilter
+        genres={genres}
+        onFilterChage = {(newGenre)=>{
+          if (newGenre !== currentGenre) {
+            onGenreChangeAction(newGenre);
+          }
+        }} activeFilter = {currentGenre}/>
 
       <FilmsList films = {films}/>
 
-      {showLoadMoreButton &&
-    <div className="catalog__more">
-      <button className="catalog__button" type="button" onClick={onLoadMoreButtonClickAction}>Show more</button>
-    </div>}
-
+      {showLoadMoreButton && <ShowMoreButton onClick = {onLoadMoreButtonClickAction}/>}
     </section>);
 };
 
