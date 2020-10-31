@@ -7,21 +7,23 @@ export const ActionType = {
   RESET_SHOWN_FILMS_COUNT: `RESET_SHOWN_FILMS_COUNT`,
 };
 
-export const ActionCreator = {
-  changeCurrentGenre: (genre)=>({
-    type: ActionType.CHANGE_CURRENT_GENRE,
-    payload: genre
-  }),
-  setFilteredFilms: ()=>({
-    type: ActionType.SET_FILTERED_FILMS_BY_GENRE,
-    payload: {}
-  }),
-  increaseShownFilmsCount: ()=>({
-    type: ActionType.INCREASE_SHOWN_FILMS_COUNT,
-    payload: SHOW_MORE_FILMS_STEP
-  }),
-  resetShownFilmsCount: ()=>({
-    type: ActionType.RESET_SHOWN_FILMS_COUNT,
-    payload: SHOWN_FILMS_INITIAL_COUNT
-  }),
-};
+
+export const changeCurrentGenre = (genre)=>({
+  type: ActionType.CHANGE_CURRENT_GENRE,
+  payload: genre
+});
+
+export const setFilteredFilms = ()=>({
+  type: ActionType.SET_FILTERED_FILMS_BY_GENRE,
+  payload: {}
+});
+
+export const increaseShownFilmsCount = ()=>({
+  type: ActionType.INCREASE_SHOWN_FILMS_COUNT,
+  payload: SHOW_MORE_FILMS_STEP
+});
+
+export const resetShownFilmsCount = ()=>({
+  type: ActionType.RESET_SHOWN_FILMS_COUNT,
+  payload: SHOWN_FILMS_INITIAL_COUNT
+});

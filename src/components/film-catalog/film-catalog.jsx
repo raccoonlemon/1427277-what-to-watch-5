@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
 import {ALL_GENRES_FILTER} from '../../const';
-import {ActionCreator} from '../../store/action';
+import {changeCurrentGenre, increaseShownFilmsCount, resetShownFilmsCount, setFilteredFilms} from '../../store/action';
 import {getGenresList} from '../../utils/films';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";
@@ -52,12 +52,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreChangeAction(currentGenre) {
-    dispatch(ActionCreator.changeCurrentGenre(currentGenre));
-    dispatch(ActionCreator.setFilteredFilms());
-    dispatch(ActionCreator.resetShownFilmsCount());
+    dispatch(changeCurrentGenre(currentGenre));
+    dispatch(setFilteredFilms());
+    dispatch(resetShownFilmsCount());
   },
   onLoadMoreButtonClickAction() {
-    dispatch(ActionCreator.increaseShownFilmsCount());
+    dispatch(increaseShownFilmsCount());
   },
 });
 
