@@ -22,7 +22,7 @@ export const reducer = (state = initialState, action) => {
       )});
 
     case ActionType.INCREASE_SHOWN_FILMS_COUNT:
-      return extend(state, {shownFilmsCount: state.shownFilmsCount + SHOW_MORE_FILMS_STEP});
+      return extend(state, {shownFilmsCount: state.shownFilmsCount + action.payload});
 
     case ActionType.RESET_SHOWN_FILMS_COUNT:
       return extend(state, {shownFilmsCount: SHOWN_FILMS_INITIAL_COUNT});

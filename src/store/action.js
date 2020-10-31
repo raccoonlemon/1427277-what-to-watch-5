@@ -14,9 +14,9 @@ export const ActionCreator = {
     type: ActionType.SET_FILTERED_FILMS_BY_GENRE,
     payload: {}
   }),
-  increaseShownFilmsCount: ()=>({
+  increaseShownFilmsCount: (step)=>({
     type: ActionType.INCREASE_SHOWN_FILMS_COUNT,
-    payload: {}
+    payload: step
   }),
   resetShownFilmsCount: ()=>({
     type: ActionType.RESET_SHOWN_FILMS_COUNT,

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
-import {ALL_GENRES_FILTER} from '../../const';
+import {ALL_GENRES_FILTER, SHOW_MORE_FILMS_STEP} from '../../const';
 import {ActionCreator} from '../../store/action';
 import {getGenresList} from '../../utils/films';
 import {filmShape} from "../../utils/props-validation";
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.resetShownFilmsCount());
   },
   onLoadMoreButtonClickAction() {
-    dispatch(ActionCreator.increaseShownFilmsCount());
+    dispatch(ActionCreator.increaseShownFilmsCount(SHOW_MORE_FILMS_STEP));
   },
 });
 
