@@ -3,22 +3,13 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import App from "./components/app/app";
-import {ALL_GENRES_FILTER, SHOWN_FILMS_INITIAL_COUNT} from "./const";
 import {films, promoFilm} from "./mocks/films.js";
 import {generateMockReviews} from "./mocks/reviews";
-import {reducer} from "./store/reducer";
+import rootReducer from "./store/reducers/root-reducer";
 
 const reviews = generateMockReviews(films);
 
-const preloadedState = {
-  currentGenre: ALL_GENRES_FILTER,
-  films,
-  reviews,
-  filteredFilms: films,
-  shownFilmsCount: SHOWN_FILMS_INITIAL_COUNT
-};
-
-const store = createStore(reducer, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
 
 ReactDOM.render(
     <Provider store={store}>

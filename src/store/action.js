@@ -5,6 +5,7 @@ export const ActionType = {
   SET_FILTERED_FILMS_BY_GENRE: `SET_FILTERED_FILMS_BY_GENRE`,
   INCREASE_SHOWN_FILMS_COUNT: `INCREASE_SHOWN_FILMS_COUNT`,
   RESET_SHOWN_FILMS_COUNT: `RESET_SHOWN_FILMS_COUNT`,
+  LOAD_FILMS: `LOAD_FILMS`
 };
 
 
@@ -13,9 +14,9 @@ export const changeCurrentGenre = (genre)=>({
   payload: genre
 });
 
-export const setFilteredFilms = ()=>({
+export const setFilteredFilms = (genre)=>({
   type: ActionType.SET_FILTERED_FILMS_BY_GENRE,
-  payload: {}
+  payload: genre
 });
 
 export const increaseShownFilmsCount = ()=>({
@@ -26,4 +27,9 @@ export const increaseShownFilmsCount = ()=>({
 export const resetShownFilmsCount = ()=>({
   type: ActionType.RESET_SHOWN_FILMS_COUNT,
   payload: SHOWN_FILMS_INITIAL_COUNT
+});
+
+export const loadFilms = (films) => ({
+  type: ActionType.LOAD_FILMS,
+  payload: films,
 });

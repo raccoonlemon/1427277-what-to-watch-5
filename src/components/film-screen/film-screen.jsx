@@ -77,13 +77,13 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({DATA}, ownProps) => {
   const {id} = ownProps;
-  const film = state.films.find((element)=>element.id === id);
+  const film = DATA.films.find((element)=>element.id === id);
   return {
     film,
-    reviews: state.reviews.filter((review)=>review.filmId === id),
-    similarFilms: getSimilarFilms(state.films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
+    reviews: DATA.reviews.filter((review)=>review.filmId === id),
+    similarFilms: getSimilarFilms(DATA.films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
   };
 };
 

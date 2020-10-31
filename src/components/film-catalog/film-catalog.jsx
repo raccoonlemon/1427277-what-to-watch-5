@@ -39,21 +39,21 @@ FilmCatalog.propTypes = {
   onLoadMoreButtonClickAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const films = state.currentGenre === ALL_GENRES_FILTER ? state.films : state.filteredFilms;
-  const showLoadMoreButton = state.shownFilmsCount < films.length;
+const mapStateToProps = ({CATALOG, DATA}) => {
+  const films = CATALOG.currentGenre === ALL_GENRES_FILTER ? DATA.films : DATA.filteredFilms;
+  const showLoadMoreButton = CATALOG.shownFilmsCount < films.length;
 
   return {
-    films: films.slice(0, state.shownFilmsCount),
-    genres: getGenresList(state.films),
-    currentGenre: state.currentGenre,
+    films: films.slice(0, CATALOG.shownFilmsCount),
+    genres: getGenresList(DATA.films),
+    currentGenre: CATALOG.currentGenre,
     showLoadMoreButton};
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreChangeAction(currentGenre) {
     dispatch(changeCurrentGenre(currentGenre));
-    dispatch(setFilteredFilms());
+    dispatch(setFilteredFilms(currentGenre));
     dispatch(resetShownFilmsCount());
   },
   onLoadMoreButtonClickAction() {
