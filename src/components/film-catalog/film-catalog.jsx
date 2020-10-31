@@ -10,7 +10,7 @@ import GenreFilter from "../genre-filter/genre-filter";
 import ShowMoreButton from '../show-more-button/show-more-button';
 
 export const FilmCatalog = (props) => {
-  const {films, currentGenre, genres, showLoadMoreButton} = props;
+  const {films, currentGenre, genres, needToShowLoadMoreButton} = props;
   const {onGenreChangeAction, onLoadMoreButtonClickAction} = props;
 
   return (
@@ -26,7 +26,7 @@ export const FilmCatalog = (props) => {
 
       <FilmsList films = {films}/>
 
-      {showLoadMoreButton && <ShowMoreButton onClick = {onLoadMoreButtonClickAction}/>}
+      {needToShowLoadMoreButton && <ShowMoreButton onClick = {onLoadMoreButtonClickAction}/>}
     </section>);
 };
 
@@ -34,20 +34,20 @@ FilmCatalog.propTypes = {
   currentGenre: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(filmShape).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  showLoadMoreButton: PropTypes.bool.isRequired,
+  needToShowLoadMoreButton: PropTypes.bool.isRequired,
   onGenreChangeAction: PropTypes.func.isRequired,
   onLoadMoreButtonClickAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   const films = state.currentGenre === ALL_GENRES_FILTER ? state.films : state.filteredFilms;
-  const showLoadMoreButton = state.shownFilmsCount < films.length;
+  const needToShowLoadMoreButton = state.shownFilmsCount < films.length;
 
   return {
     films: films.slice(0, state.shownFilmsCount),
     genres: getGenresList(state.films),
     currentGenre: state.currentGenre,
-    showLoadMoreButton};
+    needToShowLoadMoreButton};
 };
 
 const mapDispatchToProps = (dispatch) => ({
