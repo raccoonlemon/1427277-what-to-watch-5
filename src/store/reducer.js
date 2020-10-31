@@ -1,4 +1,4 @@
-import {ALL_GENRES_FILTER} from "../const";
+import {ALL_GENRES_FILTER, SHOWN_FILMS_INITIAL_COUNT, SHOW_MORE_FILMS_STEP} from "../const";
 import {extend} from "../utils/common";
 import {ActionType} from "./action";
 
@@ -22,10 +22,10 @@ export const reducer = (state = initialState, action) => {
       )});
 
     case ActionType.INCREASE_SHOWN_FILMS_COUNT:
-      return extend(state, {shownFilmsCount: state.shownFilmsCount + action.payload});
+      return extend(state, {shownFilmsCount: state.shownFilmsCount + SHOW_MORE_FILMS_STEP});
 
     case ActionType.RESET_SHOWN_FILMS_COUNT:
-      return extend(state, {shownFilmsCount: action.payload});
+      return extend(state, {shownFilmsCount: SHOWN_FILMS_INITIAL_COUNT});
   }
 
   return state;
