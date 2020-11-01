@@ -1,8 +1,6 @@
-import PropTypes from 'prop-types';
 import React from "react";
 import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
 import {Path} from '../../const';
-import {filmShape, reviewShape} from '../../utils/props-validation';
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
@@ -10,26 +8,25 @@ import MyListScreen from "../my-list-screen/my-list-screen";
 import PlayerScreen from "../player-screen/player-screen";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
 
-const App = (props) =>{
+const App = () =>{
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={Path.MAIN_PAGE}>
-          <MainScreen
-            promoFilm = {props.promoFilm}/>
+          <MainScreen/>
         </Route>
         <Route exact path={Path.SIGN_IN}>
           <SignInScreen/>
         </Route>
         <Route exact path={Path.MY_LIST}>
-          <MyListScreen films = {props.films}/>
+          <MyListScreen/>
         </Route>
         <Route exact path={Path.ADD_REVIEW}
           render={(routerProps)=>{
-            const id = routerProps.match.params.id;
-            const film = props.films.find((element)=>element.id === id);
+            // const id = routerProps.match.params.id;
+            // const film = props.films.find((element)=>element.id === id);
             return (
-              <AddReviewScreen film = {film}/>);
+              <AddReviewScreen/>);
           }}>
         </Route>
         <Route exact path={Path.FILM_SCREEN}
@@ -55,10 +52,6 @@ const App = (props) =>{
   );
 };
 
-App.propTypes = {
-  promoFilm: filmShape.isRequired,
-  films: PropTypes.arrayOf(filmShape).isRequired,
-  reviews: PropTypes.arrayOf(reviewShape).isRequired
-};
+App.propTypes = {};
 
 export default App;

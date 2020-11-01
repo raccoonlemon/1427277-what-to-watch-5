@@ -14,10 +14,10 @@ import Header from '../header/header';
 const FilmScreen = (props) => {
   const {film, reviews, similarFilms} = props;
 
-  const {title, genre, year, poster, background, id} = film;
+  const {title, genre, year, poster, background, backgroundColor, id} = film;
 
   return (<React.Fragment>
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{backgroundColor}}>
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={background} alt={title} />
@@ -56,7 +56,7 @@ const FilmScreen = (props) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={poster} alt={`${title} poster`} width="218" height="327" />
           </div>
           <FilmInfo film={film} reviews={reviews}/>
         </div>
@@ -79,7 +79,7 @@ const FilmScreen = (props) => {
 
 const mapStateToProps = ({DATA}, ownProps) => {
   const {id} = ownProps;
-  const film = DATA.films.find((element)=>element.id === id);
+  const film = DATA.films.find((element)=>element.id.toString() === id);
   return {
     film,
     reviews: DATA.reviews.filter((review)=>review.filmId === id),

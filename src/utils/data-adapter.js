@@ -2,11 +2,11 @@ export const adaptFilmToClient = (data)=>{
   const film = {
     id: data.id,
     title: data.name,
-    genre: data.genre,
+    genre: data.genre.toLowerCase(),
     year: data.released,
     director: data.director,
     duration: data.run_time,
-    srarring: data.starring,
+    starring: data.starring,
     description: data.description,
     background: data.background_image,
     backgroundColor: data.background_color,
