@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {selectPromoFilm} from "../../store/reducers/selectors";
 import {filmShape} from "../../utils/props-validation";
 import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
@@ -61,8 +62,8 @@ MainScreen.propTypes = {
   film: filmShape.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  film: DATA.promoFilm
+const mapStateToProps = (state) => ({
+  film: selectPromoFilm(state)
 });
 
 export default connect(mapStateToProps)(MainScreen);
