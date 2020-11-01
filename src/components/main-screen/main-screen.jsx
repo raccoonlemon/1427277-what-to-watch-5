@@ -1,11 +1,12 @@
 import React from "react";
+import {connect} from "react-redux";
 import {filmShape} from "../../utils/props-validation";
 import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 
-const MainScreen = ({promoFilm}) => {
-  const {title, genre, year, poster, background} = promoFilm;
+export const MainScreen = ({film}) => {
+  const {title, genre, year, poster, background} = film;
 
   return (
     <React.Fragment>
@@ -57,7 +58,11 @@ const MainScreen = ({promoFilm}) => {
 };
 
 MainScreen.propTypes = {
-  promoFilm: filmShape.isRequired,
+  film: filmShape.isRequired,
 };
 
-export default MainScreen;
+const mapStateToProps = ({DATA}) => ({
+  film: DATA.promoFilm
+});
+
+export default connect(mapStateToProps)(MainScreen);
