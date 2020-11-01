@@ -3,7 +3,8 @@ export const ActionType = {
   SET_FILTERED_FILMS_BY_GENRE: `SET_FILTERED_FILMS_BY_GENRE`,
   INCREASE_SHOWN_FILMS_COUNT: `INCREASE_SHOWN_FILMS_COUNT`,
   RESET_SHOWN_FILMS_COUNT: `RESET_SHOWN_FILMS_COUNT`,
-  LOAD_FILMS: `LOAD_FILMS`
+  LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`
 };
 
 
@@ -30,4 +31,9 @@ export const resetShownFilmsCount = ()=>({
 export const loadFilms = (films) => ({
   type: ActionType.LOAD_FILMS,
   payload: films,
+});
+
+export const loadPromoFilm = (film) => ({
+  type: ActionType.LOAD_PROMO_FILM,
+  payload: film,
 });
