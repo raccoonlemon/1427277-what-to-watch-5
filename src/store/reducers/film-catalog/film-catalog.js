@@ -26,7 +26,7 @@ export const filmCatalog = (state = initialState, action) => {
       return extend(state, {shownFilmsCount: state.shownFilmsCount + action.payload});
 
     case ActionType.RESET_SHOWN_FILMS_COUNT:
-      return extend(state, {shownFilmsCount: action.payload});
+      return extend(state, {shownFilmsCount: SHOWN_FILMS_INITIAL_COUNT});
   }
 
   return state;

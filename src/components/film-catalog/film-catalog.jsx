@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
-import {ALL_GENRES_FILTER} from '../../const';
+import {ALL_GENRES_FILTER, SHOW_MORE_FILMS_STEP} from '../../const';
 import {changeCurrentGenre, increaseShownFilmsCount, resetShownFilmsCount, setFilteredFilms} from '../../store/action';
 import {getGenresList} from '../../utils/films';
 import {filmShape} from "../../utils/props-validation";
@@ -10,7 +10,7 @@ import GenreFilter from "../genre-filter/genre-filter";
 import ShowMoreButton from '../show-more-button/show-more-button';
 
 export const FilmCatalog = (props) => {
-  const {films, currentGenre, genres, showLoadMoreButton} = props;
+  const {films, currentGenre, genres, needToShowLoadMoreButton} = props;
   const {onGenreChangeAction, onLoadMoreButtonClickAction} = props;
 
   return (
@@ -26,7 +26,7 @@ export const FilmCatalog = (props) => {
 
       <FilmsList films = {films}/>
 
-      {showLoadMoreButton && <ShowMoreButton onClick = {onLoadMoreButtonClickAction}/>}
+      {needToShowLoadMoreButton && <ShowMoreButton onClick = {onLoadMoreButtonClickAction}/>}
     </section>);
 };
 
@@ -34,20 +34,20 @@ FilmCatalog.propTypes = {
   currentGenre: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(filmShape).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  showLoadMoreButton: PropTypes.bool.isRequired,
+  needToShowLoadMoreButton: PropTypes.bool.isRequired,
   onGenreChangeAction: PropTypes.func.isRequired,
   onLoadMoreButtonClickAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({CATALOG, DATA}) => {
   const films = CATALOG.currentGenre === ALL_GENRES_FILTER ? DATA.films : DATA.filteredFilms;
-  const showLoadMoreButton = CATALOG.shownFilmsCount < films.length;
+  const needToShowLoadMoreButton = CATALOG.shownFilmsCount < films.length;
 
   return {
     films: films.slice(0, CATALOG.shownFilmsCount),
     genres: getGenresList(DATA.films),
     currentGenre: CATALOG.currentGenre,
-    showLoadMoreButton};
+    needToShowLoadMoreButton};
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(resetShownFilmsCount());
   },
   onLoadMoreButtonClickAction() {
-    dispatch(increaseShownFilmsCount());
+    dispatch(increaseShownFilmsCount(SHOW_MORE_FILMS_STEP));
   },
 });
 
