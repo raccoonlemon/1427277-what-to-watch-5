@@ -3,6 +3,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
+import {selectFilms, selectReviews} from '../../store/reducers/selectors';
 import {getSimilarFilms} from '../../utils/films';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfo from '../film-info/film-info';
@@ -77,13 +78,14 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
-const mapStateToProps = ({DATA}, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
-  const film = DATA.films.find((element)=>element.id.toString() === id);
+  const films = selectFilms(state);
+  const film = films.find((element)=>element.id.toString() === id);
   return {
     film,
-    reviews: DATA.reviews.filter((review)=>review.filmId === id),
-    similarFilms: getSimilarFilms(DATA.films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
+    reviews: selectReviews(state).filter((review)=>review.filmId === id),
+    similarFilms: getSimilarFilms(films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
   };
 };
 
