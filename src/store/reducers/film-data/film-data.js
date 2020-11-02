@@ -3,6 +3,7 @@ import {generateMockReviews} from "../../../mocks/reviews";
 import {extend} from "../../../utils/common";
 import {ActionType} from "../../action";
 
+// TODO: Убрать моковые отзывы после реализации их загрузки с сервера.
 const reviews = generateMockReviews(films);
 const initialState = {
   films,

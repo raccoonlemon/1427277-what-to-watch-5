@@ -78,6 +78,7 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
+// TODO: подгружать фильм с сервера, GET /films/: id
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
   const films = selectFilms(state);

@@ -6,6 +6,7 @@ import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 
+// TODO: вынести описание фильма в отдельный компонент. В film-screen аналогичный.
 export const MainScreen = ({film}) => {
   const {title, genre, year, poster, background} = film;
 

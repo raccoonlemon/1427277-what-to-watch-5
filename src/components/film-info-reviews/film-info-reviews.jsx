@@ -8,6 +8,7 @@ const splitReviewsToColumns = (reviews, columnsCount) => {
   return splitArrayToSegments(reviews, columnsCount);
 };
 
+// TODO: загружать отзывы с сервера, GET /comments/: film_id
 const FilmInfoReviews = (props) => {
   const {reviews} = props;
 

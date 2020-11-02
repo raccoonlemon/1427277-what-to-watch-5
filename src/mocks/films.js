@@ -1,3 +1,4 @@
+// TODO: удалить моковые данные
 export const films = [
   {
     id: `1`,
