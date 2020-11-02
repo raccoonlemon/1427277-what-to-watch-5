@@ -5,7 +5,7 @@ const numberValueRequired = PropTypes.number.isRequired;
 const dateValueRequired = PropTypes.instanceOf(Date).isRequired;
 
 export const filmShape = PropTypes.shape({
-  id: stringValueRequired,
+  id: numberValueRequired,
   title: stringValueRequired,
   genre: PropTypes.oneOfType([
     PropTypes.string,
