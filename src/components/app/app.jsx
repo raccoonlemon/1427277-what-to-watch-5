@@ -22,7 +22,7 @@ const App = () =>{
           <MyListScreen/>
         </Route>
         <Route exact path={Path.ADD_REVIEW}
-          render={(routerProps)=>{
+          render={()=>{
             // const id = routerProps.match.params.id;
             // const film = props.films.find((element)=>element.id === id);
             return (
