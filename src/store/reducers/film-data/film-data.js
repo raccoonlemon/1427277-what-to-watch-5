@@ -19,13 +19,6 @@ export const filmData = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_FILM:
       return extend(state, {promoFilm: action.payload});
 
-    case ActionType.SET_FILTERED_FILMS_BY_GENRE:
-      return extend(state, {filteredFilms: state.films.filter((film) => {
-        return Array.isArray(film.genre)
-          ? film.genre.includes(action.payload)
-          : film.genre === action.payload;
-      }
-      )});
   }
 
   return state;

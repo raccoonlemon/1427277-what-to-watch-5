@@ -14,14 +14,6 @@ export const filmCatalog = (state = initialState, action) => {
     case ActionType.CHANGE_CURRENT_GENRE:
       return extend(state, {currentGenre: action.payload});
 
-      // case ActionType.SET_FILTERED_FILMS_BY_GENRE:
-      //   return extend(state, {filteredFilms: state.films.filter((film) => {
-      //     return Array.isArray(film.genre)
-      //       ? film.genre.includes(state.currentGenre)
-      //       : film.genre === state.currentGenre;
-      //   }
-      //   )});
-
     case ActionType.INCREASE_SHOWN_FILMS_COUNT:
       return extend(state, {shownFilmsCount: state.shownFilmsCount + action.payload});
 

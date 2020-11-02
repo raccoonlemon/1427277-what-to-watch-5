@@ -25,6 +25,11 @@ export const getAverageRating = (reviews)=>{
   return averageRating;
 };
 
+export const isFilmBelongsToGenre = (film, genre)=>{
+  return Array.isArray(film.genre)
+    ? film.genre.includes(genre)
+    : film.genre === genre;
+};
 
 export const getRatingDescription = (reviews) =>{
 
