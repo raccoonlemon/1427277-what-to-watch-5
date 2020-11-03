@@ -3,7 +3,8 @@ export const ActionType = {
   INCREASE_SHOWN_FILMS_COUNT: `INCREASE_SHOWN_FILMS_COUNT`,
   RESET_SHOWN_FILMS_COUNT: `RESET_SHOWN_FILMS_COUNT`,
   LOAD_FILMS: `LOAD_FILMS`,
-  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`
 };
 
 
@@ -31,3 +32,9 @@ export const loadPromoFilm = (film) => ({
   type: ActionType.LOAD_PROMO_FILM,
   payload: film,
 });
+
+export const setAuthorizationStatus = (status) => ({
+  type: ActionType.SET_AUTHORIZATION_STATUS,
+  payload: status,
+});
+
