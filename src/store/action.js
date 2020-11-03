@@ -4,9 +4,9 @@ export const ActionType = {
   RESET_SHOWN_FILMS_COUNT: `RESET_SHOWN_FILMS_COUNT`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
-  SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`
+  SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
-
 
 export const changeCurrentGenre = (genre)=>({
   type: ActionType.CHANGE_CURRENT_GENRE,
@@ -36,5 +36,10 @@ export const loadPromoFilm = (film) => ({
 export const setAuthorizationStatus = (status) => ({
   type: ActionType.SET_AUTHORIZATION_STATUS,
   payload: status,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
 });
 

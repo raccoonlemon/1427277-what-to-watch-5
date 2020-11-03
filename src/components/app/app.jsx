@@ -1,6 +1,7 @@
 import React from "react";
-import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import {Router, Link, Route, Switch} from "react-router-dom";
 import {Path} from '../../const';
+import browserHistory from "../../utils/browser-history";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
@@ -10,7 +11,7 @@ import SignInScreen from "../sign-in-screen/sign-in-screen";
 
 const App = () =>{
   return (
-    <BrowserRouter>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact path={Path.MAIN_PAGE}>
           <MainScreen/>
@@ -48,7 +49,7 @@ const App = () =>{
             </React.Fragment>)}>
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

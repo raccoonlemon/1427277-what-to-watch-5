@@ -1,6 +1,6 @@
-import {AuthorizationStatus} from "../const";
+import {AuthorizationStatus, Path} from "../const";
 import {adaptFilmToClient} from "../utils/data-adapter";
-import {loadFilms, loadPromoFilm, setAuthorizationStatus} from "./action";
+import {loadFilms, loadPromoFilm, redirectToRoute, setAuthorizationStatus} from "./action";
 
 export const fetchFilms = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -15,4 +15,5 @@ export const fetchPromoFilm = () => (dispatch, _getState, api) => (
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(Path.MAIN_PAGE)))
 );
