@@ -1,5 +1,5 @@
 import React from "react";
-import {Router, Link, Route, Switch} from "react-router-dom";
+import {Link, Route, Router, Switch} from "react-router-dom";
 import {Path} from '../../const';
 import browserHistory from "../../utils/browser-history";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
@@ -7,6 +7,7 @@ import FilmScreen from "../film-screen/film-screen";
 import MainScreen from "../main-screen/main-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
 import PlayerScreen from "../player-screen/player-screen";
+import PrivateRoute from "../private-route/private-route";
 import SignInScreen from "../sign-in-screen/sign-in-screen";
 
 const App = () =>{
@@ -19,24 +20,19 @@ const App = () =>{
         <Route exact path={Path.SIGN_IN}>
           <SignInScreen/>
         </Route>
-        <Route exact path={Path.MY_LIST}>
-          <MyListScreen/>
-        </Route>
-        <Route exact path={Path.ADD_REVIEW}
-          render={()=>{
-            // const id = routerProps.match.params.id;
-            // const film = props.films.find((element)=>element.id === id);
+        <PrivateRoute exact path={Path.MY_LIST} render = {()=><MyListScreen/>}/>
+        <PrivateRoute exact path={Path.ADD_REVIEW}
+          render={(routerProps)=>{
+            const id = routerProps.match.params.id;
             return (
-              <AddReviewScreen/>);
-          }}>
-        </Route>
+              <AddReviewScreen id = {id}/>);
+          }}/>
         <Route exact path={Path.FILM_SCREEN}
           render={(routerProps)=>{
             const id = routerProps.match.params.id;
             return (
               <FilmScreen id = {id}/>);
-          }}>
-        </Route>
+          }}/>
         <Route exact path={Path.PLAYER}>
           <PlayerScreen/>
         </Route>
@@ -46,8 +42,7 @@ const App = () =>{
               <h1>404.</h1>
               <p>Page not found</p>
               <Link to={Path.MAIN_PAGE}>Go to main page</Link>
-            </React.Fragment>)}>
-        </Route>
+            </React.Fragment>)}/>
       </Switch>
     </Router>
   );
