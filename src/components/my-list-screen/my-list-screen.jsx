@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from "react";
+import {connect} from 'react-redux';
+import {selectFilms} from '../../store/reducers/selectors';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";
 import Footer from '../footer/footer';
 import Header from '../header/header';
-
-// TODO: загружать фильмы с сервера, GET /favorite
 
 const MyListScreen = (props) => {
   const {films} = props;
@@ -26,9 +26,12 @@ const MyListScreen = (props) => {
 };
 
 MyListScreen.propTypes = {
-  // films: PropTypes.arrayOf(filmShape).isRequired
-  // TODO: после того как данные будут загружены с сервера, вернуть isRequired. Пока пропс не передается.
-  films: PropTypes.arrayOf(filmShape)
+  films: PropTypes.arrayOf(filmShape).isRequired
 };
 
-export default MyListScreen;
+// TODO: загружать фильмы с сервера, GET /favorite. Пока что выводятся все фильмы.
+const mapStateToProps = (state) => ({
+  films: selectFilms(state),
+});
+
+export default connect(mapStateToProps)(MyListScreen);
