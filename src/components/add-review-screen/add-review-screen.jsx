@@ -1,6 +1,9 @@
+import PropTypes from 'prop-types';
 import React, {PureComponent} from "react";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW} from "../../const";
+import {selectFilmByID} from "../../store/reducers/selectors";
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
 
@@ -14,7 +17,7 @@ for (let index = 1; index <= starsCount; index++) {
   });
 }
 
-class AddReviewScreen extends PureComponent {
+export class AddReviewScreen extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -102,7 +105,7 @@ class AddReviewScreen extends PureComponent {
                 </div>
               </div>
 
-              {/* test */}
+              {/* TODO: Убрать тестовое отображение данных формы */}
               <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
 
             </form>
@@ -115,7 +118,13 @@ class AddReviewScreen extends PureComponent {
 }
 
 AddReviewScreen.propTypes = {
+  id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
 };
 
-export default AddReviewScreen;
+// TODO: подгружать фильм с сервера, GET /films/: id
+const mapStateToProps = (state, ownProps) => ({
+  film: selectFilmByID(ownProps.id)(state)
+});
+
+export default connect(mapStateToProps)(AddReviewScreen);
