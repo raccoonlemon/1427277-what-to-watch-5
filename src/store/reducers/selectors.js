@@ -9,6 +9,8 @@ export const selectReviews = (state) => state.DATA.reviews;
 export const selectCurrentGenre = (state) => state.CATALOG.currentGenre;
 export const selectShownFilmsCount = (state) => state.CATALOG.shownFilmsCount;
 
+export const selectFilmByID = (id) => (state) => state.DATA.films.find((element)=>element.id.toString() === id);
+
 export const selectIsUserLogged = (state) => state.USER.authorizationStatus === AuthorizationStatus.AUTH;
 
 export const selectFilteredFilms = createSelector(
