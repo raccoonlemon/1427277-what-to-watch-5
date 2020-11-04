@@ -15,10 +15,16 @@ import rootReducer from "./store/reducers/root-reducer";
 const api = createAPI(()=>{});
 
 const reviews = generateMockReviews(films);
+
+const composeWithEnhancers = composeWithDevTools({
+  trace: true,
+});
+
 const store = createStore(rootReducer,
-    composeWithDevTools(
+    composeWithEnhancers(
         applyMiddleware(thunk.withExtraArgument(api)),
         applyMiddleware(redirect)));
+
 Promise.all(
     [store.dispatch(fetchPromoFilm())],
     [store.dispatch(fetchFilms())])
