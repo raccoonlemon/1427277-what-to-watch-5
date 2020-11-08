@@ -3,6 +3,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
+import {selectFilms, selectReviews} from '../../store/reducers/selectors';
 import {getSimilarFilms} from '../../utils/films';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfo from '../film-info/film-info';
@@ -14,10 +15,10 @@ import Header from '../header/header';
 const FilmScreen = (props) => {
   const {film, reviews, similarFilms} = props;
 
-  const {title, genre, year, poster, background, id} = film;
+  const {title, genre, year, poster, background, backgroundColor, id} = film;
 
   return (<React.Fragment>
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{backgroundColor}}>
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={background} alt={title} />
@@ -56,7 +57,7 @@ const FilmScreen = (props) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={poster} alt={`${title} poster`} width="218" height="327" />
           </div>
           <FilmInfo film={film} reviews={reviews}/>
         </div>
@@ -77,13 +78,15 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
+// TODO: подгружать фильм с сервера, GET /films/: id
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
-  const film = state.films.find((element)=>element.id === id);
+  const films = selectFilms(state);
+  const film = films.find((element)=>element.id.toString() === id);
   return {
     film,
-    reviews: state.reviews.filter((review)=>review.filmId === id),
-    similarFilms: getSimilarFilms(state.films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
+    reviews: selectReviews(state).filter((review)=>review.filmId === id),
+    similarFilms: getSimilarFilms(films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
   };
 };
 

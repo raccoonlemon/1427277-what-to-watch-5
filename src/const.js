@@ -4,9 +4,8 @@ export const DEFAULT_RAITING_IN_REVIEW = 3;
 
 export const MAX_SIMILAR_FILM_COUNT = 4;
 
-// TODO: изменить на 8, когда данные будут приходить с сервера
-export const SHOWN_FILMS_INITIAL_COUNT = 2;
-export const SHOW_MORE_FILMS_STEP = 2;
+export const SHOWN_FILMS_INITIAL_COUNT = 8;
+export const SHOW_MORE_FILMS_STEP = 8;
 
 export const FilmRating = {
   AWESOME: `Awesome`,

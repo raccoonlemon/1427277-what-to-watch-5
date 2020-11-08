@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
 import {ALL_GENRES_FILTER, SHOW_MORE_FILMS_STEP} from '../../const';
-import {ActionCreator} from '../../store/action';
+import {changeCurrentGenre, increaseShownFilmsCount, resetShownFilmsCount} from '../../store/action';
+import {selectFilms, selectCurrentGenre, selectShownFilmsCount, selectFilteredFilms} from '../../store/reducers/selectors';
 import {getGenresList} from '../../utils/films';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";
@@ -40,24 +41,26 @@ FilmCatalog.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const films = state.currentGenre === ALL_GENRES_FILTER ? state.films : state.filteredFilms;
-  const needToShowLoadMoreButton = state.shownFilmsCount < films.length;
+  const films = selectFilms(state);
+  const currentGenre = selectCurrentGenre(state);
+  const shownFilmsCount = selectShownFilmsCount(state);
+  const filmsProp = currentGenre === ALL_GENRES_FILTER ? films : selectFilteredFilms(state);
+  const needToShowLoadMoreButton = shownFilmsCount < filmsProp.length;
 
   return {
-    films: films.slice(0, state.shownFilmsCount),
-    genres: getGenresList(state.films),
-    currentGenre: state.currentGenre,
+    films: filmsProp.slice(0, shownFilmsCount),
+    genres: getGenresList(films),
+    currentGenre,
     needToShowLoadMoreButton};
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreChangeAction(currentGenre) {
-    dispatch(ActionCreator.changeCurrentGenre(currentGenre));
-    dispatch(ActionCreator.setFilteredFilms());
-    dispatch(ActionCreator.resetShownFilmsCount());
+    dispatch(changeCurrentGenre(currentGenre));
+    dispatch(resetShownFilmsCount());
   },
   onLoadMoreButtonClickAction() {
-    dispatch(ActionCreator.increaseShownFilmsCount(SHOW_MORE_FILMS_STEP));
+    dispatch(increaseShownFilmsCount(SHOW_MORE_FILMS_STEP));
   },
 });
 

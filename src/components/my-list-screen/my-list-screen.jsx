@@ -5,6 +5,8 @@ import FilmsList from "../films-list/films-list";
 import Footer from '../footer/footer';
 import Header from '../header/header';
 
+// TODO: загружать фильмы с сервера, GET /favorite
+
 const MyListScreen = (props) => {
   const {films} = props;
 
@@ -24,7 +26,9 @@ const MyListScreen = (props) => {
 };
 
 MyListScreen.propTypes = {
-  films: PropTypes.arrayOf(filmShape).isRequired
+  // films: PropTypes.arrayOf(filmShape).isRequired
+  // TODO: после того как данные будут загружены с сервера, вернуть isRequired. Пока пропс не передается.
+  films: PropTypes.arrayOf(filmShape)
 };
 
 export default MyListScreen;

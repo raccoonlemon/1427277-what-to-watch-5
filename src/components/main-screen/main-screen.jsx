@@ -1,11 +1,14 @@
 import React from "react";
+import {connect} from "react-redux";
+import {selectPromoFilm} from "../../store/reducers/selectors";
 import {filmShape} from "../../utils/props-validation";
 import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 
-const MainScreen = ({promoFilm}) => {
-  const {title, genre, year, poster, background} = promoFilm;
+// TODO: вынести описание фильма в отдельный компонент. В film-screen аналогичный.
+export const MainScreen = ({film}) => {
+  const {title, genre, year, poster, background} = film;
 
   return (
     <React.Fragment>
@@ -57,7 +60,11 @@ const MainScreen = ({promoFilm}) => {
 };
 
 MainScreen.propTypes = {
-  promoFilm: filmShape.isRequired,
+  film: filmShape.isRequired,
 };
 
-export default MainScreen;
+const mapStateToProps = (state) => ({
+  film: selectPromoFilm(state)
+});
+
+export default connect(mapStateToProps)(MainScreen);

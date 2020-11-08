@@ -23,7 +23,7 @@ export const FilmsList = (props) => {
 FilmsList.propTypes = {
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,
-  activeItemId: PropTypes.string,
+  activeItemId: PropTypes.number,
   films: PropTypes.arrayOf(filmShape).isRequired,
 };
 

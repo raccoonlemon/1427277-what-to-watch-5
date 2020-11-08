@@ -1,5 +1,7 @@
 import {Random} from "../utils/random";
 
+// TODO: удалить моковые данные. Пока что отзывы с сервера не загружаются.
+
 const texts = [
   `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
   `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight.`,
