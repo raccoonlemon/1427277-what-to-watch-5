@@ -53,7 +53,7 @@ export const MainScreen = ({film}) => {
       </section>
       <div className="page-content">
         <FilmCatalog/>
-        <Footer/>
+        <Footer isLinkActive = {false}/>
       </div>
     </React.Fragment>
   );
