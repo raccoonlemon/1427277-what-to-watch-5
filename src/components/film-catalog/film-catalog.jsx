@@ -1,19 +1,17 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
-import {ALL_GENRES_FILTER, SHOW_MORE_FILMS_STEP} from '../../const';
+import {SHOW_MORE_FILMS_STEP} from '../../const';
 import {changeCurrentGenre, increaseShownFilmsCount, resetShownFilmsCount} from '../../store/action';
-import {selectFilms, selectCurrentGenre, selectShownFilmsCount, selectFilteredFilms} from '../../store/selectors';
-import {getGenresList} from '../../utils/films';
+import {selectCurrentGenre, selectFilteredFilms, selectGenreList, selectIsAllFilmsShown, selectShownFilmsCount} from '../../store/selectors';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";
 import GenreFilter from "../genre-filter/genre-filter";
 import ShowMoreButton from '../show-more-button/show-more-button';
 
 export const FilmCatalog = (props) => {
-  const {films, currentGenre, genres, needToShowLoadMoreButton} = props;
+  const {films, currentGenre, genres, isAllFilmsShown} = props;
   const {onGenreChangeAction, onLoadMoreButtonClickAction} = props;
-
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -27,7 +25,7 @@ export const FilmCatalog = (props) => {
 
       <FilmsList films = {films}/>
 
-      {needToShowLoadMoreButton && <ShowMoreButton onClick = {onLoadMoreButtonClickAction}/>}
+      {!isAllFilmsShown && <ShowMoreButton onClick = {onLoadMoreButtonClickAction}/>}
     </section>);
 };
 
@@ -35,23 +33,19 @@ FilmCatalog.propTypes = {
   currentGenre: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(filmShape).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  needToShowLoadMoreButton: PropTypes.bool.isRequired,
+  isAllFilmsShown: PropTypes.bool.isRequired,
   onGenreChangeAction: PropTypes.func.isRequired,
   onLoadMoreButtonClickAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const films = selectFilms(state);
-  const currentGenre = selectCurrentGenre(state);
   const shownFilmsCount = selectShownFilmsCount(state);
-  const filmsProp = selectFilteredFilms(state);
-  const needToShowLoadMoreButton = shownFilmsCount < filmsProp.length;
-
+  const films = selectFilteredFilms(state).slice(0, shownFilmsCount);
   return {
-    films: filmsProp.slice(0, shownFilmsCount),
-    genres: getGenresList(films),
-    currentGenre,
-    needToShowLoadMoreButton};
+    films,
+    genres: selectGenreList(state),
+    currentGenre: selectCurrentGenre(state),
+    isAllFilmsShown: selectIsAllFilmsShown(state)};
 };
 
 const mapDispatchToProps = (dispatch) => ({
