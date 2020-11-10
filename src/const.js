@@ -51,6 +51,7 @@ export const AuthorizationStatus = {
 export const ApiURL = {
   PROMO_FILM: `/films/promo`,
   FILMS: `/films`,
+  FILM_BY_ID: `/films/`,
   LOGIN: `/login`,
 };
 

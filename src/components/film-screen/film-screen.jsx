@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
-import {MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
-import {selectFilms, selectReviews} from '../../store/selectors';
-import {getSimilarFilms} from '../../utils/films';
+import {Path} from "../../const";
+import {fetchFilmById} from '../../store/api-actions';
+import {selectFilm, selectReviews, selectSimilarFilms} from '../../store/selectors';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfo from '../film-info/film-info';
 import FilmsList from '../films-list/films-list';
@@ -13,9 +13,17 @@ import Header from '../header/header';
 
 
 const FilmScreen = (props) => {
-  const {film, reviews, similarFilms} = props;
 
-  const {title, genre, year, poster, background, backgroundColor, id} = film;
+  const {isFilmLoaded, loadFilm, id} = props;
+
+  useEffect(() => {
+    if (!isFilmLoaded) {
+      loadFilm(id);
+    }
+  }, [id]);
+
+  const {film, reviews, similarFilms} = props;
+  const {title, genre, year, poster, background, backgroundColor} = film;
 
   return (<React.Fragment>
     <section className="movie-card movie-card--full" style={{backgroundColor}}>
@@ -78,24 +86,33 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
-// TODO: подгружать фильм с сервера, GET /films/: id
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps;
-  const films = selectFilms(state);
-  const film = films.find((element)=>element.id.toString() === id);
+  const film = selectFilm(state);
+  const isFilmLoaded = film.id === id;
   return {
     film,
-    reviews: selectReviews(state).filter((review)=>review.filmId === id),
-    similarFilms: getSimilarFilms(films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
+    isFilmLoaded,
+    reviews: selectReviews(state),
+    similarFilms: selectSimilarFilms(state),
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  loadFilm(id) {
+    dispatch(fetchFilmById(id));
+  }
+});
+
 FilmScreen.propTypes = {
+  loadFilm: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(reviewShape).isRequired,
-  similarFilms: PropTypes.arrayOf(filmShape).isRequired
+  similarFilms: PropTypes.arrayOf(filmShape).isRequired,
 };
 
 export {FilmScreen};
-export default connect(mapStateToProps)(FilmScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmScreen);
 
