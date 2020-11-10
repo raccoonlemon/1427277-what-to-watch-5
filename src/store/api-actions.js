@@ -1,10 +1,15 @@
 import {ApiURL, AuthorizationStatus, Path} from "../const";
 import {adaptFilmToClient} from "../utils/data-adapter";
-import {loadFilms, loadPromoFilm, redirectToRoute, setAuthorizationStatus} from "./action";
+import {loadFilm, loadFilms, loadPromoFilm, redirectToRoute, setAuthorizationStatus} from "./action";
 
 export const fetchFilms = () => (dispatch, _getState, api) => (
   api.get(ApiURL.FILMS)
     .then(({data}) => dispatch(loadFilms(data.map(adaptFilmToClient))))
+);
+
+export const fetchFilmById = (id) => (dispatch, _getState, api) => (
+  api.get(`${ApiURL.FILM_BY_ID}${id}`)
+    .then(({data}) => dispatch(loadFilm(adaptFilmToClient(data))))
 );
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (
