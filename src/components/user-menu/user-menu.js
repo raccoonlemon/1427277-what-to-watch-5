@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import {Path} from '../../const';
-import {selectIsUserLogged} from "../../store/reducers/selectors";
+import {selectIsUserLogged} from "../../store/selectors";
 
 // TODO: найти откуда должна открываться страница Path.MY_LIST.
 // Не нашла в разметке. Временно добавила ссылку в аватаре пользователя.

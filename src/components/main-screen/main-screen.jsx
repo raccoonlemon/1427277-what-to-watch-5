@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {selectPromoFilm} from "../../store/reducers/selectors";
+import {selectPromoFilm} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";

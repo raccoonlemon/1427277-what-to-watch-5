@@ -3,7 +3,7 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW} from "../../const";
-import {selectFilmByID} from "../../store/reducers/selectors";
+import {selectFilmByID} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
 

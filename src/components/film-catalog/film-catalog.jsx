@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {ALL_GENRES_FILTER, SHOW_MORE_FILMS_STEP} from '../../const';
 import {changeCurrentGenre, increaseShownFilmsCount, resetShownFilmsCount} from '../../store/action';
-import {selectFilms, selectCurrentGenre, selectShownFilmsCount, selectFilteredFilms} from '../../store/reducers/selectors';
+import {selectFilms, selectCurrentGenre, selectShownFilmsCount, selectFilteredFilms} from '../../store/selectors';
 import {getGenresList} from '../../utils/films';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";

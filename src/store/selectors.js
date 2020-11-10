@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
-import {AuthorizationStatus} from "../../const";
-import {isFilmBelongsToGenre} from "../../utils/films";
+import {AuthorizationStatus} from "../const";
+import {isFilmBelongsToGenre} from "../utils/films";
 
 export const selectFilms = (state) => state.DATA.films;
 export const selectPromoFilm = (state) => state.DATA.promoFilm;
