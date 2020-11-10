@@ -1,7 +1,7 @@
-import {films} from "../../../mocks/films";
-import {generateMockReviews} from "../../../mocks/reviews";
-import {extend} from "../../../utils/common";
-import {ActionType} from "../../action";
+import { films } from "../../mocks/films";
+import { generateMockReviews } from "../../mocks/reviews";
+import { extend } from "../../utils/common";
+import { ActionType } from "../action";
 
 // TODO: Убрать моковые отзывы после реализации их загрузки с сервера.
 const reviews = generateMockReviews(films);
@@ -12,7 +12,7 @@ const initialState = {
   filteredFilms: films
 };
 
-export const filmData = (state = initialState, action) => {
+export const data = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_FILMS:
       return extend(state, {films: action.payload});
