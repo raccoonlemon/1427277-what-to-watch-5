@@ -29,7 +29,7 @@ export class SignInScreen extends PureComponent {
   render() {
     return (
       <div className="user-page">
-        <Header className="user-page__head" showUserBlock={false}>
+        <Header className="user-page__head" needToShowUserMenu={false}>
           <h1 className="page-title user-page__title">Sign in</h1>
         </Header>
 
