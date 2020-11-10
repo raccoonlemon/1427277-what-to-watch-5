@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import {AuthorizationStatus} from "../const";
+import {ALL_GENRES_FILTER, AuthorizationStatus} from "../const";
 import {isFilmBelongsToGenre} from "../utils/films";
 
 export const selectFilms = (state) => state.DATA.films;
@@ -15,5 +15,5 @@ export const selectIsUserLogged = (state) => state.USER.authorizationStatus === 
 
 export const selectFilteredFilms = createSelector(
     [selectFilms, selectCurrentGenre],
-    (films, genre)=>films.filter((film) => isFilmBelongsToGenre(film, genre))
+    (films, genre)=> genre === ALL_GENRES_FILTER ? films : films.filter((film) => isFilmBelongsToGenre(film, genre))
 );

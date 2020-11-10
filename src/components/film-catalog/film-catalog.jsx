@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
   const films = selectFilms(state);
   const currentGenre = selectCurrentGenre(state);
   const shownFilmsCount = selectShownFilmsCount(state);
-  const filmsProp = currentGenre === ALL_GENRES_FILTER ? films : selectFilteredFilms(state);
+  const filmsProp = selectFilteredFilms(state);
   const needToShowLoadMoreButton = shownFilmsCount < filmsProp.length;
 
   return {
