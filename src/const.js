@@ -48,4 +48,10 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const ApiURL = {
+  PROMO_FILM: `/films/promo`,
+  FILMS: `/films`,
+  LOGIN: `/login`,
+};
+
 
