@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {Path} from "../../const";
 import {fetchFilmById, fetchReviewsByFilmId} from '../../store/api-actions';
-import {selectFilm, selectReviews, selectSimilarFilms} from '../../store/selectors';
+import {selectFilm, selectIsUserLogged, selectReviews, selectSimilarFilms} from '../../store/selectors';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfo from '../film-info/film-info';
 import FilmsList from '../films-list/films-list';
@@ -22,9 +22,8 @@ const FilmScreen = (props) => {
     }
   }, [id]);
 
-  const {film, reviews, similarFilms} = props;
+  const {film, reviews, similarFilms, isUserLogged} = props;
   const {title, genre, year, poster, background, backgroundColor} = film;
-
   return (<React.Fragment>
     <section className="movie-card movie-card--full" style={{backgroundColor}}>
       <div className="movie-card__hero">
@@ -56,7 +55,7 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>
+              {isUserLogged && <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>}
             </div>
           </div>
         </div>
@@ -95,6 +94,7 @@ const mapStateToProps = (state, ownProps) => {
     isFilmLoaded,
     reviews: selectReviews(state),
     similarFilms: selectSimilarFilms(state),
+    isUserLogged: selectIsUserLogged(state),
   };
 };
 
@@ -112,6 +112,7 @@ FilmScreen.propTypes = {
   isFilmLoaded: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(reviewShape).isRequired,
   similarFilms: PropTypes.arrayOf(filmShape).isRequired,
+  isUserLogged: PropTypes.bool.isRequired,
 };
 
 export {FilmScreen};
