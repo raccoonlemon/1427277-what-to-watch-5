@@ -18,3 +18,14 @@ export const adaptFilmToClient = (data)=>{
   };
   return film;
 };
+
+export const adaptReviewToClient = (data)=>{
+  const review = {
+    id: data.id.toString(),
+    date: new Date(data.date),
+    author: data.user.name,
+    rating: data.rating,
+    text: data.comment
+  };
+  return review;
+};

@@ -4,6 +4,7 @@ export const ActionType = {
   RESET_SHOWN_FILMS_COUNT: `RESET_SHOWN_FILMS_COUNT`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_FILM: `LOAD_FILM`,
+  LOAD_REVIEWS: `LOAD_REWIEVS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
@@ -32,6 +33,11 @@ export const loadFilms = (films) => ({
 export const loadFilm = (film) => ({
   type: ActionType.LOAD_FILM,
   payload: film,
+});
+
+export const loadReviews = (reviews) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload: reviews,
 });
 
 export const loadPromoFilm = (film) => ({

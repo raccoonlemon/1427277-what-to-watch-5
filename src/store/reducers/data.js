@@ -18,6 +18,9 @@ export const data = (state = initialState, action) => {
     case ActionType.LOAD_FILM:
       return extend(state, {film: action.payload});
 
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {reviews: action.payload});
+
     case ActionType.LOAD_PROMO_FILM:
       return extend(state, {promoFilm: action.payload});
 

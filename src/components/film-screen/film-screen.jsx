@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {Path} from "../../const";
-import {fetchFilmById} from '../../store/api-actions';
+import {fetchFilmById, fetchReviewsByFilmId} from '../../store/api-actions';
 import {selectFilm, selectReviews, selectSimilarFilms} from '../../store/selectors';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfo from '../film-info/film-info';
@@ -14,11 +14,11 @@ import Header from '../header/header';
 
 const FilmScreen = (props) => {
 
-  const {isFilmLoaded, loadFilm, id} = props;
+  const {isFilmLoaded, loadFilmInfo, id} = props;
 
   useEffect(() => {
     if (!isFilmLoaded) {
-      loadFilm(id);
+      loadFilmInfo(id);
     }
   }, [id]);
 
@@ -99,13 +99,14 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilm(id) {
+  loadFilmInfo(id) {
     dispatch(fetchFilmById(id));
+    dispatch(fetchReviewsByFilmId(id));
   }
 });
 
 FilmScreen.propTypes = {
-  loadFilm: PropTypes.func.isRequired,
+  loadFilmInfo: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,
