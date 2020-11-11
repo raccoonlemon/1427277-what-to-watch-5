@@ -56,4 +56,9 @@ export const ApiURL = {
   REVIEWS_BY_FILM_ID: `/comments/`
 };
 
+export const ReviewTextLength = {
+  MIN: 50,
+  MAX: 400
+};
+
 

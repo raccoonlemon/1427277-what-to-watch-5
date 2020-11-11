@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW} from "../../const";
+import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewTextLength} from "../../const";
 import {selectFilmByID} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
@@ -17,6 +17,19 @@ for (let index = 1; index <= starsCount; index++) {
   });
 }
 
+const isTextTooShort = (text) => {
+  return text.length < ReviewTextLength.MIN;
+};
+
+const isTextTooLong = (text) => {
+  return text.length > ReviewTextLength.MAX;
+};
+
+const isReviewTextValid = (text) =>{
+  return !isTextTooShort(text) && !isTextTooLong(text);
+};
+
+// TODO: Переписать компонент с использованием хуков
 export class AddReviewScreen extends PureComponent {
 
   constructor(props) {
@@ -24,7 +37,9 @@ export class AddReviewScreen extends PureComponent {
 
     this.state = {
       rating: DEFAULT_RAITING_IN_REVIEW,
-      reviewText: ``
+      reviewText: ``,
+      isSubmitButtonActive: false,
+      isSubmitting: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,18 +53,26 @@ export class AddReviewScreen extends PureComponent {
 
   handleRatingChange({target}) {
     this.setState({rating: parseInt(target.value, 10)});
+    this.changeIsSubmitButtonActiveState();
   }
 
   handleReviewTextChange({target}) {
     this.setState({reviewText: target.value});
+    this.changeIsSubmitButtonActiveState();
+  }
+
+  changeIsSubmitButtonActiveState() {
+    this.setState((state) => {
+      return {isSubmitButtonActive: isReviewTextValid(state.reviewText)};
+    });
   }
 
   render() {
     const {film} = this.props;
     const {title, poster, background, id} = film;
+    const {isSubmitButtonActive, reviewText, rating} = this.state;
 
     const filmScreenLink = `/films/${id}`;
-
     return (
       <React.Fragment>
         <section className="movie-card movie-card--full">
@@ -89,7 +112,7 @@ export class AddReviewScreen extends PureComponent {
                         type="radio"
                         name="rating"
                         value={item.value}
-                        defaultChecked ={item.value === this.state.rating}
+                        defaultChecked ={item.value === rating}
                         onChange = {this.handleRatingChange}/>
                       <label className="rating__label" htmlFor={item.id}>{item.title}</label>
                     </React.Fragment>
@@ -98,12 +121,14 @@ export class AddReviewScreen extends PureComponent {
               </div>
 
               <div className="add-review__text">
-                <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange = {this.handleReviewTextChange} value={this.state.reviewText}>
+                <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange = {this.handleReviewTextChange} value={reviewText}>
                 </textarea>
                 <div className="add-review__submit">
-                  <button className="add-review__btn" type="submit">Post</button>
+                  <button className="add-review__btn" type="submit" disabled={!isSubmitButtonActive}>Post</button>
                 </div>
               </div>
+              {isTextTooShort(reviewText) && <div>Необходимо ввести минимум {ReviewTextLength.MIN} символов.</div>}
+              {isTextTooLong(reviewText) && <div>Необходимо ввести не более {ReviewTextLength.MAX} символов (лишние {reviewText.length - ReviewTextLength.MAX}).</div>}
 
               {/* TODO: Убрать тестовое отображение данных формы */}
               <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
