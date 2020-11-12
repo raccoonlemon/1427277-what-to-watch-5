@@ -9,12 +9,22 @@ import {films} from "./mocks/films.js";
 import {generateMockReviews} from "./mocks/reviews";
 import {createAPI} from "./services/api";
 import {fetchFilms, fetchPromoFilm} from "./store/api-actions";
+import {redirect} from "./store/middlewares/redirect";
 import rootReducer from "./store/reducers/root-reducer";
 
 const api = createAPI(()=>{});
 
 const reviews = generateMockReviews(films);
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
+
+const composeWithEnhancers = composeWithDevTools({
+  trace: true,
+});
+
+const store = createStore(rootReducer,
+    composeWithEnhancers(
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)));
+
 Promise.all(
     [store.dispatch(fetchPromoFilm())],
     [store.dispatch(fetchFilms())])

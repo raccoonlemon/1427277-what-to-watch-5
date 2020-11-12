@@ -30,6 +30,7 @@ export const FilmInfoTab = {
   REVIEWS: `Reviews`
 };
 
+// TODO Рефакторинг. Перенести функции из перечисления
 export const Path = {
   MAIN_PAGE: `/`,
   FILM_SCREEN: `/films/:id`,
@@ -40,6 +41,17 @@ export const Path = {
   filmScreen: (id) => Path.FILM_SCREEN.replace(`:id`, id),
   addReview: (id) => Path.ADD_REVIEW.replace(`:id`, id),
   player: (id) => Path.PLAYER.replace(`:id`, id),
+};
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export const ApiURL = {
+  PROMO_FILM: `/films/promo`,
+  FILMS: `/films`,
+  LOGIN: `/login`,
 };
 
 

@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
-import {selectFilms, selectReviews} from '../../store/reducers/selectors';
+import {selectFilms, selectReviews} from '../../store/selectors';
 import {getSimilarFilms} from '../../utils/films';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfo from '../film-info/film-info';
