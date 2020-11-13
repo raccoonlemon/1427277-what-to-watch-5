@@ -7,14 +7,12 @@ export const selectFilms = (state) => state[NameSpace.DATA].films;
 export const selectFilm = (state) => state[NameSpace.DATA].film;
 export const selectPromoFilm = (state) => state[NameSpace.DATA].promoFilm;
 export const selectReviews = (state) => state[NameSpace.DATA].reviews;
+export const selectIsFilmLoaded = (id) => (state) => selectFilm(state).id === id;
 
 export const selectCurrentGenre = (state) => state[NameSpace.CATALOG].currentGenre;
 export const selectShownFilmsCount = (state) => state[NameSpace.CATALOG].shownFilmsCount;
 
 export const selectAuthorizationStatus = (state) => state[NameSpace.USER].authorizationStatus;
-
-// TODO - не должно нигде использоваться. Удалить.
-export const selectFilmByID = (id) => (state) => state[NameSpace.DATA].films.find((element)=>element.id === id);
 
 export const selectIsUserLogged = (state) => {
   return selectAuthorizationStatus(state) === AuthorizationStatus.AUTH;

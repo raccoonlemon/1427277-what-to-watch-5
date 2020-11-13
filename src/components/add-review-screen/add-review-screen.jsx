@@ -3,10 +3,11 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewTextLength} from "../../const";
-import {selectFilmByID} from "../../store/selectors";
+import {fetchFilmById} from '../../store/api-actions';
+import {selectFilm, selectIsFilmLoaded} from "../../store/selectors";
+import {extend} from "../../utils/common";
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
-import {extend} from "../../utils/common";
 
 const ratingItems = [];
 for (let index = 1; index <= MAX_RAITING_IN_REVIEW; index++) {
@@ -40,8 +41,14 @@ const getValidationInfo = ({reviewText, rating})=>{
 };
 
 export const AddReviewScreen = (props) => {
-  const {film} = props;
-  const {title, poster, background, id} = film;
+  const {film, isFilmLoaded, loadFilmInfo, id} = props;
+  const {title, poster, background} = film;
+
+  useEffect(() => {
+    if (!isFilmLoaded) {
+      loadFilmInfo(id);
+    }
+  });
 
   const [formData, setFormData] = useState({reviewText: ``, rating: DEFAULT_RAITING_IN_REVIEW});
   const [validationInfo, setValidationInfo] = useState({isValid: false, messages: []});
@@ -133,11 +140,21 @@ export const AddReviewScreen = (props) => {
 AddReviewScreen.propTypes = {
   id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  loadFilmInfo: PropTypes.func.isRequired
 };
 
 // TODO: подгружать фильм с сервера, GET /films/: id
-const mapStateToProps = (state, ownProps) => ({
-  film: selectFilmByID(ownProps.id)(state)
+const mapStateToProps = (state, {id}) => (
+  {
+    film: selectFilm(state),
+    isFilmLoaded: selectIsFilmLoaded(id)(state)
+  });
+
+const mapDispatchToProps = (dispatch) => ({
+  loadFilmInfo(id) {
+    dispatch(fetchFilmById(id));
+  }
 });
 
-export default connect(mapStateToProps)(AddReviewScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);
