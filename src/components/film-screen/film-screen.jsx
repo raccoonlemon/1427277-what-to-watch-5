@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {Path} from "../../const";
 import {fetchFilmById, fetchReviewsByFilmId} from '../../store/api-actions';
-import {selectFilm, selectIsUserLogged, selectReviews, selectSimilarFilms} from '../../store/selectors';
+import {selectFilm, selectIsFilmLoaded, selectIsUserLogged, selectReviews, selectSimilarFilms} from '../../store/selectors';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import FilmInfo from '../film-info/film-info';
 import FilmsList from '../films-list/films-list';
@@ -85,18 +85,13 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const {id} = ownProps;
-  const film = selectFilm(state);
-  const isFilmLoaded = film.id === id;
-  return {
-    film,
-    isFilmLoaded,
-    reviews: selectReviews(state),
-    similarFilms: selectSimilarFilms(state),
-    isUserLogged: selectIsUserLogged(state),
-  };
-};
+const mapStateToProps = (state, {id}) => ({
+  film: selectFilm(state),
+  isFilmLoaded: selectIsFilmLoaded(id)(state),
+  reviews: selectReviews(state),
+  similarFilms: selectSimilarFilms(state),
+  isUserLogged: selectIsUserLogged(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   loadFilmInfo(id) {
