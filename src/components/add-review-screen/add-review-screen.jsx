@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
-import React, {PureComponent} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewTextLength} from "../../const";
 import {selectFilmByID} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
+import {extend} from "../../utils/common";
 
-const starsCount = MAX_RAITING_IN_REVIEW;
 const ratingItems = [];
-for (let index = 1; index <= starsCount; index++) {
+for (let index = 1; index <= MAX_RAITING_IN_REVIEW; index++) {
   ratingItems.push({
     id: `star-${index}`,
     value: index,
@@ -17,130 +17,118 @@ for (let index = 1; index <= starsCount; index++) {
   });
 }
 
-const isTextTooShort = (text) => {
-  return text.length < ReviewTextLength.MIN;
+const getValidationInfo = ({reviewText, rating})=>{
+  let isValid = true;
+  const messages = [];
+
+  if (reviewText.length < ReviewTextLength.MIN) {
+    isValid = false;
+    messages.push(`Minimun review length - ${ReviewTextLength.MIN} symbols. Current lenght - ${reviewText.length}.`);
+  }
+
+  if (reviewText.length > ReviewTextLength.MAX) {
+    isValid = false;
+    messages.push(`Maximum review length - ${ReviewTextLength.MAX} symbols. Need to delete - ${reviewText.length - ReviewTextLength.MAX}.`);
+  }
+
+  if (!rating) {
+    isValid = false;
+    messages.push(`Please, select the rating score.`);
+  }
+
+  return {isValid, messages};
 };
 
-const isTextTooLong = (text) => {
-  return text.length > ReviewTextLength.MAX;
-};
+export const AddReviewScreen = (props) => {
+  const {film} = props;
+  const {title, poster, background, id} = film;
 
-const isReviewTextValid = (text) =>{
-  return !isTextTooShort(text) && !isTextTooLong(text);
-};
+  const [formData, setFormData] = useState({reviewText: ``, rating: DEFAULT_RAITING_IN_REVIEW});
+  const [validationInfo, setValidationInfo] = useState({isValid: false, messages: []});
+  const {reviewText, rating} = formData;
 
-// TODO: Переписать компонент с использованием хуков
-export class AddReviewScreen extends PureComponent {
+  const [isSubmitButtonActive, setIsSubmitButtonActive] = useState(false);
 
-  constructor(props) {
-    super(props);
+  useEffect(()=>{
+    setValidationInfo(getValidationInfo(formData));
+  }, [formData]);
 
-    this.state = {
-      rating: DEFAULT_RAITING_IN_REVIEW,
-      reviewText: ``,
-      isSubmitButtonActive: false,
-      isSubmitting: false
-    };
+  useEffect(()=>{
+    setIsSubmitButtonActive(validationInfo.isValid);
+  }, [validationInfo]);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReviewTextChange = this.handleReviewTextChange.bind(this);
-    this.handleRatingChange = this.handleRatingChange.bind(this);
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault();
-  }
-
-  handleRatingChange({target}) {
-    this.setState({rating: parseInt(target.value, 10)});
-    this.changeIsSubmitButtonActiveState();
-  }
-
-  handleReviewTextChange({target}) {
-    this.setState({reviewText: target.value});
-    this.changeIsSubmitButtonActiveState();
-  }
-
-  changeIsSubmitButtonActiveState() {
-    this.setState((state) => {
-      return {isSubmitButtonActive: isReviewTextValid(state.reviewText)};
-    });
-  }
-
-  render() {
-    const {film} = this.props;
-    const {title, poster, background, id} = film;
-    const {isSubmitButtonActive, reviewText, rating} = this.state;
-
-    const filmScreenLink = `/films/${id}`;
-    return (
-      <React.Fragment>
-        <section className="movie-card movie-card--full">
-          <div className="movie-card__header">
-            <div className="movie-card__bg">
-              <img src={background} alt={title} />
-            </div>
-
-            <h1 className="visually-hidden">WTW</h1>
-
-            <Header>
-              <nav className="breadcrumbs">
-                <ul className="breadcrumbs__list">
-                  <li className="breadcrumbs__item">
-                    <Link className="breadcrumbs__link" to={filmScreenLink}>{title}</Link>
-                  </li>
-                  <li className="breadcrumbs__item">
-                    <a className="breadcrumbs__link">Add review</a>
-                  </li>
-                </ul>
-              </nav>
-            </Header>
-
-            <div className="movie-card__poster movie-card__poster--small">
-              <img src={poster} alt={title} width="218" height="327" />
-            </div>
+  const filmScreenLink = `/films/${id}`;
+  return (
+    <React.Fragment>
+      <section className="movie-card movie-card--full">
+        <div className="movie-card__header">
+          <div className="movie-card__bg">
+            <img src={background} alt={title} />
           </div>
 
-          <div className="add-review">
-            <form action="#" className="add-review__form" onSubmit = {this.handleSubmit}>
-              <div className="rating">
-                <div className="rating__stars">
-                  {ratingItems.map((item)=>(
-                    <React.Fragment key={item.id}>
-                      <input className="rating__input"
-                        id={item.id}
-                        type="radio"
-                        name="rating"
-                        value={item.value}
-                        defaultChecked ={item.value === rating}
-                        onChange = {this.handleRatingChange}/>
-                      <label className="rating__label" htmlFor={item.id}>{item.title}</label>
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
+          <h1 className="visually-hidden">WTW</h1>
 
-              <div className="add-review__text">
-                <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange = {this.handleReviewTextChange} value={reviewText}>
-                </textarea>
-                <div className="add-review__submit">
-                  <button className="add-review__btn" type="submit" disabled={!isSubmitButtonActive}>Post</button>
-                </div>
-              </div>
-              {isTextTooShort(reviewText) && <div>Необходимо ввести минимум {ReviewTextLength.MIN} символов.</div>}
-              {isTextTooLong(reviewText) && <div>Необходимо ввести не более {ReviewTextLength.MAX} символов (лишние {reviewText.length - ReviewTextLength.MAX}).</div>}
+          <Header>
+            <nav className="breadcrumbs">
+              <ul className="breadcrumbs__list">
+                <li className="breadcrumbs__item">
+                  <Link className="breadcrumbs__link" to={filmScreenLink}>{title}</Link>
+                </li>
+                <li className="breadcrumbs__item">
+                  <a className="breadcrumbs__link">Add review</a>
+                </li>
+              </ul>
+            </nav>
+          </Header>
 
-              {/* TODO: Убрать тестовое отображение данных формы */}
-              <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
-
-            </form>
+          <div className="movie-card__poster movie-card__poster--small">
+            <img src={poster} alt={title} width="218" height="327" />
           </div>
+        </div>
 
-        </section>
-      </React.Fragment>
-    );
-  }
-}
+        <div className="add-review">
+          <form action="#" className="add-review__form" onSubmit = {()=>{}}>
+            <div className="rating">
+              <div className="rating__stars">
+                {ratingItems.map((item)=>(
+                  <React.Fragment key={item.id}>
+                    <input className="rating__input"
+                      id={item.id}
+                      type="radio"
+                      name="rating"
+                      value={item.value}
+                      defaultChecked ={item.value === rating}
+                      onChange = {(event)=>
+                        setFormData(extend(formData,
+                            {rating: parseInt(event.target.value, 10)}))}/>
+                    <label className="rating__label" htmlFor={item.id}>{item.title}</label>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+
+            <div className="add-review__text">
+              <textarea
+                className="add-review__textarea"
+                name="review-text"
+                id="review-text"
+                placeholder="Review text"
+                onChange = {(event)=>setFormData(extend(formData, {reviewText: event.target.value}))}
+                value={reviewText}>
+              </textarea>
+              <div className="add-review__submit">
+                <button className="add-review__btn" type="submit" disabled={!isSubmitButtonActive}>Post</button>
+              </div>
+            </div>
+            {validationInfo.messages.map((item, index)=><div key={index}>{item}</div>)}
+
+          </form>
+        </div>
+
+      </section>
+    </React.Fragment>
+  );
+};
 
 AddReviewScreen.propTypes = {
   id: PropTypes.string.isRequired,
