@@ -144,7 +144,6 @@ AddReviewScreen.propTypes = {
   loadFilmInfo: PropTypes.func.isRequired
 };
 
-// TODO: подгружать фильм с сервера, GET /films/: id
 const mapStateToProps = (state, {id}) => (
   {
     film: selectFilm(state),
