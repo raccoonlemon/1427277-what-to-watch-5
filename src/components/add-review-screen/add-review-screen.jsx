@@ -105,9 +105,9 @@ export const AddReviewScreen = (props) => {
                       name="rating"
                       value={item.value}
                       defaultChecked ={item.value === rating}
-                      onChange = {(event)=>
+                      onChange = {({target})=>
                         setFormData(extend(formData,
-                            {rating: parseInt(event.target.value, 10)}))}/>
+                            {rating: parseInt(target.value, 10)}))}/>
                     <label className="rating__label" htmlFor={item.id}>{item.title}</label>
                   </React.Fragment>
                 ))}
@@ -120,7 +120,7 @@ export const AddReviewScreen = (props) => {
                 name="review-text"
                 id="review-text"
                 placeholder="Review text"
-                onChange = {(event)=>setFormData(extend(formData, {reviewText: event.target.value}))}
+                onChange = {({target})=>setFormData(extend(formData, {reviewText: target.value}))}
                 value={reviewText}>
               </textarea>
               <div className="add-review__submit">
