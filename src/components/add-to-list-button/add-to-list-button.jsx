@@ -22,7 +22,7 @@ export const AddToListButton = (props)=>{
 AddToListButton.propTypes = {
   id: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
-  onClickAction: PropTypes.bool.isRequired
+  onClickAction: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
