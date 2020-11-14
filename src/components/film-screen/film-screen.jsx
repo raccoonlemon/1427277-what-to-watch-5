@@ -12,6 +12,9 @@ import FilmsList from '../films-list/films-list';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 
+// TODO: разобраться с ошибкой валидации пропсов
+// Warning: Failed prop type: The prop `film.id` is marked as required in `FilmInfo`, but its value is `undefined`.
+// Warning: Failed prop type: The prop `isFavorite` is marked as required in `AddToListButton`, but its value is `undefined`.
 
 const FilmScreen = (props) => {
 
@@ -94,14 +97,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchFilmById(id));
     dispatch(fetchReviewsByFilmId(id));
   },
-  // isFilmFavoriteClickAction(id, isFavorite) {
-  //   dispatch(updateIsFilmFavorite(id, isFavorite));
-  // }
 });
 
 FilmScreen.propTypes = {
   loadFilmInfoAction: PropTypes.func.isRequired,
-  // isFilmFavoriteClickAction: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,

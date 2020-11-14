@@ -29,6 +29,10 @@ const validate = ({email, password})=>{
   return {isValid, messages};
 };
 
+// TODO:
+// Обработка ошибок сервера.
+// Блокировка кнопки пока обрабатывается запрос на сервер.
+
 const SignInScreen = (props) => {
 
   const {onSubmitAction} = props;
@@ -67,7 +71,6 @@ const SignInScreen = (props) => {
             </div>
             <div className="sign-in__field">
               <input
-                // ref={this.passwordRef}
                 className="sign-in__input"
                 type="password"
                 placeholder="Password"
