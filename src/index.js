@@ -8,7 +8,7 @@ import App from "./components/app/app";
 import {films} from "./mocks/films.js";
 import {generateMockReviews} from "./mocks/reviews";
 import {createAPI} from "./services/api";
-import {fetchFilms, fetchPromoFilm} from "./store/api-actions";
+import {fetchFavoriteFilms, fetchFilms, fetchPromoFilm} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
 import reducer from "./store/reducer";
 
@@ -27,7 +27,8 @@ const store = createStore(reducer,
 
 Promise.all(
     [store.dispatch(fetchPromoFilm())],
-    [store.dispatch(fetchFilms())])
+    [store.dispatch(fetchFilms())],
+    [store.dispatch(fetchFavoriteFilms())])
   .then(()=>{
     ReactDOM.render(
         <Provider store={store}>

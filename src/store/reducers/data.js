@@ -7,7 +7,8 @@ const initialState = {
   reviews: [],
   promoFilm: {},
   film: {},
-  filteredFilms: films
+  filteredFilms: films,
+  favoriteFilms: []
 };
 
 export const data = (state = initialState, action) => {
@@ -24,6 +25,8 @@ export const data = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_FILM:
       return extend(state, {promoFilm: action.payload});
 
+    case ActionType.LOAD_FAVORITE_FILMS:
+      return extend(state, {favoriteFilms: action.payload});
   }
 
   return state;

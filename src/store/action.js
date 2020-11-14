@@ -6,6 +6,7 @@ export const ActionType = {
   LOAD_FILM: `LOAD_FILM`,
   LOAD_REVIEWS: `LOAD_REWIEVS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
@@ -43,6 +44,11 @@ export const loadReviews = (reviews) => ({
 export const loadPromoFilm = (film) => ({
   type: ActionType.LOAD_PROMO_FILM,
   payload: film,
+});
+
+export const loadFavoriteFilms = (films) => ({
+  type: ActionType.LOAD_FAVORITE_FILMS,
+  payload: {films},
 });
 
 export const setAuthorizationStatus = (status) => ({

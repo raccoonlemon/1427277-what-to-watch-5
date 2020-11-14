@@ -53,7 +53,8 @@ export const ApiURL = {
   FILMS: `/films`,
   FILM_BY_ID: `/films/`,
   LOGIN: `/login`,
-  REVIEWS_BY_FILM_ID: `/comments/`
+  REVIEWS_BY_FILM_ID: `/comments/`,
+  FAVORITE: `/favorite`
 };
 
 export const ReviewTextLength = {
