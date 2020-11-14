@@ -61,4 +61,8 @@ export const ReviewTextLength = {
   MAX: 400
 };
 
+export const RexExp = {
+  email: /^[a-zA-Z0-9.!#$%&'*+/=?^_\`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+};
+
 
