@@ -40,6 +40,13 @@ const validate = ({reviewText, rating})=>{
   return {isValid, messages};
 };
 
+
+// TODO:
+// Отправка формы на сервер.
+// Редирект на страницу фильма.
+// Обработка ошибок сервера.
+// Блокировка кнопки пока обрабатывается запрос на сервер.
+
 export const AddReviewScreen = (props) => {
   const {film, isFilmLoaded, loadFilmInfo, id} = props;
   const {title, poster, background} = film;
