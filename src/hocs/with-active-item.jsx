@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 
+// TODO: Удалить, больше не нужен
 const withActiveItem = (Component)=>{
 
   class WithActiveItem extends PureComponent {
