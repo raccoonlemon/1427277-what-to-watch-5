@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {RexExp} from '../../const';
+import {useForm} from '../../hooks/useForm';
 import {logIn as logInAction} from "../../store/api-actions";
-import {extend} from '../../utils/common';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 
-const getValidationInfo = ({email, password})=>{
+const validate = ({email, password})=>{
   let isValid = true;
   const messages = [];
 
@@ -33,19 +33,16 @@ const SignInScreen = (props) => {
 
   const {onSubmitAction} = props;
 
-  const [formData, setFormData] = useState({email: ``, password: ``});
-  const [validationInfo, setValidationInfo] = useState({isValid: false, messages: []});
-  const {email, password} = formData;
+
+  const initialValues = {email: ``, password: ``};
+  const {validation, values, changeValue} = useForm(initialValues, validate);
+  const {email, password} = values;
 
   const [isSubmitButtonActive, setIsSubmitButtonActive] = useState(false);
 
   useEffect(()=>{
-    setValidationInfo(getValidationInfo(formData));
-  }, [formData]);
-
-  useEffect(()=>{
-    setIsSubmitButtonActive(validationInfo.isValid);
-  }, [validationInfo]);
+    setIsSubmitButtonActive(validation.isValid);
+  }, [validation]);
 
   return (
     <div className="user-page">
@@ -63,7 +60,7 @@ const SignInScreen = (props) => {
                 placeholder="Email address"
                 name="user-email"
                 id="user-email"
-                onChange = {({target})=>setFormData(extend(formData, {email: target.value}))}
+                onChange = {({target})=>changeValue({email: target.value})}
                 value = {email}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
@@ -76,7 +73,7 @@ const SignInScreen = (props) => {
                 placeholder="Password"
                 name="user-password"
                 id="user-password"
-                onChange={({target})=>setFormData(extend(formData, {password: target.value}))}
+                onChange={({target})=>changeValue({password: target.value})}
                 value = {password}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
@@ -86,11 +83,12 @@ const SignInScreen = (props) => {
             {isSubmitButtonActive && <button
               className="sign-in__btn"
               type="submit"
-              onClick={()=>{
-                onSubmitAction(formData);
+              onClick={(evt)=>{
+                evt.preventDefault();
+                onSubmitAction(values);
               }}>Sign in</button>}
           </div>
-          {validationInfo.messages.map((item, index)=><div key={index}>{item}</div>)}
+          {validation.messages.map((item, index)=><div key={index}>{item}</div>)}
         </form>
       </div>
 

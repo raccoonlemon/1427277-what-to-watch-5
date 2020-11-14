@@ -22,7 +22,7 @@ export const fetchPromoFilm = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(loadPromoFilm(adaptFilmToClient(data))))
 );
 
-export const logIn = ({login: email, password}) => (dispatch, _getState, api) => (
+export const logIn = ({email, password}) => (dispatch, _getState, api) => (
   api.post(ApiURL.LOGIN, {email, password})
     .then(() => dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH)))
     .then(() => dispatch(redirectToRoute(Path.MAIN_PAGE)))

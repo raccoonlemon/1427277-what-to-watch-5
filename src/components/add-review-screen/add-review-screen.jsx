@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewTextLength} from "../../const";
+import {useForm} from '../../hooks/useForm';
 import {fetchFilmById} from '../../store/api-actions';
 import {selectFilm, selectIsFilmLoaded} from "../../store/selectors";
 import {extend} from "../../utils/common";
@@ -18,7 +19,7 @@ for (let index = 1; index <= MAX_RAITING_IN_REVIEW; index++) {
   });
 }
 
-const getValidationInfo = ({reviewText, rating})=>{
+const validate = ({reviewText, rating})=>{
   let isValid = true;
   const messages = [];
 
@@ -50,19 +51,15 @@ export const AddReviewScreen = (props) => {
     }
   });
 
-  const [formData, setFormData] = useState({reviewText: ``, rating: DEFAULT_RAITING_IN_REVIEW});
-  const [validationInfo, setValidationInfo] = useState({isValid: false, messages: []});
-  const {reviewText, rating} = formData;
+  const initialValues = {reviewText: ``, rating: DEFAULT_RAITING_IN_REVIEW};
+  const {validation, values, changeValue} = useForm(initialValues, validate);
+  const {reviewText, rating} = values;
 
   const [isSubmitButtonActive, setIsSubmitButtonActive] = useState(false);
 
   useEffect(()=>{
-    setValidationInfo(getValidationInfo(formData));
-  }, [formData]);
-
-  useEffect(()=>{
-    setIsSubmitButtonActive(validationInfo.isValid);
-  }, [validationInfo]);
+    setIsSubmitButtonActive(validation.isValid);
+  }, [validation]);
 
   const filmScreenLink = `/films/${id}`;
   return (
@@ -106,8 +103,7 @@ export const AddReviewScreen = (props) => {
                       value={item.value}
                       defaultChecked ={item.value === rating}
                       onChange = {({target})=>
-                        setFormData(extend(formData,
-                            {rating: parseInt(target.value, 10)}))}/>
+                        changeValue({rating: parseInt(target.value, 10)})}/>
                     <label className="rating__label" htmlFor={item.id}>{item.title}</label>
                   </React.Fragment>
                 ))}
@@ -120,14 +116,14 @@ export const AddReviewScreen = (props) => {
                 name="review-text"
                 id="review-text"
                 placeholder="Review text"
-                onChange = {({target})=>setFormData(extend(formData, {reviewText: target.value}))}
+                onChange = {({target})=>changeValue({reviewText: target.value})}
                 value={reviewText}>
               </textarea>
               <div className="add-review__submit">
                 <button className="add-review__btn" type="submit" disabled={!isSubmitButtonActive}>Post</button>
               </div>
             </div>
-            {validationInfo.messages.map((item, index)=><div key={index}>{item}</div>)}
+            {validation.messages.map((item, index)=><div key={index}>{item}</div>)}
 
           </form>
         </div>
