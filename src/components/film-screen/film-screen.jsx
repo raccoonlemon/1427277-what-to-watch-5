@@ -50,17 +50,6 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              {/* <button
-                className="btn btn--list movie-card__button"
-                type="button"
-                onClick = {()=>{
-                  isFilmFavoriteClickAction(id, !isFavorite);
-                }}>
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button> */}
               <AddToListButton id = {id} isFavorite = {isFavorite}/>
               {isUserLogged && <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>}
             </div>
