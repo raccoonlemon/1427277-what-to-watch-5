@@ -1,6 +1,6 @@
 import {ApiURL, AuthorizationStatus, Path} from "../const";
 import {adaptFilmToClient, adaptReviewToClient} from "../utils/data-adapter";
-import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, redirectToRoute, setAuthorizationStatus, setFilmInfo} from "./action";
+import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, redirectToRoute, setAuthorizationStatus, updateFilmsInfo} from "./action";
 
 export const fetchFilms = () => (dispatch, _getState, api) => (
   api.get(ApiURL.FILMS)
@@ -24,12 +24,12 @@ export const fetchPromoFilm = () => (dispatch, _getState, api) => (
 
 export const fetchFavoriteFilms = () => (dispatch, _getState, api) => (
   api.get(ApiURL.FAVORITE)
-    .then(({data}) => dispatch(loadFavoriteFilms(data.map(adaptReviewToClient))))
+    .then(({data}) => dispatch(loadFavoriteFilms(data.map(adaptFilmToClient))))
 );
 
 export const updateIsFilmFavorite = (id, isFavotire) => (dispatch, _getState, api) => (
   api.post(`${ApiURL.FAVORITE}/${id}/${+isFavotire}`)
-    .then(({data}) => dispatch(setFilmInfo(adaptFilmToClient(data))))
+    .then(({data}) => dispatch(updateFilmsInfo(adaptFilmToClient(data))))
 );
 
 export const logIn = ({email, password}) => (dispatch, _getState, api) => (
