@@ -7,6 +7,8 @@ export const ActionType = {
   LOAD_REVIEWS: `LOAD_REWIEVS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
+  UPDATE_IS_MOVIE_FAVOTIRE: `UPDATE_IS_MOVIE_FAVOTIRE`,
+  SET_FILM_INFO: `SET_FILM_INFO`,
   SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
@@ -49,6 +51,16 @@ export const loadPromoFilm = (film) => ({
 export const loadFavoriteFilms = (films) => ({
   type: ActionType.LOAD_FAVORITE_FILMS,
   payload: {films},
+});
+
+export const updateIsMovieFavorite = (isFavorite) => ({
+  type: ActionType.UPDATE_IS_MOVIE_FAVOTIRE,
+  payload: {isFavorite},
+});
+
+export const setFilmInfo = (film)=>({
+  type: ActionType.SET_FILM_INFO,
+  payload: film,
 });
 
 export const setAuthorizationStatus = (status) => ({

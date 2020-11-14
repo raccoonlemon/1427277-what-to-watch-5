@@ -6,7 +6,6 @@ import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewTextLength} from
 import {useForm} from '../../hooks/useForm';
 import {fetchFilmById} from '../../store/api-actions';
 import {selectFilm, selectIsFilmLoaded} from "../../store/selectors";
-import {extend} from "../../utils/common";
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
 

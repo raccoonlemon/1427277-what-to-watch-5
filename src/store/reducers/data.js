@@ -27,6 +27,16 @@ export const data = (state = initialState, action) => {
 
     case ActionType.LOAD_FAVORITE_FILMS:
       return extend(state, {favoriteFilms: action.payload});
+
+    case ActionType.UPDATE_IS_MOVIE_FAVOTIRE:
+      return extend(state, {favoriteFilms: action.payload});
+
+    case ActionType.SET_FILM_INFO:
+      return extend(state, {
+        film: action.payload,
+        films: state.films.map((item)=>action.payload.id === item.id ? action.payload : item),
+        promoFilm: state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm
+      });
   }
 
   return state;

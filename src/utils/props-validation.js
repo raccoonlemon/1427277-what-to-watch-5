@@ -21,6 +21,7 @@ export const filmShape = PropTypes.shape({
   video: stringValueRequired,
   previewVideo: stringValueRequired,
   starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isFavorite: PropTypes.bool.isRequired
 });
 
 export const reviewShape = PropTypes.shape({

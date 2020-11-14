@@ -6,6 +6,7 @@ import {Path} from "../../const";
 import {fetchFilmById, fetchReviewsByFilmId} from '../../store/api-actions';
 import {selectFilm, selectIsFilmLoaded, selectIsUserLogged, selectReviews, selectSimilarFilms} from '../../store/selectors';
 import {filmShape, reviewShape} from "../../utils/props-validation";
+import AddToListButton from '../add-to-list-button/add-to-list-button';
 import FilmInfo from '../film-info/film-info';
 import FilmsList from '../films-list/films-list';
 import Footer from '../footer/footer';
@@ -14,16 +15,16 @@ import Header from '../header/header';
 
 const FilmScreen = (props) => {
 
-  const {isFilmLoaded, loadFilmInfo, id} = props;
+  const {isFilmLoaded, loadFilmInfoAction, id} = props;
 
   useEffect(() => {
     if (!isFilmLoaded) {
-      loadFilmInfo(id);
+      loadFilmInfoAction(id);
     }
   }, [id]);
 
   const {film, reviews, similarFilms, isUserLogged} = props;
-  const {title, genre, year, poster, background, backgroundColor} = film;
+  const {title, genre, year, poster, background, backgroundColor, isFavorite} = film;
   return (<React.Fragment>
     <section className="movie-card movie-card--full" style={{backgroundColor}}>
       <div className="movie-card__hero">
@@ -49,12 +50,18 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              {/* <button
+                className="btn btn--list movie-card__button"
+                type="button"
+                onClick = {()=>{
+                  isFilmFavoriteClickAction(id, !isFavorite);
+                }}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
-              </button>
+              </button> */}
+              <AddToListButton id = {id} isFavorite = {isFavorite}/>
               {isUserLogged && <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>}
             </div>
           </div>
@@ -94,14 +101,18 @@ const mapStateToProps = (state, {id}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilmInfo(id) {
+  loadFilmInfoAction(id) {
     dispatch(fetchFilmById(id));
     dispatch(fetchReviewsByFilmId(id));
-  }
+  },
+  // isFilmFavoriteClickAction(id, isFavorite) {
+  //   dispatch(updateIsFilmFavorite(id, isFavorite));
+  // }
 });
 
 FilmScreen.propTypes = {
-  loadFilmInfo: PropTypes.func.isRequired,
+  loadFilmInfoAction: PropTypes.func.isRequired,
+  // isFilmFavoriteClickAction: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,
