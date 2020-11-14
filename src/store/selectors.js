@@ -4,6 +4,7 @@ import {isFilmBelongsToGenre, getGenresList, getSimilarFilms} from "../utils/fil
 import {NameSpace} from "./reducer";
 
 export const selectFilms = (state) => state[NameSpace.DATA].films;
+export const selectFavoriteFilms = (state) => state[NameSpace.DATA].favoriteFilms;
 export const selectFilm = (state) => state[NameSpace.DATA].film;
 export const selectPromoFilm = (state) => state[NameSpace.DATA].promoFilm;
 export const selectReviews = (state) => state[NameSpace.DATA].reviews;
