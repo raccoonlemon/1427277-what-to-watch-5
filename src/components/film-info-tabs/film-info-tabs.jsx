@@ -18,6 +18,9 @@ const FilmInfoTabs = (props) => {
             <a href="#" className="movie-nav__link" data-tab = {tab}
               onClick = {(evt)=>{
                 evt.preventDefault();
+                if (tab === activeTab) {
+                  return;
+                }
                 history.push(`#${tab}`);
                 onTabChange();
               }}>{tab}</a>

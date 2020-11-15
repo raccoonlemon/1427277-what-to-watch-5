@@ -5,7 +5,7 @@ const numberValueRequired = PropTypes.number.isRequired;
 const dateValueRequired = PropTypes.instanceOf(Date).isRequired;
 
 export const filmShape = PropTypes.shape({
-  id: numberValueRequired,
+  id: stringValueRequired,
   title: stringValueRequired,
   genre: PropTypes.oneOfType([
     PropTypes.string,
@@ -22,6 +22,7 @@ export const filmShape = PropTypes.shape({
   video: stringValueRequired,
   previewVideo: stringValueRequired,
   starring: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isFavorite: PropTypes.bool.isRequired
 });
 
 export const reviewShape = PropTypes.shape({

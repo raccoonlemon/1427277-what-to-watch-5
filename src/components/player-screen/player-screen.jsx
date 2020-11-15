@@ -1,5 +1,6 @@
 import React from "react";
 
+// TODO: Реализовать плеер
 const PlayerScreen = ()=>{
 
   return (

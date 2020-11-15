@@ -18,7 +18,7 @@ const FilmInfoDetails = (props) => {
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
             <span className="movie-card__details-value">
-              {starring.map((name, index)=>{
+              {Array.isArray(starring) && starring.map((name, index)=>{
                 return (
                   <React.Fragment key={`${toCamelCase(name)}${index}`}>
                     {name}{index < starring.length - 1 && `,`}{index < starring.length - 1 && <br/>}

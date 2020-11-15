@@ -1,22 +1,33 @@
 import PropTypes from 'prop-types';
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
-import {MAX_SIMILAR_FILM_COUNT, Path} from "../../const";
-import {selectFilms, selectReviews} from '../../store/reducers/selectors';
-import {getSimilarFilms} from '../../utils/films';
+import {Path} from "../../const";
+import {fetchFilmById, fetchReviewsByFilmId} from '../../store/api-actions';
+import {selectFilm, selectIsFilmLoaded, selectIsUserLogged, selectReviews, selectSimilarFilms} from '../../store/selectors';
 import {filmShape, reviewShape} from "../../utils/props-validation";
+import AddToListButton from '../add-to-list-button/add-to-list-button';
 import FilmInfo from '../film-info/film-info';
 import FilmsList from '../films-list/films-list';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 
+// TODO: разобраться с ошибкой валидации пропсов
+// Warning: Failed prop type: The prop `film.id` is marked as required in `FilmInfo`, but its value is `undefined`.
+// Warning: Failed prop type: The prop `isFavorite` is marked as required in `AddToListButton`, but its value is `undefined`.
 
 const FilmScreen = (props) => {
-  const {film, reviews, similarFilms} = props;
 
-  const {title, genre, year, poster, background, backgroundColor, id} = film;
+  const {isFilmLoaded, loadFilmInfoAction, id} = props;
 
+  useEffect(() => {
+    if (!isFilmLoaded) {
+      loadFilmInfoAction(id);
+    }
+  }, [id]);
+
+  const {film, reviews, similarFilms, isUserLogged} = props;
+  const {title, genre, year, poster, background, backgroundColor, isFavorite} = film;
   return (<React.Fragment>
     <section className="movie-card movie-card--full" style={{backgroundColor}}>
       <div className="movie-card__hero">
@@ -42,13 +53,8 @@ const FilmScreen = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
-              <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>
+              <AddToListButton id = {id} isFavorite = {isFavorite}/>
+              {isUserLogged && <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>}
             </div>
           </div>
         </div>
@@ -78,24 +84,31 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
-// TODO: подгружать фильм с сервера, GET /films/: id
-const mapStateToProps = (state, ownProps) => {
-  const {id} = ownProps;
-  const films = selectFilms(state);
-  const film = films.find((element)=>element.id.toString() === id);
-  return {
-    film,
-    reviews: selectReviews(state).filter((review)=>review.filmId === id),
-    similarFilms: getSimilarFilms(films, film).slice(0, MAX_SIMILAR_FILM_COUNT),
-  };
-};
+const mapStateToProps = (state, {id}) => ({
+  film: selectFilm(state),
+  isFilmLoaded: selectIsFilmLoaded(id)(state),
+  reviews: selectReviews(state),
+  similarFilms: selectSimilarFilms(state),
+  isUserLogged: selectIsUserLogged(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadFilmInfoAction(id) {
+    dispatch(fetchFilmById(id));
+    dispatch(fetchReviewsByFilmId(id));
+  },
+});
 
 FilmScreen.propTypes = {
+  loadFilmInfoAction: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(reviewShape).isRequired,
-  similarFilms: PropTypes.arrayOf(filmShape).isRequired
+  similarFilms: PropTypes.arrayOf(filmShape).isRequired,
+  isUserLogged: PropTypes.bool.isRequired,
 };
 
 export {FilmScreen};
-export default connect(mapStateToProps)(FilmScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmScreen);
 

@@ -1,14 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
-import {selectPromoFilm} from "../../store/reducers/selectors";
+import {selectPromoFilm} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
+import AddToListButton from "../add-to-list-button/add-to-list-button";
 import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 
-// TODO: вынести описание фильма в отдельный компонент. В film-screen аналогичный.
 export const MainScreen = ({film}) => {
-  const {title, genre, year, poster, background} = film;
+  const {title, genre, year, poster, background, id, isFavorite} = film;
 
   return (
     <React.Fragment>
@@ -40,12 +40,7 @@ export const MainScreen = ({film}) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <AddToListButton id = {id} isFavorite = {isFavorite}/>
               </div>
             </div>
           </div>

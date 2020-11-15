@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
-import {selectFilms} from '../../store/reducers/selectors';
+import {selectFavoriteFilms} from '../../store/selectors';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";
 import Footer from '../footer/footer';
@@ -29,9 +29,8 @@ MyListScreen.propTypes = {
   films: PropTypes.arrayOf(filmShape).isRequired
 };
 
-// TODO: загружать фильмы с сервера, GET /favorite. Пока что выводятся все фильмы.
 const mapStateToProps = (state) => ({
-  films: selectFilms(state),
+  films: selectFavoriteFilms(state),
 });
 
 export default connect(mapStateToProps)(MyListScreen);
