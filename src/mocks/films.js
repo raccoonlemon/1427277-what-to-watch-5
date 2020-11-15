@@ -1,5 +1,3 @@
-import {getGenresList} from "../utils/films";
-
 export const films = [
   {
     id: `1`,
