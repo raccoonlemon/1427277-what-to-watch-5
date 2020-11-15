@@ -1,4 +1,5 @@
-// TODO: удалить моковые данные
+import {getGenresList} from "../utils/films";
+
 export const films = [
   {
     id: `1`,
@@ -231,3 +232,4 @@ export const films = [
 
 export const promoFilm = films[0];
 export const film = films[0];
+export const genres = [`romance`, `comedy`, `drama`];
