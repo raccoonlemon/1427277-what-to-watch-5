@@ -51,7 +51,19 @@ export const AuthorizationStatus = {
 export const ApiURL = {
   PROMO_FILM: `/films/promo`,
   FILMS: `/films`,
+  FILM_BY_ID: `/films/`,
   LOGIN: `/login`,
+  REVIEWS_BY_FILM_ID: `/comments/`,
+  FAVORITE: `/favorite`
+};
+
+export const ReviewTextLength = {
+  MIN: 50,
+  MAX: 400
+};
+
+export const RexExp = {
+  email: /^[a-zA-Z0-9.!#$%&'*+/=?^_\`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 };
 
 

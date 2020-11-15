@@ -8,9 +8,9 @@ import App from "./components/app/app";
 import {films} from "./mocks/films.js";
 import {generateMockReviews} from "./mocks/reviews";
 import {createAPI} from "./services/api";
-import {fetchFilms, fetchPromoFilm} from "./store/api-actions";
+import {fetchFavoriteFilms, fetchFilms, fetchPromoFilm} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
-import rootReducer from "./store/reducers/root-reducer";
+import reducer from "./store/reducer";
 
 const api = createAPI(()=>{});
 
@@ -20,14 +20,15 @@ const composeWithEnhancers = composeWithDevTools({
   trace: true,
 });
 
-const store = createStore(rootReducer,
+const store = createStore(reducer,
     composeWithEnhancers(
         applyMiddleware(thunk.withExtraArgument(api)),
         applyMiddleware(redirect)));
 
 Promise.all(
     [store.dispatch(fetchPromoFilm())],
-    [store.dispatch(fetchFilms())])
+    [store.dispatch(fetchFilms())],
+    [store.dispatch(fetchFavoriteFilms())])
   .then(()=>{
     ReactDOM.render(
         <Provider store={store}>

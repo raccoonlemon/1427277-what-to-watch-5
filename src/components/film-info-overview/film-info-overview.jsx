@@ -5,7 +5,10 @@ import {SHORT_LIST_STARRING_COUNT} from "../../const";
 import {filmShape, reviewShape} from "../../utils/props-validation";
 
 const getShortStarringLine = (starring)=>{
-  return starring.slice(0, SHORT_LIST_STARRING_COUNT).join(`, `);
+  if (Array.isArray(starring)) {
+    return starring.slice(0, SHORT_LIST_STARRING_COUNT).join(`, `);
+  }
+  return starring;
 };
 
 const FilmInfoOverview = (props) => {
