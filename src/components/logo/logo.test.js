@@ -1,19 +1,20 @@
 import React from "react";
+import {MemoryRouter} from "react-router-dom";
 import renderer from "react-test-renderer";
 import Logo from "./Logo";
 
 describe(`<Logo> renders correctly`, () => {
-  // it(`With active link`, () => {
-  //   const tree = renderer
-  //   .create(<Logo/>)
-  //   .toJSON();
+  it(`With active link`, () => {
+    const tree = renderer
+    .create(<MemoryRouter><Logo/></MemoryRouter>)
+    .toJSON();
 
-  //   expect(tree).toMatchSnapshot();
-  // });
+    expect(tree).toMatchSnapshot();
+  });
 
   it(`Without active link`, () => {
     const tree = renderer
-    .create(<Logo isLinkActive={false}/>)
+    .create(<MemoryRouter><Logo isLinkActive={false}/></MemoryRouter>)
     .toJSON();
 
     expect(tree).toMatchSnapshot();
