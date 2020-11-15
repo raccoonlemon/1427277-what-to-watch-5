@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import {Path} from '../../const';
 import {selectIsUserLogged} from "../../store/selectors";
 
-const UserMenu = (props)=>{
+export const UserMenu = (props)=>{
   const {isUserLogged} = props;
 
   return (
