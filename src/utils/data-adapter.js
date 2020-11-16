@@ -12,7 +12,7 @@ export const adaptFilmToClient = (data)=>{
     backgroundColor: data.background_color,
     poster: data.poster_image,
     posterSmall: data.preview_image,
-    video: data.video_link,
+    videoSrc: data.video_link,
     previewVideo: data.preview_video_link,
     isFavorite: data.is_favorite
   };

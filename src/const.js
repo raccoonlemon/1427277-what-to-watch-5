@@ -40,7 +40,7 @@ export const Path = {
   MY_LIST: `/mylist`,
   SIGN_IN: `/login`,
   PLAYER: `/player/:id`,
-  playerScreen: (id) => Path.PLAYER.replace(`id`, id),
+  playerScreen: (id) => Path.PLAYER.replace(`:id`, id),
   filmScreen: (id) => Path.FILM_SCREEN.replace(`:id`, id),
   addReview: (id) => Path.ADD_REVIEW.replace(`:id`, id),
   player: (id) => Path.PLAYER.replace(`:id`, id),

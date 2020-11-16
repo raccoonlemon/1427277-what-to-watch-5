@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {createRef, PureComponent} from "react";
-import { FILM_PREVIEW_TIMEOUT } from '../../const';
+import {FILM_PREVIEW_TIMEOUT} from '../../const';
 
 export default class VideoPlayer extends PureComponent {
 
