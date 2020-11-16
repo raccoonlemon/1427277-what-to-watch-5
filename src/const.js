@@ -7,6 +7,8 @@ export const MAX_SIMILAR_FILM_COUNT = 4;
 export const SHOWN_FILMS_INITIAL_COUNT = 8;
 export const SHOW_MORE_FILMS_STEP = 8;
 
+export const FILM_PREVIEW_TIMEOUT = 1000;
+
 export const FilmRating = {
   AWESOME: `Awesome`,
   VERY_GOOD: `Very good`,
@@ -38,6 +40,7 @@ export const Path = {
   MY_LIST: `/mylist`,
   SIGN_IN: `/login`,
   PLAYER: `/player/:id`,
+  playerScreen: (id) => Path.PLAYER.replace(`id`, id),
   filmScreen: (id) => Path.FILM_SCREEN.replace(`:id`, id),
   addReview: (id) => Path.ADD_REVIEW.replace(`:id`, id),
   player: (id) => Path.PLAYER.replace(`:id`, id),

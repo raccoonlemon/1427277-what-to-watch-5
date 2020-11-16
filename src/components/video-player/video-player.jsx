@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {createRef, PureComponent} from "react";
+import { FILM_PREVIEW_TIMEOUT } from '../../const';
 
 export default class VideoPlayer extends PureComponent {
 
@@ -14,7 +15,7 @@ export default class VideoPlayer extends PureComponent {
     video.oncanplaythrough = () => {
       setTimeout(()=>{
         video.play();
-      }, 1000);
+      }, FILM_PREVIEW_TIMEOUT);
     };
   }
 
