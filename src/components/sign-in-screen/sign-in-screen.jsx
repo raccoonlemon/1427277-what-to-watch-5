@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {RexExp} from '../../const';
 import {useForm} from '../../hooks/useForm';
+import {userRequested} from '../../store/actions/user';
 import {logIn as logInAction} from "../../store/api-actions";
 import Footer from "../footer/footer";
 import Header from "../header/header";
@@ -105,6 +106,7 @@ SignInScreen.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitAction(authData) {
+    dispatch(userRequested());
     dispatch(logInAction(authData));
   }
 });

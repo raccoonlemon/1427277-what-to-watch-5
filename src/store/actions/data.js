@@ -5,6 +5,7 @@ export const ActionType = {
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   UPDATE_IS_MOVIE_FAVOTIRE: `UPDATE_IS_MOVIE_FAVOTIRE`,
+  UPDATE_FILMS_INFO: `UPDATE_FILMS_INFO`,
 };
 
 export const loadFilms = (films) => ({
@@ -30,4 +31,9 @@ export const loadPromoFilm = (film) => ({
 export const loadFavoriteFilms = (films) => ({
   type: ActionType.LOAD_FAVORITE_FILMS,
   payload: films,
+});
+
+export const updateFilmsInfo = (film)=>({
+  type: ActionType.UPDATE_FILMS_INFO,
+  payload: film,
 });

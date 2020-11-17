@@ -70,8 +70,9 @@ export const RexExp = {
 };
 
 export const RequestStatus = {
+  NOT_REQUESTED: `NOT_REQUESTED`,
   REQUESTED: `REQUESTED`,
-  RECIEVED: `REQUESTED`,
+  RECIEVED: `RECIEVED`,
   REQUEST_FAILED: `REQUEST_FAILED`,
 };
 

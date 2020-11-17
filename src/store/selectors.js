@@ -14,6 +14,7 @@ export const selectCurrentGenre = (state) => state[NameSpace.CATALOG].currentGen
 export const selectShownFilmsCount = (state) => state[NameSpace.CATALOG].shownFilmsCount;
 
 export const selectAuthorizationStatus = (state) => state[NameSpace.USER].authorizationStatus;
+export const selectUserInfo = (state) => state[NameSpace.USER].userInfo;
 
 export const selectIsUserLogged = (state) => {
   return selectAuthorizationStatus(state) === AuthorizationStatus.AUTH;

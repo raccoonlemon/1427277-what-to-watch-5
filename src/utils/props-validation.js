@@ -31,3 +31,11 @@ export const reviewShape = PropTypes.shape({
   rating: numberValueRequired,
   text: stringValueRequired,
 });
+
+export const userShape = PropTypes.shape({
+  id: stringValueRequired,
+  name: stringValueRequired,
+  email: stringValueRequired,
+  avatarScr: stringValueRequired,
+});
+

@@ -1,6 +1,8 @@
 import {ApiURL, AuthorizationStatus, Path} from "../const";
-import {adaptFilmToClient, adaptReviewToClient} from "../utils/data-adapter";
-import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, redirectToRoute, setAuthorizationStatus, updateFilmsInfo} from "./action";
+import {adaptFilmToClient, adaptReviewToClient, adaptUserToClient} from "../utils/data-adapter";
+import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, updateFilmsInfo} from "./actions/data";
+import {loadUser, setAuthorizationStatus, userReceived} from "./actions/user";
+import {redirectToRoute} from "./middlewares/redirect";
 
 export const fetchFilms = () => (dispatch, _getState, api) => (
   api.get(ApiURL.FILMS)
@@ -34,6 +36,10 @@ export const updateIsFilmFavorite = (id, isFavotire) => (dispatch, _getState, ap
 
 export const logIn = ({email, password}) => (dispatch, _getState, api) => (
   api.post(ApiURL.LOGIN, {email, password})
-    .then(() => dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH)))
+    .then(({data}) => {
+      dispatch(loadUser(adaptUserToClient(data)));
+      dispatch(userReceived());
+      dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
+    })
     .then(() => dispatch(redirectToRoute(Path.MAIN_PAGE)))
 );

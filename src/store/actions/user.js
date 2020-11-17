@@ -1,5 +1,3 @@
-import { RequestStatus } from "../../const";
-
 export const ActionType = {
   SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
   LOAD_USER: `LOAD_USER`,
@@ -13,18 +11,23 @@ export const setAuthorizationStatus = (status) => ({
   payload: status,
 });
 
+export const loadUser = (user) => ({
+  type: ActionType.LOAD_USER,
+  payload: user,
+});
+
 export const userRequested = () => ({
-  type: ActionType.userRequested,
-  payload: RequestStatus.REQUESTED,
+  type: ActionType.USER_REQUESTED,
+  payload: {},
 });
 
 export const userReceived = () => ({
-  type: ActionType.userRequested,
-  payload: RequestStatus.RECIEVED,
+  type: ActionType.USER_RECEIVED,
+  payload: {},
 });
 
-export const userRequestFailed = () => ({
-  type: ActionType.userRequested,
-  payload: RequestStatus.REQUEST_FAILED,
+export const userRequestFailed = (error) => ({
+  type: ActionType.USER_REQUEST_FAILED,
+  payload: error,
 });
 
