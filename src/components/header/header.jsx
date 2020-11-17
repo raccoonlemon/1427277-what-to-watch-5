@@ -15,7 +15,7 @@ const Header = (props) =>{
 };
 
 Header.defaultProps = {
-  isLinkActive: false,
+  isLinkActive: true,
   className: ``,
   needToShowUserMenu: true
 };
