@@ -1,4 +1,4 @@
-import {ApiURL, AuthorizationStatus, Path, UserRequestErrorText} from "../const";
+import {ApiURL, AuthorizationStatus, Path} from "../const";
 import {adaptFilmToClient, adaptReviewToClient, adaptUserToClient} from "../utils/data-adapter";
 import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, updateFilmsInfo} from "./actions/data";
 import {reviewPostFailed, reviewPostRecieved, setPostedReview} from "./actions/review";
