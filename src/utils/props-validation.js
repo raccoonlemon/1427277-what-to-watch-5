@@ -1,41 +1,41 @@
 import PropTypes from 'prop-types';
 
-const stringValueRequired = PropTypes.string.isRequired;
-const numberValueRequired = PropTypes.number.isRequired;
-const dateValueRequired = PropTypes.instanceOf(Date).isRequired;
+const stringType = PropTypes.string;
+const numberType = PropTypes.number;
+const dateValue = PropTypes.instanceOf(Date);
 
 export const filmShape = PropTypes.shape({
-  id: stringValueRequired,
-  title: stringValueRequired,
+  id: stringType,
+  title: stringType,
   genre: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]).isRequired,
-  year: numberValueRequired,
-  director: stringValueRequired,
-  duration: numberValueRequired,
-  description: stringValueRequired,
-  background: stringValueRequired,
-  backgroundColor: stringValueRequired,
-  poster: stringValueRequired,
-  posterSmall: stringValueRequired,
-  videoSrc: stringValueRequired,
-  previewVideo: stringValueRequired,
-  starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-  isFavorite: PropTypes.bool.isRequired
+    PropTypes.arrayOf(stringType)
+  ]),
+  year: numberType,
+  director: stringType,
+  duration: numberType,
+  description: stringType,
+  background: stringType,
+  backgroundColor: stringType,
+  poster: stringType,
+  posterSmall: stringType,
+  videoSrc: stringType,
+  previewVideo: stringType,
+  starring: PropTypes.arrayOf(stringType),
+  isFavorite: PropTypes.bool
 });
 
 export const reviewShape = PropTypes.shape({
-  date: dateValueRequired,
-  author: stringValueRequired,
-  rating: numberValueRequired,
-  text: stringValueRequired,
+  date: dateValue,
+  author: stringType,
+  rating: numberType,
+  text: stringType,
 });
 
 export const userShape = PropTypes.shape({
-  id: stringValueRequired,
-  name: stringValueRequired,
-  email: stringValueRequired,
-  avatarScr: stringValueRequired,
+  id: stringType,
+  name: stringType,
+  email: stringType,
+  avatarScr: stringType,
 });
 
