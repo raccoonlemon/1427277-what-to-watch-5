@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
 import {SHOW_MORE_FILMS_STEP} from '../../const';
-import {changeCurrentGenre, increaseShownFilmsCount, resetShownFilmsCount} from '../../store/action';
+import {changeCurrentGenre, increaseShownFilmsCount, resetShownFilmsCount} from '../../store/actions/catalog';
 import {selectCurrentGenre, selectFilteredFilms, selectGenreList, selectIsAllFilmsShown, selectShownFilmsCount} from '../../store/selectors';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";

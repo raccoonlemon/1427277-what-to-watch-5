@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
 import {Path} from '../../const';
-import {redirectToRoute} from '../../store/action';
 import {updateIsFilmFavorite} from '../../store/api-actions';
+import {redirectToRoute} from '../../store/middlewares/redirect';
 import {selectIsUserLogged} from '../../store/selectors';
 
 export const AddToListButton = (props)=>{

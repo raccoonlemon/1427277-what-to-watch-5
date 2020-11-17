@@ -69,4 +69,10 @@ export const RexExp = {
   email: /^[a-zA-Z0-9.!#$%&'*+/=?^_\`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 };
 
+export const RequestStatus = {
+  REQUESTED: `REQUESTED`,
+  RECIEVED: `REQUESTED`,
+  REQUEST_FAILED: `REQUEST_FAILED`,
+};
+
 
