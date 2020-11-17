@@ -1,5 +1,5 @@
 import {AuthorizationStatus} from "../../const";
-import {ActionType} from "../actions/users";
+import {ActionType} from "../actions/user";
 const initialState = {
   // TODO: вернуть состояние по умолчанию AuthorizationStatus.NO_AUTH
   authorizationStatus: AuthorizationStatus.AUTH,
