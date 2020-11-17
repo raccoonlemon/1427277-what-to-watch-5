@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {connect} from "react-redux";
 import {RexExp} from '../../const';
 import {useForm} from '../../hooks/useForm';
@@ -48,6 +48,12 @@ const SignInScreen = (props) => {
     setIsSubmitButtonActive(validation.isValid);
   }, [validation]);
 
+  const emailRef = useRef(null);
+  const handleInputChange = () => {
+    const email = emailRef.current.value;
+    console.log(11111, emailRef.current, email);
+    changeValue({email});
+  };
   return (
     <div className="user-page">
       <Header className="user-page__head" needToShowUserMenu={false}>
@@ -59,12 +65,13 @@ const SignInScreen = (props) => {
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input
+                ref={emailRef}
                 className="sign-in__input"
                 type="email"
                 placeholder="Email address"
                 name="user-email"
                 id="user-email"
-                onChange = {({target})=>changeValue({email: target.value})}
+                onChange = {handleInputChange}
                 value = {email}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>

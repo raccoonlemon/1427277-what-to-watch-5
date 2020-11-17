@@ -9,6 +9,7 @@ import {films} from "./mocks/films.js";
 import {generateMockReviews} from "./mocks/reviews";
 import {createAPI} from "./services/api";
 import {fetchFavoriteFilms, fetchFilms, fetchPromoFilm} from "./store/api-actions";
+import {filmMiddleware} from "./store/middlewares/film";
 import {redirect} from "./store/middlewares/redirect";
 import reducer from "./store/reducer";
 
@@ -23,7 +24,8 @@ const composeWithEnhancers = composeWithDevTools({
 const store = createStore(reducer,
     composeWithEnhancers(
         applyMiddleware(thunk.withExtraArgument(api)),
-        applyMiddleware(redirect)));
+        applyMiddleware(redirect),
+        applyMiddleware(filmMiddleware)));
 
 Promise.all(
     [store.dispatch(fetchPromoFilm())],

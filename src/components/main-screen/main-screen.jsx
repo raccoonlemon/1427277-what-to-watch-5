@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {useComponentWillMount} from "../../hooks";
 import {selectPromoFilm} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import AddToListButton from "../add-to-list-button/add-to-list-button";
@@ -9,6 +10,10 @@ import Header from "../header/header";
 
 export const MainScreen = ({film}) => {
   const {title, genre, year, poster, background, id, isFavorite} = film;
+
+  useComponentWillMount(() => {
+    console.log(`mount only`);
+  });
 
   return (
     <React.Fragment>

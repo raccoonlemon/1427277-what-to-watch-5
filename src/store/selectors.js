@@ -31,3 +31,10 @@ export const selectSimilarFilms = createSelector(
 
 export const selectIsAllFilmsShown = (state) => selectShownFilmsCount(state) >= selectFilteredFilms(state).length;
 export const selectGenreList = (state) => getGenresList(selectFilms(state));
+
+
+export const selectFilm2 = (state) => state[NameSpace.FILM];
+export const isFilmLoading = createSelector(
+    [selectFilm2],
+    (data)=> data.status === `request`
+);
