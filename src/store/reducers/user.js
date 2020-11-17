@@ -6,7 +6,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   userInfo: {},
   requestStatus: RequestStatus.NOT_REQUESTED,
-  error: null,
+  errorCode: null,
 };
 
 const user = (state = initialState, action) => {
@@ -21,7 +21,7 @@ const user = (state = initialState, action) => {
       return extend(state, {requestStatus: RequestStatus.REQUESTED});
 
     case ActionType.USER_REQUEST_FAILED:
-      return extend(state, {requestStatus: RequestStatus.REQUEST_FAILED, error: action.payload});
+      return extend(state, {requestStatus: RequestStatus.REQUEST_FAILED, errorCode: action.payload});
 
     case ActionType.USER_RECEIVED:
       return extend(state, {requestStatus: RequestStatus.RECIEVED});

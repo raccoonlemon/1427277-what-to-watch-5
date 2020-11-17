@@ -1,7 +1,7 @@
-import {ApiURL, AuthorizationStatus, Path} from "../const";
+import {ApiURL, AuthorizationStatus, Path, UserRequestErrorText} from "../const";
 import {adaptFilmToClient, adaptReviewToClient, adaptUserToClient} from "../utils/data-adapter";
 import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, updateFilmsInfo} from "./actions/data";
-import {loadUser, setAuthorizationStatus, userReceived} from "./actions/user";
+import {loadUser, setAuthorizationStatus, userReceived, userRequestFailed} from "./actions/user";
 import {redirectToRoute} from "./middlewares/redirect";
 
 export const fetchFilms = () => (dispatch, _getState, api) => (
@@ -42,4 +42,6 @@ export const logIn = ({email, password}) => (dispatch, _getState, api) => (
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
     })
     .then(() => dispatch(redirectToRoute(Path.MAIN_PAGE)))
+    .catch(({response})=>
+      dispatch(userRequestFailed(response.status)))
 );

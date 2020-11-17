@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import {ALL_GENRES_FILTER, AuthorizationStatus, MAX_SIMILAR_FILM_COUNT} from "../const";
+import {ALL_GENRES_FILTER, AuthorizationStatus, MAX_SIMILAR_FILM_COUNT, RequestStatus} from "../const";
 import {isFilmBelongsToGenre, getGenresList, getSimilarFilms} from "../utils/films";
 import {NameSpace} from "./reducer";
 
@@ -15,6 +15,10 @@ export const selectShownFilmsCount = (state) => state[NameSpace.CATALOG].shownFi
 
 export const selectAuthorizationStatus = (state) => state[NameSpace.USER].authorizationStatus;
 export const selectUserInfo = (state) => state[NameSpace.USER].userInfo;
+export const selectUserRequestErrorCode = (state) => state[NameSpace.USER].errorCode;
+export const selectUserRequestStatus = (state) => state[NameSpace.USER].requestStatus;
+export const selectIsUserRequested = (state) => selectUserRequestStatus(state) === RequestStatus.REQUESTED;
+export const selectIsUserRequestFailed = (state) => selectUserRequestStatus(state) === RequestStatus.REQUEST_FAILED;
 
 export const selectIsUserLogged = (state) => {
   return selectAuthorizationStatus(state) === AuthorizationStatus.AUTH;
