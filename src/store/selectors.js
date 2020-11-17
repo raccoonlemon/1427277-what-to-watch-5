@@ -20,6 +20,10 @@ export const selectUserRequestStatus = (state) => state[NameSpace.USER].requestS
 export const selectIsUserRequested = (state) => selectUserRequestStatus(state) === RequestStatus.REQUESTED;
 export const selectIsUserRequestFailed = (state) => selectUserRequestStatus(state) === RequestStatus.REQUEST_FAILED;
 
+export const selectReviewRequestStatus = (state) => state[NameSpace.REVIEW].requestStatus;
+export const selectIsReviewPostRequested = (state) => selectReviewRequestStatus(state) === RequestStatus.REQUESTED;
+export const selectIsReviewPostFailed = (state) => selectReviewRequestStatus(state) === RequestStatus.REQUEST_FAILED;
+
 export const selectIsUserLogged = (state) => {
   return selectAuthorizationStatus(state) === AuthorizationStatus.AUTH;
 };

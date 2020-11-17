@@ -1,6 +1,7 @@
 import {ApiURL, AuthorizationStatus, Path, UserRequestErrorText} from "../const";
 import {adaptFilmToClient, adaptReviewToClient, adaptUserToClient} from "../utils/data-adapter";
 import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, updateFilmsInfo} from "./actions/data";
+import {reviewPostFailed, reviewPostRecieved, setPostedReview} from "./actions/review";
 import {loadUser, setAuthorizationStatus, userReceived, userRequestFailed} from "./actions/user";
 import {redirectToRoute} from "./middlewares/redirect";
 
@@ -32,6 +33,17 @@ export const fetchFavoriteFilms = () => (dispatch, _getState, api) => (
 export const updateIsFilmFavorite = (id, isFavotire) => (dispatch, _getState, api) => (
   api.post(`${ApiURL.FAVORITE}/${id}/${+isFavotire}`)
     .then(({data}) => dispatch(updateFilmsInfo(adaptFilmToClient(data))))
+);
+
+export const postReview = (id, rating, comment) => (dispatch, _getState, api) => (
+  api.post(`${ApiURL.REVIEWS_BY_FILM_ID}${id}`, {rating, comment})
+    .then(({data}) => {
+      dispatch(setPostedReview(data));
+      dispatch(reviewPostRecieved());
+      dispatch(redirectToRoute(Path.filmScreen(id)));
+    })
+    .catch(({response})=>
+      dispatch(reviewPostFailed(response.status)))
 );
 
 export const logIn = ({email, password}) => (dispatch, _getState, api) => (

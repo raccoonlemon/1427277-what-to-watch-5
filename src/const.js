@@ -56,7 +56,7 @@ export const ApiURL = {
   FILMS: `/films`,
   FILM_BY_ID: `/films/`,
   LOGIN: `/login`,
-  REVIEWS_BY_FILM_ID: `/comments/`,
+  REVIEWS_BY_FILM_ID: `/commendts/`,
   FAVORITE: `/favorite`
 };
 
@@ -87,6 +87,10 @@ export const HttpStatusCode = {
 export const UserRequestErrorText = {
   [HttpStatusCode.SERVER_ERROR]: `Internal server error. Please, try again later.`,
   [HttpStatusCode.BAD_REQUEST]: `We can’t recognize this email and password combination. Please try again.`
+};
+
+export const ReviewPostErrorText = {
+  [HttpStatusCode.SERVER_ERROR]: `Internal server error. Please, try again later.`,
 };
 
 export const UNKNOWN_ERROR = `Unknown error. Please, try again later.`;

@@ -3,7 +3,7 @@ import {extend} from "../../utils/common";
 import {ActionType} from "../actions/user";
 const initialState = {
   // TODO: вернуть состояние по умолчанию AuthorizationStatus.NO_AUTH
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: AuthorizationStatus.AUTH,
   userInfo: {},
   requestStatus: RequestStatus.NOT_REQUESTED,
   errorCode: null,

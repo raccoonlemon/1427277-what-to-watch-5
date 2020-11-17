@@ -5,7 +5,7 @@ import {RexExp, UNKNOWN_ERROR, UserRequestErrorText} from '../../const';
 import {useForm} from '../../hooks/useForm';
 import {userRequested} from '../../store/actions/user';
 import {logIn as logInAction} from "../../store/api-actions";
-import {selectUserRequestErrorCode} from '../../store/selectors';
+import {selectIsUserRequested, selectUserRequestErrorCode, selectIsUserRequestFailed} from '../../store/selectors';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 
@@ -37,7 +37,7 @@ const validate = ({email, password})=>{
 
 const SignInScreen = (props) => {
 
-  const {onSubmitAction, errorCode, isRequested} = props;
+  const {onSubmitAction, errorCode, isRequested, isRequestFailed} = props;
 
 
   const initialValues = {email: ``, password: ``};
@@ -59,7 +59,7 @@ const SignInScreen = (props) => {
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
           <div className="sign-in__message">
-            {errorCode && <p>{UserRequestErrorText[errorCode] || UNKNOWN_ERROR}</p>}
+            {isRequestFailed && <p>{UserRequestErrorText[errorCode] || UNKNOWN_ERROR}</p>}
             {validation.messages.map((item, index)=><div key={index}>{item}</div>)}
           </div>
           <div className="sign-in__fields">
@@ -119,7 +119,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  errorCode: selectUserRequestErrorCode(state)
+  errorCode: selectUserRequestErrorCode(state),
+  isRequested: selectIsUserRequested(state),
+  isRequestFailed: selectIsUserRequestFailed(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
