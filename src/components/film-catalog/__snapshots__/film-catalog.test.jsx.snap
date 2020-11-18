@@ -1,0 +1,333 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilmCatalog> renders correctly 1`] = `
+<section
+  className="catalog"
+>
+  <h2
+    className="catalog__title visually-hidden"
+  >
+    Catalog
+  </h2>
+  <ul
+    className="catalog__genres-list"
+  >
+    <li
+      className="catalog__genres-item catalog__genres-item--active all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="all genres"
+        href="#"
+        onClick={[Function]}
+      >
+        All genres
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="adventure"
+        href="#"
+        onClick={[Function]}
+      >
+        Adventure
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="biography"
+        href="#"
+        onClick={[Function]}
+      >
+        Biography
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="comedy"
+        href="#"
+        onClick={[Function]}
+      >
+        Comedy
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="crime"
+        href="#"
+        onClick={[Function]}
+      >
+        Crime
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="drama"
+        href="#"
+        onClick={[Function]}
+      >
+        Drama
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="fantasy"
+        href="#"
+        onClick={[Function]}
+      >
+        Fantasy
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item all genres"
+    >
+      <a
+        className="catalog__genres-link"
+        data-genre="thriller"
+        href="#"
+        onClick={[Function]}
+      >
+        Thriller
+      </a>
+    </li>
+  </ul>
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="The Grand Budapest Hotel"
+          height="175"
+          src="img/the-grand-budapest-hotel-poster.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/1"
+          onClick={[Function]}
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Pulp fiction"
+          height="175"
+          src="img/pulp-fiction.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/2"
+          onClick={[Function]}
+        >
+          Pulp fiction
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Moonrise Kingdom"
+          height="175"
+          src="img/moonrise-kingdom.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/3"
+          onClick={[Function]}
+        >
+          Moonrise Kingdom
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Fantastic Beasts: The Crimes of Grindelwald"
+          height="175"
+          src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/4"
+          onClick={[Function]}
+        >
+          Fantastic Beasts: The Crimes of Grindelwald
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Aviator"
+          height="175"
+          src="img/aviator.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/5"
+          onClick={[Function]}
+        >
+          Aviator
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Shutter Island"
+          height="175"
+          src="img/shutter-island.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/6"
+          onClick={[Function]}
+        >
+          Shutter Island
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Johnny English"
+          height="175"
+          src="img/johnny-english.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/7"
+          onClick={[Function]}
+        >
+          Johnny English
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Seven Years in Tibet"
+          height="175"
+          src="img/seven-years-in-tibet.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/8"
+          onClick={[Function]}
+        >
+          Seven Years in Tibet
+        </a>
+      </h3>
+    </article>
+  </div>
+</section>
+`;
