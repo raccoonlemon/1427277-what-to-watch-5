@@ -31,13 +31,12 @@ export const adaptReviewToClient = (data)=>{
 };
 
 export const adaptUserToClient = (data)=>{
-  const review = {
+  const user = {
     id: data.id.toString(),
-    date: new Date(data.date),
     email: data.email,
     name: data.name,
     avatarSrc: data.avatar_url,
   };
-  return review;
+  return user;
 };
 
