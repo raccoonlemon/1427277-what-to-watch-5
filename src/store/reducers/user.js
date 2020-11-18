@@ -1,12 +1,13 @@
 import {AuthorizationStatus, RequestStatus} from "../../const";
 import {extend} from "../../utils/common";
 import {ActionType} from "../actions/user";
+
 const initialState = {
   // TODO: вернуть состояние по умолчанию AuthorizationStatus.NO_AUTH
-  authorizationStatus: AuthorizationStatus.AUTH,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
   userInfo: {},
   requestStatus: RequestStatus.NOT_REQUESTED,
-  errorCode: null,
+  errorCode: 0,
 };
 
 const user = (state = initialState, action) => {
