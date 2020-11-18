@@ -1,10 +1,13 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
+import {Path} from "../../const";
 import {filmShape} from '../../utils/props-validation';
 import AddToListButton from '../add-to-list-button/add-to-list-button';
 import PlayButton from '../play-button/play-button';
 
 const FilmCard = (props) =>{
-  const {film} = props;
+  const {film, isUserLogged} = props;
   const {title, genre, year, poster, id, isFavorite} = film;
 
 
@@ -24,6 +27,7 @@ const FilmCard = (props) =>{
         <div className="movie-card__buttons">
           <PlayButton id = {id}/>
           <AddToListButton id = {id} isFavorite = {isFavorite}/>
+          {isUserLogged && <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>}
         </div>
       </div>
     </div>
@@ -32,6 +36,7 @@ const FilmCard = (props) =>{
 
 FilmCard.propTypes = {
   film: filmShape,
+  isUserLogged: PropTypes.bool,
 };
 
 export default FilmCard;

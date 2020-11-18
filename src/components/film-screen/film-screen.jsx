@@ -12,7 +12,7 @@ import Header from '../header/header';
 
 const FilmScreen = (props) => {
 
-  const {isFilmLoaded, loadFilmInfoAction, id} = props;
+  const {isFilmLoaded, loadFilmInfoAction, id, isUserLogged} = props;
 
   useEffect(() => {
     if (!isFilmLoaded) {
@@ -31,7 +31,7 @@ const FilmScreen = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
         <Header className="movie-card__head"/>
-        <FilmCard film={film}/>
+        <FilmCard film={film} isUserLogged = {isUserLogged}/>
       </div>
 
       <div className="movie-card__wrap movie-card__translate-top">
