@@ -41,13 +41,6 @@ const validate = ({reviewText, rating})=>{
   return {isValid, messages};
 };
 
-
-// TODO:
-// Отправка формы на сервер.
-// Редирект на страницу фильма.
-// Обработка ошибок сервера.
-// Блокировка кнопки пока обрабатывается запрос на сервер.
-
 export const AddReviewScreen = (props) => {
   const {film, isFilmLoaded, loadFilmAction, postReviewAction, id, isRequested, isRequestFailed, errorCode} = props;
   const {title, poster, background} = film;
@@ -151,21 +144,21 @@ export const AddReviewScreen = (props) => {
 AddReviewScreen.propTypes = {
   id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
-  isFilmLoaded: PropTypes.bool.isRequired,
-  loadFilmAction: PropTypes.func.isRequired,
-  postReviewAction: PropTypes.func.isRequired,
   isRequested: PropTypes.bool.isRequired,
   isRequestFailed: PropTypes.bool.isRequired,
   errorCode: PropTypes.number.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  loadFilmAction: PropTypes.func.isRequired,
+  postReviewAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, {id}) => (
   {
     film: selectFilm(state),
     isFilmLoaded: selectIsFilmLoaded(id)(state),
-    errorCode: selectUserRequestErrorCode(state),
     isRequested: selectIsReviewPostRequested(state),
     isRequestFailed: selectIsReviewPostFailed(state),
+    errorCode: selectUserRequestErrorCode(state),
   });
 
 const mapDispatchToProps = (dispatch) => ({
