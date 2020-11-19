@@ -147,7 +147,7 @@ AddReviewScreen.propTypes = {
   film: filmShape.isRequired,
   isRequested: PropTypes.bool.isRequired,
   isRequestFailed: PropTypes.bool.isRequired,
-  errorCode: PropTypes.number.isRequired,
+  errorCode: PropTypes.number,
   isFilmLoaded: PropTypes.bool.isRequired,
   loadFilmAction: PropTypes.func.isRequired,
   postReviewAction: PropTypes.func.isRequired,
