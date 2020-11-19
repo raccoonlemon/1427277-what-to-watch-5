@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React, {createRef, useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import {FILM_PREVIEW_TIMEOUT} from '../../const';
 
 export const VideoPlayer = (props) => {
   const {poster, src} = props;
-  const videoRef = createRef(null);
-  const videoSourceRef = createRef(null);
+  const videoRef = useRef(null);
+  const videoSourceRef = useRef(null);
   useEffect(()=>{
     const video = videoRef.current;
     videoRef.current.oncanplaythrough = () => {

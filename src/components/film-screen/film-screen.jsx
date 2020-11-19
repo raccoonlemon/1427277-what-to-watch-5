@@ -58,6 +58,16 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
+FilmScreen.propTypes = {
+  loadFilmInfoAction: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  film: filmShape.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  reviews: PropTypes.arrayOf(reviewShape).isRequired,
+  similarFilms: PropTypes.arrayOf(filmShape).isRequired,
+  isUserLogged: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = (state, {id}) => ({
   film: selectFilm(state),
   isFilmLoaded: selectIsFilmLoaded(id)(state),
@@ -72,16 +82,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchReviewsByFilmId(id));
   },
 });
-
-FilmScreen.propTypes = {
-  loadFilmInfoAction: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  film: filmShape.isRequired,
-  isFilmLoaded: PropTypes.bool.isRequired,
-  reviews: PropTypes.arrayOf(reviewShape).isRequired,
-  similarFilms: PropTypes.arrayOf(filmShape).isRequired,
-  isUserLogged: PropTypes.bool.isRequired,
-};
 
 export {FilmScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(FilmScreen);

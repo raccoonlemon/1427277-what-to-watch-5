@@ -5,22 +5,13 @@ import {Path} from '../../const';
 import {filmShape} from '../../utils/props-validation';
 import VideoPlayer from '../video-player/video-player';
 
-const getFilmCardContent = (film, isCardActive) =>{
-  const {title, posterSmall, previewVideo} = film;
-
-  if (isCardActive) {
-    return (<VideoPlayer src = {previewVideo} poster = {posterSmall} />);
-  }
-
-  return (<img src={posterSmall} alt={title} width="280" height="175" />);
-};
-
 const FilmSmallCard = ({film, isCardActive, onMouseEnter, onMouseLeave})=>{
-  const {title, id} = film;
+  const {title, posterSmall, previewVideo, id} = film;
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseEnter={()=>onMouseEnter(id)} onMouseLeave={onMouseLeave}>
+    <article className="small-movie-card catalog__movies-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <div className="small-movie-card__image">
-        {getFilmCardContent(film, isCardActive)}
+        {isCardActive && <VideoPlayer src = {previewVideo} poster = {posterSmall} />}
+        {!isCardActive && <img src={posterSmall} alt={title} width="280" height="175" />}
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={Path.filmScreen(id)}>{title}</Link>

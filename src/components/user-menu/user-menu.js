@@ -24,14 +24,13 @@ export const UserMenu = (props)=>{
     </div>);
 };
 
-const mapStateToProps = (state) => ({
-  isUserLogged: selectIsUserLogged(state),
-  userInfo: selectUserInfo(state)
-});
-
 UserMenu.propTypes = {
   isUserLogged: PropTypes.bool.isRequired,
   userInfo: userShape.isRequired
 };
+const mapStateToProps = (state) => ({
+  isUserLogged: selectIsUserLogged(state),
+  userInfo: selectUserInfo(state)
+});
 
 export default connect(mapStateToProps)(UserMenu);
