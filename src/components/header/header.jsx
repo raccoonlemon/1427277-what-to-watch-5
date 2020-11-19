@@ -4,18 +4,17 @@ import Logo from '../logo/logo';
 import UserMenu from '../user-menu/user-menu';
 
 const Header = (props) =>{
-  const {className, needToShowUserMenu, isLinkActive} = props;
+  const {className, needToShowUserMenu} = props;
 
   return (
     <header className={`page-header ${className}`}>
-      <Logo isLinkActive={isLinkActive}/>
+      <Logo/>
       {props.children}
       {needToShowUserMenu && <UserMenu/>}
     </header>);
 };
 
 Header.defaultProps = {
-  isLinkActive: true,
   className: ``,
   needToShowUserMenu: true
 };
@@ -23,7 +22,6 @@ Header.defaultProps = {
 Header.propTypes = {
   children: PropTypes.element,
   className: PropTypes.string,
-  isLinkActive: PropTypes.bool,
   needToShowUserMenu: PropTypes.bool,
 };
 

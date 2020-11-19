@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {Link} from 'react-router-dom';
 import {Path} from '../../const';
+import browserHistory from '../../utils/browser-history';
 
 const Logo = (props) =>{
-  const {className, isLinkActive} = props;
+  const {className} = props;
+  const isLinkActive = browserHistory.location.pathname !== Path.MAIN_PAGE;
 
   const logo = (
     <React.Fragment>
@@ -23,12 +25,10 @@ const Logo = (props) =>{
 
 Logo.defaultProps = {
   className: ``,
-  isLinkActive: true
 };
 
 Logo.propTypes = {
   className: PropTypes.string,
-  isLinkActive: PropTypes.bool
 };
 
 export default Logo;

@@ -3,11 +3,11 @@ import React from "react";
 import Logo from '../logo/logo';
 
 const Footer = (props) =>{
-  const {className, isLinkActive} = props;
+  const {className} = props;
 
   return (
     <footer className={`page-footer ${className}`}>
-      <Logo className="logo__link--light" isLinkActive={isLinkActive}/>
+      <Logo className="logo__link--light"/>
       <div className="copyright">
         <p>© 2019 What to watch Ltd.</p>
       </div>
@@ -16,12 +16,10 @@ const Footer = (props) =>{
 
 Footer.defaultProps = {
   className: ``,
-  isLinkActive: true
 };
 
 Footer.propTypes = {
   className: PropTypes.string,
-  isLinkActive: PropTypes.bool
 };
 
 export default Footer;

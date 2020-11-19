@@ -18,7 +18,7 @@ export const MainScreen = ({film}) => {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-        <Header className="movie-card__head" isLinkActive = {false}/>
+        <Header className="movie-card__head"/>
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
@@ -30,7 +30,7 @@ export const MainScreen = ({film}) => {
       </section>
       <div className="page-content">
         <FilmCatalog/>
-        <Footer isLinkActive = {false}/>
+        <Footer/>
       </div>
     </React.Fragment>
   );
