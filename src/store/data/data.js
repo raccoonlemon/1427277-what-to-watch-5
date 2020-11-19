@@ -1,4 +1,8 @@
+import {createSelector} from "reselect";
+import {MAX_SIMILAR_FILM_COUNT} from "../../const";
 import {extend} from "../../utils/common";
+import {getSimilarFilms} from "../../utils/films";
+import {NameSpace} from "../namespace";
 
 export const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
@@ -83,3 +87,21 @@ export const updateFilmsInfo = (film)=>({
   type: ActionType.UPDATE_FILMS_INFO,
   payload: film,
 });
+
+
+// Selectors
+
+const nameSpace = NameSpace.DATA;
+
+export const selectFilms = (state) => state[nameSpace].films;
+export const selectFavoriteFilms = (state) => state[nameSpace].favoriteFilms;
+export const selectFilm = (state) => state[nameSpace].film;
+export const selectPromoFilm = (state) => state[nameSpace].promoFilm;
+export const selectReviews = (state) => state[nameSpace].reviews;
+export const selectIsFilmLoaded = (id) => (state) => selectFilm(state).id === id;
+
+export const selectSimilarFilms = createSelector(
+    [selectFilms, selectFilm],
+    (films, film)=> getSimilarFilms(films, film).slice(0, MAX_SIMILAR_FILM_COUNT)
+);
+

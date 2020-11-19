@@ -6,9 +6,10 @@ import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewPostErrorText, R
 import {useForm} from '../../hooks/useForm';
 import {userRequested} from '../../store/user/user';
 import {fetchFilmById, postReview} from '../../store/api-actions';
-import {selectFilm, selectIsFilmLoaded, selectIsReviewPostFailed, selectIsReviewPostRequested, selectUserRequestErrorCode} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
+import {selectIsReviewPostFailed, selectIsReviewPostRequested, selectReviewErrorCode} from '../../store/review/review';
+import {selectFilm, selectIsFilmLoaded} from '../../store/data/data';
 
 const ratingItems = [];
 for (let index = 1; index <= MAX_RAITING_IN_REVIEW; index++) {
@@ -158,7 +159,7 @@ const mapStateToProps = (state, {id}) => (
     isFilmLoaded: selectIsFilmLoaded(id)(state),
     isRequested: selectIsReviewPostRequested(state),
     isRequestFailed: selectIsReviewPostFailed(state),
-    errorCode: selectUserRequestErrorCode(state),
+    errorCode: selectReviewErrorCode(state),
   });
 
 const mapDispatchToProps = (dispatch) => ({

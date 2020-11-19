@@ -3,9 +3,8 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {RexExp, UNKNOWN_ERROR, UserRequestErrorText} from '../../const';
 import {useForm} from '../../hooks/useForm';
-import {userRequested} from '../../store/user/user';
+import {selectIsUserRequested, selectIsUserRequestFailed, selectUserRequestErrorCode, userRequested} from '../../store/user/user';
 import {logIn as logInAction} from "../../store/api-actions";
-import {selectIsUserRequested, selectUserRequestErrorCode, selectIsUserRequestFailed} from '../../store/selectors';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 
@@ -30,10 +29,6 @@ const validate = ({email, password})=>{
 
   return {isValid, messages};
 };
-
-// TODO:
-// Обработка ошибок сервера.
-// Блокировка кнопки пока обрабатывается запрос на сервер.
 
 const SignInScreen = (props) => {
 

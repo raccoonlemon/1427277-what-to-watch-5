@@ -1,11 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
-import {selectPromoFilm} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import FilmCard from "../film-card/film-card";
+import {selectPromoFilm} from "../../store/data/data";
 
 export const MainScreen = ({film}) => {
   const {title, background} = film;

@@ -1,5 +1,9 @@
+import {createSelector} from "reselect";
 import {ALL_GENRES_FILTER, SHOWN_FILMS_INITIAL_COUNT} from "../../const";
 import {extend} from "../../utils/common";
+import {getGenresList, isFilmBelongsToGenre} from "../../utils/films";
+import {selectFilms} from "../data/data";
+import {NameSpace} from "../namespace";
 
 export const ActionType = {
   CHANGE_CURRENT_GENRE: `CHANGE_CURRENT_GENRE`,
@@ -46,3 +50,19 @@ export const resetShownFilmsCount = ()=>({
   type: ActionType.RESET_SHOWN_FILMS_COUNT,
   payload: {}
 });
+
+
+// Selectors
+
+const nameSpace = NameSpace.CATALOG;
+
+export const selectCurrentGenre = (state) => state[nameSpace].currentGenre;
+export const selectShownFilmsCount = (state) => state[nameSpace].shownFilmsCount;
+
+export const selectFilteredFilms = createSelector(
+    [selectFilms, selectCurrentGenre],
+    (films, genre)=> genre === ALL_GENRES_FILTER ? films : films.filter((film) => isFilmBelongsToGenre(film, genre))
+);
+
+export const selectIsAllFilmsShown = (state) => selectShownFilmsCount(state) >= selectFilteredFilms(state).length;
+export const selectGenreList = (state) => getGenresList(selectFilms(state));

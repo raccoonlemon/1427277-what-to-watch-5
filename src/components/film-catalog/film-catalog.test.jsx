@@ -1,5 +1,5 @@
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
 import renderer from "react-test-renderer";
 import {ALL_GENRES_FILTER} from "../../const";
 import {films} from "../../mocks/films";

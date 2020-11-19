@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import {Path} from '../../const';
-import {selectIsUserLogged, selectUserInfo} from "../../store/selectors";
+import {selectIsUserLogged, selectUserInfo} from '../../store/user/user';
 import {userShape} from '../../utils/props-validation';
 
 export const UserMenu = (props)=>{

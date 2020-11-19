@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Path} from '../../const';
 import {updateIsFilmFavorite} from '../../store/api-actions';
 import {redirectToRoute} from '../../store/middlewares/redirect';
-import {selectIsUserLogged} from '../../store/selectors';
+import {selectIsUserLogged} from '../../store/user/user';
 
 export const AddToListButton = (props)=>{
   const {id, isFavorite, onClickAction, redirectAction, isUserLogged} = props;

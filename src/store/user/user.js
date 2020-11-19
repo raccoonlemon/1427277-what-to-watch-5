@@ -1,5 +1,6 @@
 import {extend} from "../../utils/common";
 import {RequestStatus, AuthorizationStatus} from "../../const";
+import {NameSpace} from "../namespace";
 
 export const ActionType = {
   SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
@@ -68,3 +69,15 @@ export const userRequestFailed = (error) => ({
   payload: error,
 });
 
+// Selectors
+
+const nameSpace = NameSpace.USER;
+
+export const selectAuthorizationStatus = (state) => state[nameSpace].authorizationStatus;
+export const selectUserInfo = (state) => state[nameSpace].userInfo;
+export const selectUserRequestErrorCode = (state) => state[nameSpace].errorCode;
+export const selectUserRequestStatus = (state) => state[nameSpace].requestStatus;
+
+export const selectIsUserRequested = (state) => selectUserRequestStatus(state) === RequestStatus.REQUESTED;
+export const selectIsUserRequestFailed = (state) => selectUserRequestStatus(state) === RequestStatus.REQUEST_FAILED;
+export const selectIsUserLogged = (state) => selectAuthorizationStatus(state) === AuthorizationStatus.AUTH;

@@ -1,5 +1,6 @@
 import {RequestStatus} from "../../const";
 import {extend} from "../../utils/common";
+import {NameSpace} from "../namespace";
 
 export const ActionType = {
   REVIEW_POST_REQUESTED: `REVIEW_POST_REQUESTED`,
@@ -56,3 +57,12 @@ export const setPostedReview = (error) => ({
   type: ActionType.SET_POSTED_REVIEW,
   payload: error,
 });
+
+// Selectors
+
+const nameSpace = NameSpace.REVIEW;
+
+export const selectReviewRequestStatus = (state) => state[nameSpace].requestStatus;
+export const selectIsReviewPostRequested = (state) => selectReviewRequestStatus(state) === RequestStatus.REQUESTED;
+export const selectIsReviewPostFailed = (state) => selectReviewRequestStatus(state) === RequestStatus.REQUEST_FAILED;
+export const selectReviewErrorCode = (state) => state[nameSpace].errorCode;

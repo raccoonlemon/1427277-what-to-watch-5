@@ -3,13 +3,14 @@ import {data} from "./data/data";
 import {user} from "./user/user";
 import {catalog} from "./catalog/catalog";
 import {review} from "./review/review";
+import {NameSpace} from "./namespace";
 
-export const NameSpace = {
-  DATA: `DATA`,
-  CATALOG: `CATALOG`,
-  USER: `USER`,
-  REVIEW: `REVIEW`,
-};
+// export const NameSpace = {
+//   DATA: `DATA`,
+//   CATALOG: `CATALOG`,
+//   USER: `USER`,
+//   REVIEW: `REVIEW`,
+// };
 
 export default combineReducers({
   [NameSpace.DATA]: data,
