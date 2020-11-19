@@ -33,7 +33,9 @@ const FilmScreen = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
         <Header className="movie-card__head"/>
-        <FilmCard film={film} isUserLogged = {isUserLogged}/>
+        <div className="movie-card__wrap">
+          <FilmCard film={film} isUserLogged = {isUserLogged}/>
+        </div>
       </div>
 
       <div className="movie-card__wrap movie-card__translate-top">
