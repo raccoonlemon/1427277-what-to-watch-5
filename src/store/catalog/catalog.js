@@ -2,7 +2,7 @@ import {createSelector} from "reselect";
 import {ALL_GENRES_FILTER, SHOWN_FILMS_INITIAL_COUNT} from "../../const";
 import {extend} from "../../utils/common";
 import {getGenresList, isFilmBelongsToGenre} from "../../utils/films";
-import {selectFilms} from "../data/data";
+import {selectFilms} from "../films/films";
 import {NameSpace} from "../namespace";
 
 export const ActionType = {
@@ -18,7 +18,7 @@ const initialState = {
 
 // Reducer
 
-export const catalog = (state = initialState, action) => {
+export const catalogReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case ActionType.CHANGE_CURRENT_GENRE:

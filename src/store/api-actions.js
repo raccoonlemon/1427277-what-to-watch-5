@@ -1,7 +1,7 @@
 import {ApiURL, AuthorizationStatus, Path} from "../const";
 import {adaptFilmToClient, adaptReviewToClient, adaptUserToClient} from "../utils/data-adapter";
-import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, updateFilmsInfo} from "./data/data";
-import {reviewPostFailed, reviewPostRecieved, setPostedReview} from "./review/review";
+import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, updateFilmsInfo} from "./films/films";
+import {loadReviews, reviewPostFailed, reviewPostRecieved, setPostedReview} from "./reviews/reviews";
 import {loadUser, setAuthorizationStatus, userReceived, userRequestFailed} from "./user/user";
 import {redirectToRoute} from "./middlewares/redirect";
 

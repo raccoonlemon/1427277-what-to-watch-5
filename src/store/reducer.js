@@ -1,20 +1,13 @@
 import {combineReducers} from "redux";
-import {data} from "./data/data";
-import {user} from "./user/user";
-import {catalog} from "./catalog/catalog";
-import {review} from "./review/review";
+import {catalogReducer} from "./catalog/catalog";
+import {filmsReducer} from "./films/films";
 import {NameSpace} from "./namespace";
-
-// export const NameSpace = {
-//   DATA: `DATA`,
-//   CATALOG: `CATALOG`,
-//   USER: `USER`,
-//   REVIEW: `REVIEW`,
-// };
+import {reviews} from "./reviews/reviews";
+import {userReducer} from "./user/user";
 
 export default combineReducers({
-  [NameSpace.DATA]: data,
-  [NameSpace.CATALOG]: catalog,
-  [NameSpace.USER]: user,
-  [NameSpace.REVIEW]: review,
+  [NameSpace.FILMS]: filmsReducer,
+  [NameSpace.CATALOG]: catalogReducer,
+  [NameSpace.USER]: userReducer,
+  [NameSpace.REVIEWS]: reviews,
 });

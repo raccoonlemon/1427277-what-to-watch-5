@@ -8,8 +8,8 @@ import {userRequested} from '../../store/user/user';
 import {fetchFilmById, postReview} from '../../store/api-actions';
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
-import {selectIsReviewPostFailed, selectIsReviewPostRequested, selectReviewErrorCode} from '../../store/review/review';
-import {selectFilm, selectIsFilmLoaded} from '../../store/data/data';
+import {selectIsReviewPostFailed, selectIsReviewPostRequested, selectReviewErrorCode} from '../../store/reviews/reviews';
+import {selectFilm, selectIsFilmLoaded} from '../../store/films/films';
 
 const ratingItems = [];
 for (let index = 1; index <= MAX_RAITING_IN_REVIEW; index++) {

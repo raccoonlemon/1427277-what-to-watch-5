@@ -5,7 +5,7 @@ import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import FilmCard from "../film-card/film-card";
-import {selectPromoFilm} from "../../store/data/data";
+import {selectPromoFilm} from "../../store/films/films";
 
 export const MainScreen = ({film}) => {
   const {title, background} = film;

@@ -7,7 +7,6 @@ import {NameSpace} from "../namespace";
 export const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_FILM: `LOAD_FILM`,
-  LOAD_REVIEWS: `LOAD_REWIEVS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   UPDATE_IS_MOVIE_FAVOTIRE: `UPDATE_IS_MOVIE_FAVOTIRE`,
@@ -25,16 +24,13 @@ const initialState = {
 
 // Reducer
 
-export const data = (state = initialState, action) => {
+export const filmsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_FILMS:
       return extend(state, {films: action.payload});
 
     case ActionType.LOAD_FILM:
       return extend(state, {film: action.payload});
-
-    case ActionType.LOAD_REVIEWS:
-      return extend(state, {reviews: action.payload});
 
     case ActionType.LOAD_PROMO_FILM:
       return extend(state, {promoFilm: action.payload});
@@ -68,11 +64,6 @@ export const loadFilm = (film) => ({
   payload: film,
 });
 
-export const loadReviews = (reviews) => ({
-  type: ActionType.LOAD_REVIEWS,
-  payload: reviews,
-});
-
 export const loadPromoFilm = (film) => ({
   type: ActionType.LOAD_PROMO_FILM,
   payload: film,
@@ -91,13 +82,12 @@ export const updateFilmsInfo = (film)=>({
 
 // Selectors
 
-const nameSpace = NameSpace.DATA;
+const nameSpace = NameSpace.FILMS;
 
 export const selectFilms = (state) => state[nameSpace].films;
 export const selectFavoriteFilms = (state) => state[nameSpace].favoriteFilms;
 export const selectFilm = (state) => state[nameSpace].film;
 export const selectPromoFilm = (state) => state[nameSpace].promoFilm;
-export const selectReviews = (state) => state[nameSpace].reviews;
 export const selectIsFilmLoaded = (id) => (state) => selectFilm(state).id === id;
 
 export const selectSimilarFilms = createSelector(

@@ -3,22 +3,27 @@ import {extend} from "../../utils/common";
 import {NameSpace} from "../namespace";
 
 export const ActionType = {
+  LOAD_REVIEWS: `LOAD_REWIEVS`,
   REVIEW_POST_REQUESTED: `REVIEW_POST_REQUESTED`,
   REVIEW_POST_RECIEVED: `REVIEW_POST_RECIEVED`,
   REVIEW_POST_FAILED: `REVIEW_POST_FAILED`,
-  SET_POSTED_REVIEW: `SET_POSTED_REVIEW`
+  SET_POSTED_REVIEW: `SET_POSTED_REVIEW`,
 };
 
 const initialState = {
   requestStatus: RequestStatus.NOT_REQUESTED,
   errorCode: null,
-  postedReviews: []
+  postedReviews: [],
+  reviews: [],
 };
 
 // Reducer
 
-export const review = (state = initialState, action) => {
+export const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {reviews: action.payload});
 
     case ActionType.REVIEW_POST_REQUESTED:
       return extend(state, {requestStatus: RequestStatus.REQUESTED});
@@ -37,6 +42,11 @@ export const review = (state = initialState, action) => {
 };
 
 // Actions
+
+export const loadReviews = (reviews) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload: reviews,
+});
 
 export const reviewPostRequested = () => ({
   type: ActionType.REVIEW_POST_REQUESTED,
@@ -60,9 +70,10 @@ export const setPostedReview = (error) => ({
 
 // Selectors
 
-const nameSpace = NameSpace.REVIEW;
+const nameSpace = NameSpace.REVIEWS;
 
 export const selectReviewRequestStatus = (state) => state[nameSpace].requestStatus;
 export const selectIsReviewPostRequested = (state) => selectReviewRequestStatus(state) === RequestStatus.REQUESTED;
 export const selectIsReviewPostFailed = (state) => selectReviewRequestStatus(state) === RequestStatus.REQUEST_FAILED;
 export const selectReviewErrorCode = (state) => state[nameSpace].errorCode;
+export const selectReviews = (state) => state[nameSpace].reviews;
