@@ -22,12 +22,13 @@ export const UserMenu = (props)=>{
     </div>);
 };
 
+UserMenu.propTypes = {
+  isUserLogged: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   isUserLogged: selectIsUserLogged(state)
 });
 
-UserMenu.propTypes = {
-  isUserLogged: PropTypes.bool.isRequired,
-};
 
 export default connect(mapStateToProps)(UserMenu);
