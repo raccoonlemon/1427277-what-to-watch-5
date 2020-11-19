@@ -27,7 +27,7 @@ export const AddToListButton = (props)=>{
 };
 
 AddToListButton.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   isFavorite: PropTypes.bool,
   onClickAction: PropTypes.func.isRequired,
   redirectAction: PropTypes.func.isRequired,
