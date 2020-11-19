@@ -10,7 +10,7 @@ describe(`<UserMenu> renders correctly`, () => {
     .create(<MemoryRouter>
       <UserMenu
         isUserLogged={true}
-        userInfo = {user}
+        user = {user}
       />
     </MemoryRouter>)
     .toJSON();
@@ -23,7 +23,7 @@ describe(`<UserMenu> renders correctly`, () => {
     .create(<MemoryRouter>
       <UserMenu
         isUserLogged={false}
-        userInfo = {user}
+        user = {user}
       />
     </MemoryRouter>)
     .toJSON();

@@ -13,7 +13,7 @@ export const ActionType = {
 const initialState = {
   // TODO: вернуть состояние по умолчанию AuthorizationStatus.NO_AUTH
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  userInfo: {},
+  user: {},
   requestStatus: RequestStatus.NOT_REQUESTED,
   errorCode: 0,
 };
@@ -26,7 +26,7 @@ export const userReducer = (state = initialState, action) => {
       return extend(state, {authorizationStatus: action.payload});
 
     case ActionType.LOAD_USER:
-      return extend(state, {userInfo: action.payload});
+      return extend(state, {user: action.payload});
 
     case ActionType.USER_REQUESTED:
       return extend(state, {requestStatus: RequestStatus.REQUESTED});
@@ -74,7 +74,7 @@ export const userRequestFailed = (error) => ({
 const nameSpace = NameSpace.USER;
 
 export const selectAuthorizationStatus = (state) => state[nameSpace].authorizationStatus;
-export const selectUserInfo = (state) => state[nameSpace].userInfo;
+export const selectuser = (state) => state[nameSpace].user;
 export const selectUserRequestErrorCode = (state) => state[nameSpace].errorCode;
 export const selectUserRequestStatus = (state) => state[nameSpace].requestStatus;
 

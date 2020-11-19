@@ -32,7 +32,7 @@ const api = createAPI(() => {});
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(user(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
-    userInfo: {},
+    user: {},
     requestStatus: RequestStatus.NOT_REQUESTED,
     errorCode: 0,
   });

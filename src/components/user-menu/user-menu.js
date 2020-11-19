@@ -3,12 +3,12 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import {Path} from '../../const';
-import {selectIsUserLogged, selectUserInfo} from '../../store/user/user';
+import {selectIsUserLogged, selectuser} from '../../store/user/user';
 import {userShape} from '../../utils/props-validation';
 
 export const UserMenu = (props)=>{
-  const {isUserLogged, userInfo} = props;
-  const {avatarSrc} = userInfo;
+  const {isUserLogged, user} = props;
+  const {avatarSrc} = user;
 
   return (
     <div className="user-block">
@@ -26,11 +26,11 @@ export const UserMenu = (props)=>{
 
 UserMenu.propTypes = {
   isUserLogged: PropTypes.bool.isRequired,
-  userInfo: userShape.isRequired
+  user: userShape.isRequired
 };
 const mapStateToProps = (state) => ({
   isUserLogged: selectIsUserLogged(state),
-  userInfo: selectUserInfo(state)
+  user: selectuser(state)
 });
 
 export default connect(mapStateToProps)(UserMenu);
