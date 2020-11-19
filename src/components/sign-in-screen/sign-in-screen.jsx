@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {RexExp, UNKNOWN_ERROR, UserRequestErrorText} from '../../const';
 import {useForm} from '../../hooks/useForm';
-import {userRequested} from '../../store/actions/user';
+import {userRequested} from '../../store/user/user';
 import {logIn as logInAction} from "../../store/api-actions";
 import {selectIsUserRequested, selectUserRequestErrorCode, selectIsUserRequestFailed} from '../../store/selectors';
 import Footer from "../footer/footer";

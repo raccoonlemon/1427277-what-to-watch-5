@@ -1,8 +1,8 @@
 import {combineReducers} from "redux";
-import {data} from "./reducers/data";
-import {user} from "./reducers/user";
-import {catalog} from "./reducers/catalog";
-import {review} from "./reducers/review";
+import {data} from "./data/data";
+import {user} from "./user/user";
+import {catalog} from "./catalog/catalog";
+import {review} from "./review/review";
 
 export const NameSpace = {
   DATA: `DATA`,

@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewPostErrorText, ReviewTextLength, UNKNOWN_ERROR} from "../../const";
 import {useForm} from '../../hooks/useForm';
-import {userRequested} from '../../store/actions/user';
+import {userRequested} from '../../store/user/user';
 import {fetchFilmById, postReview} from '../../store/api-actions';
 import {selectFilm, selectIsFilmLoaded, selectIsReviewPostFailed, selectIsReviewPostRequested, selectUserRequestErrorCode} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";

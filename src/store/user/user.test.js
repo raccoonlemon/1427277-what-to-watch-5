@@ -1,9 +1,31 @@
+
 import MockAdapter from "axios-mock-adapter";
-import {ApiURL, AuthorizationStatus, Path, RequestStatus} from "../../../const";
+import {ApiURL, Path, RequestStatus} from "../../../const";
 import {createAPI} from "../../../services/api";
-import {ActionType} from "../../actions/user";
 import {logIn} from "../../api-actions";
+import {AuthorizationStatus} from "../../const";
+import {ActionType, loadUser, setAuthorizationStatus} from "../user/user";
 import {user} from "../user";
+
+describe(`User action creators work correctly`, () => {
+
+  it(`Set authorization status returns correct action`, () => {
+    const status = AuthorizationStatus.AUTH;
+    expect(setAuthorizationStatus(status)).toEqual({
+      type: ActionType.SET_AUTHORIZATION_STATUS,
+      payload: status,
+    });
+  });
+
+  it(`Load user returns correct action`, () => {
+    expect(loadUser(`user`)).toEqual({
+      type: ActionType.LOAD_USER,
+      payload: `user`,
+    });
+  });
+
+});
+
 
 const api = createAPI(() => {});
 
@@ -56,3 +78,4 @@ describe(`Async operation work correctly`, () => {
   });
 
 });
+

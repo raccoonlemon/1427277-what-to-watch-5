@@ -1,8 +1,8 @@
 import {ApiURL, AuthorizationStatus, Path} from "../const";
 import {adaptFilmToClient, adaptReviewToClient, adaptUserToClient} from "../utils/data-adapter";
-import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, updateFilmsInfo} from "./actions/data";
-import {reviewPostFailed, reviewPostRecieved, setPostedReview} from "./actions/review";
-import {loadUser, setAuthorizationStatus, userReceived, userRequestFailed} from "./actions/user";
+import {loadFavoriteFilms, loadFilm, loadFilms, loadPromoFilm, loadReviews, updateFilmsInfo} from "./data/data";
+import {reviewPostFailed, reviewPostRecieved, setPostedReview} from "./review/review";
+import {loadUser, setAuthorizationStatus, userReceived, userRequestFailed} from "./user/user";
 import {redirectToRoute} from "./middlewares/redirect";
 
 export const fetchFilms = () => (dispatch, _getState, api) => (
