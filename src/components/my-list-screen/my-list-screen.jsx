@@ -7,7 +7,7 @@ import FilmsList from "../films-list/films-list";
 import Footer from '../footer/footer';
 import Header from '../header/header';
 
-const MyListScreen = (props) => {
+export const MyListScreen = (props) => {
   const {films} = props;
 
   return (

@@ -1,15 +1,12 @@
 import React from "react";
-import {MemoryRouter} from "react-router-dom";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import {film} from "../../mocks/films";
 import FilmCard from "./film-card";
 
-jest.mock(`../add-to-list-button/add-to-list-button`, () => `AddToListButton`);
+const renderer = new ShallowRenderer();
 
 it(`<FilmCard> renders correctly`, () => {
-  const tree = renderer
-    .create(<MemoryRouter><FilmCard film={film} isUserLogged={true}/></MemoryRouter>)
-    .toJSON();
-
+  renderer.render(<FilmCard film={film} isUserLogged={true}/>);
+  const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });

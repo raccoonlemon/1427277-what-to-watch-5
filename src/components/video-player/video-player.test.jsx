@@ -1,12 +1,11 @@
 import React from "react";
 import ShallowRenderer from "react-test-renderer/shallow";
-import {reviews} from "../../mocks/reviews";
-import FilmInfoReviews from "./film-info-reviews";
+import VideoPlayer from "./video-player";
 
 const renderer = new ShallowRenderer();
 
-it(`<FilmInfoReviews> renders correctly`, () => {
-  renderer.render(<FilmInfoReviews reviews={reviews}/>);
+it(`<VideoPlayer> renders correctly`, () => {
+  renderer.render(<VideoPlayer poster={`123`} src={`123`}/>);
   const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });

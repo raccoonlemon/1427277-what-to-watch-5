@@ -5,7 +5,6 @@ import {Redirect, Route} from "react-router-dom";
 import {Path} from "../../const";
 import {selectIsUserLogged} from "../../store/user/user";
 
-
 const PrivateRoute = (props) => {
   const {render, path, exact, isUserAuthorized} = props;
   return (

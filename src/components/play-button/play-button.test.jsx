@@ -1,12 +1,11 @@
 import React from "react";
 import ShallowRenderer from "react-test-renderer/shallow";
-import {reviews} from "../../mocks/reviews";
-import FilmInfoReviews from "./film-info-reviews";
+import PlayButton from "./play-button";
 
 const renderer = new ShallowRenderer();
 
-it(`<FilmInfoReviews> renders correctly`, () => {
-  renderer.render(<FilmInfoReviews reviews={reviews}/>);
+it(`<PlayButton> renders correctly`, () => {
+  renderer.render(<PlayButton id={1}/>);
   const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });

@@ -1,13 +1,13 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import {film} from "../../mocks/films";
 import {reviews} from "../../mocks/reviews";
 import FilmInfoOverview from "./film-info-overview";
 
-it(`<FilmInfoOverview> renders correctly`, () => {
-  const tree = renderer
-    .create(<FilmInfoOverview film={film} reviews={reviews}/>)
-    .toJSON();
+const renderer = new ShallowRenderer();
 
+it(`<FilmInfoOverview> renders correctly`, () => {
+  renderer.render(<FilmInfoOverview film={film} reviews={reviews}/>);
+  const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });

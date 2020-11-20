@@ -1,116 +1,140 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FilmInfoDeatils> renders correctly 1`] = `
-<div
-  className="movie-card__text movie-card__row"
->
+<React.Fragment>
   <div
-    className="movie-card__text-col"
+    className="movie-card__text movie-card__row"
   >
-    <p
-      className="movie-card__details-item"
+    <div
+      className="movie-card__text-col"
     >
-      <strong
-        className="movie-card__details-name"
+      <p
+        className="movie-card__details-item"
       >
-        Director
-      </strong>
-      <span
-        className="movie-card__details-value"
+        <strong
+          className="movie-card__details-name"
+        >
+          Director
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Wes Andreson
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
       >
-        Wes Andreson
-      </span>
-    </p>
-    <p
-      className="movie-card__details-item"
+        <strong
+          className="movie-card__details-name"
+        >
+          Starring
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          <React.Fragment>
+            Bill Murray
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Edward Norton
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Jude Law
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Willem Dafoe
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Saoirse Ronan
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Tony Revoloru
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Tom Wilkinson
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Owen Wilkinson
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Adrien Brody
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Ralph Fiennes
+            ,
+            <br />
+          </React.Fragment>
+          <React.Fragment>
+            Jeff Goldblum
+          </React.Fragment>
+        </span>
+      </p>
+    </div>
+    <div
+      className="movie-card__text-col"
     >
-      <strong
-        className="movie-card__details-name"
+      <p
+        className="movie-card__details-item"
       >
-        Starring
-      </strong>
-      <span
-        className="movie-card__details-value"
+        <strong
+          className="movie-card__details-name"
+        >
+          Run Time
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          2h 04m
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
       >
-        Bill Murray
-        ,
-        <br />
-        Edward Norton
-        ,
-        <br />
-        Jude Law
-        ,
-        <br />
-        Willem Dafoe
-        ,
-        <br />
-        Saoirse Ronan
-        ,
-        <br />
-        Tony Revoloru
-        ,
-        <br />
-        Tom Wilkinson
-        ,
-        <br />
-        Owen Wilkinson
-        ,
-        <br />
-        Adrien Brody
-        ,
-        <br />
-        Ralph Fiennes
-        ,
-        <br />
-        Jeff Goldblum
-      </span>
-    </p>
+        <strong
+          className="movie-card__details-name"
+        >
+          Genre
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          crime, comedy
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Released
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          2014
+        </span>
+      </p>
+    </div>
   </div>
-  <div
-    className="movie-card__text-col"
-  >
-    <p
-      className="movie-card__details-item"
-    >
-      <strong
-        className="movie-card__details-name"
-      >
-        Run Time
-      </strong>
-      <span
-        className="movie-card__details-value"
-      >
-        2h 04m
-      </span>
-    </p>
-    <p
-      className="movie-card__details-item"
-    >
-      <strong
-        className="movie-card__details-name"
-      >
-        Genre
-      </strong>
-      <span
-        className="movie-card__details-value"
-      >
-        crime, comedy
-      </span>
-    </p>
-    <p
-      className="movie-card__details-item"
-    >
-      <strong
-        className="movie-card__details-name"
-      >
-        Released
-      </strong>
-      <span
-        className="movie-card__details-value"
-      >
-        2014
-      </span>
-    </p>
-  </div>
-</div>
+</React.Fragment>
 `;

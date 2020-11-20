@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header> renders correctly with user menu 1`] = `
+<header
+  className="page-header "
+>
+  <Logo
+    className=""
+  />
+  <Memo(Connect(UserMenu)) />
+</header>
+`;
+
+exports[`<Header> renders correctly without user menu 1`] = `
+<header
+  className="page-header "
+>
+  <Logo
+    className=""
+  />
+</header>
+`;

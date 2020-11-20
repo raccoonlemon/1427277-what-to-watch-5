@@ -1,12 +1,11 @@
 import React from "react";
-import {MemoryRouter} from "react-router-dom";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import Logo from "./logo";
 
-it(`<Logo> renders correctly`, () => {
-  const tree = renderer
-    .create(<MemoryRouter><Logo/></MemoryRouter>)
-    .toJSON();
+const renderer = new ShallowRenderer();
 
+it(`<Logo> renders correctly`, () => {
+  renderer.render(<Logo/>);
+  const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });

@@ -30,7 +30,7 @@ const validate = ({email, password})=>{
   return {isValid, messages};
 };
 
-const SignInScreen = (props) => {
+export const SignInScreen = (props) => {
 
   const {onSubmitAction, errorCode, isRequested, isRequestFailed} = props;
 

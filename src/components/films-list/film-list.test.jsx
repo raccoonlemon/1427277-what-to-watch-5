@@ -1,12 +1,12 @@
 import React from "react";
 import ShallowRenderer from "react-test-renderer/shallow";
-import {reviews} from "../../mocks/reviews";
-import FilmInfoReviews from "./film-info-reviews";
+import {films} from "../../mocks/films";
+import FilmsList from "./films-list";
 
 const renderer = new ShallowRenderer();
 
-it(`<FilmInfoReviews> renders correctly`, () => {
-  renderer.render(<FilmInfoReviews reviews={reviews}/>);
+it(`<FilmsList> renders correctly`, () => {
+  renderer.render(<FilmsList films={films} activeItemId={null}/>);
   const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });

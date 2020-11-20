@@ -1,9 +1,10 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import {FilmInfoTab} from "../../const";
 import FilmInfoTabs from "./film-info-tabs";
 
 const noop = ()=>{};
+const renderer = new ShallowRenderer();
 
 jest.mock(`react-router-dom`, () => ({
   useHistory: () => ({
@@ -12,9 +13,9 @@ jest.mock(`react-router-dom`, () => ({
 }));
 
 it(`<FilmInfoTabs> renders correctly`, () => {
-  const tree = renderer
-    .create(<FilmInfoTabs onTabChange={noop} activeTab={FilmInfoTab.OVERVIEW}/>)
-    .toJSON();
-
+  renderer.render(
+      <FilmInfoTabs onTabChange={noop} activeTab={FilmInfoTab.OVERVIEW}/>
+  );
+  const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });

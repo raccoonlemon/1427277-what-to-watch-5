@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<VideoPlayer> renders correctly 1`] = `
+<React.Fragment>
+  <video
+    height="175"
+    muted="muted"
+    poster="123"
+    width="280"
+  >
+    <source
+      src="123"
+    />
+  </video>
+</React.Fragment>
+`;

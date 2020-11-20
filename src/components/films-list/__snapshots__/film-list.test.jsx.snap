@@ -1,0 +1,292 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilmsList> renders correctly 1`] = `
+<div
+  className="catalog__movies-list"
+>
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/bg-the-grand-budapest-hotel.jpg",
+        "backgroundColor": "#eee5b5",
+        "description": "In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
+    Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.",
+        "director": "Wes Andreson",
+        "duration": 124,
+        "genre": Array [
+          "crime",
+          "comedy",
+        ],
+        "id": "1",
+        "isFavorite": true,
+        "poster": "img/the-grand-budapest-hotel-poster.jpg",
+        "posterSmall": "img/the-grand-budapest-hotel-poster.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Bill Murray",
+          "Edward Norton",
+          "Jude Law",
+          "Willem Dafoe",
+          "Saoirse Ronan",
+          "Tony Revoloru",
+          "Tom Wilkinson",
+          "Owen Wilkinson",
+          "Adrien Brody",
+          "Ralph Fiennes",
+          "Jeff Goldblum",
+        ],
+        "title": "The Grand Budapest Hotel",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 2014,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/pulp-fiction.jpg",
+        "backgroundColor": "#eee5b5",
+        "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "director": "Quentin Tarantino",
+        "duration": 118,
+        "genre": "crime",
+        "id": "2",
+        "isFavorite": false,
+        "poster": "img/pulp-fiction.jpg",
+        "posterSmall": "img/pulp-fiction.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Tim Roth",
+          "Amanda Plummer",
+          "Laura Lovelace",
+          "John Travolta",
+          "Samuel L. Jackson",
+          "Phil LaMarr",
+          "Frank Whaley",
+          "Burr Steers",
+          "Bruce Willis",
+        ],
+        "title": "Pulp fiction",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 1994,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/moonrise-kingdom.jpg",
+        "backgroundColor": "#eee5b5",
+        "description": "A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.",
+        "director": "Wes Anderson",
+        "duration": 98,
+        "genre": Array [
+          "comedy",
+          "drama",
+        ],
+        "id": "3",
+        "isFavorite": false,
+        "poster": "img/moonrise-kingdom.jpg",
+        "posterSmall": "img/moonrise-kingdom.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Bruce Willis",
+          "Edward Norton",
+          "Bill Murray",
+          "Frances McDormand",
+          "Tilda Swinton",
+          "Jared Gilman",
+          "Kara Hayward",
+          "Jason Schwartzman",
+          "Bob Balaban",
+        ],
+        "title": "Moonrise Kingdom",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 2012,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/fantastic-beasts-the-crimes-of-grindelwald.jpg",
+        "backgroundColor": "#e1b0b2",
+        "description": "The second installment of the \\"Fantastic Beasts\\" series featuring the adventures of Magizoologist Newt Scamander.",
+        "director": "David Yates",
+        "duration": 134,
+        "genre": Array [
+          "fantasy",
+          "adventure",
+        ],
+        "id": "4",
+        "isFavorite": false,
+        "poster": "img/fantastic-beasts-the-crimes-of-grindelwald.jpg",
+        "posterSmall": "img/fantastic-beasts-the-crimes-of-grindelwald.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Johnny Depp",
+          "Kevin Guthrie",
+          "Carmen Ejogo",
+          "Wolf Roth",
+          "Eddie Redmayne",
+          "Zoë Kravitz",
+          "Callum Turner",
+          "Derek Riddell",
+          "Cornell John",
+        ],
+        "title": "Fantastic Beasts: The Crimes of Grindelwald",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 2018,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/aviator.jpg",
+        "backgroundColor": "#e1b0b2",
+        "description": "A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.",
+        "director": "Martin Scorsese",
+        "duration": 110,
+        "genre": Array [
+          "drama",
+          "biography",
+        ],
+        "id": "5",
+        "isFavorite": true,
+        "poster": "img/aviator.jpg",
+        "posterSmall": "img/aviator.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Leonardo DiCaprio",
+          "Cate Blanchett",
+          "Kate Beckinsale",
+          "John C. Reilly",
+          "Alec Baldwin",
+          "Alan Alda",
+          "Jude Law",
+        ],
+        "title": "Aviator",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 2004,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/shutter-island.jpg",
+        "backgroundColor": "#e1b0b2",
+        "description": "In 1954, a U.S. Marshal investigates the disappearance of a murderer who escaped from a hospital for the criminally insane.",
+        "director": "Martin Scorsese",
+        "duration": 142,
+        "genre": "thriller",
+        "id": "6",
+        "isFavorite": false,
+        "poster": "img/shutter-island.jpg",
+        "posterSmall": "img/shutter-island.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Leonardo DiCaprio",
+          "Mark Ruffalo",
+          "Ben Kingsley",
+          "Michelle Williams",
+          "Emily Mortimer",
+          "Patricia Clarkson",
+          "Max von Sydow",
+        ],
+        "title": "Shutter Island",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 2010,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/johnny-english.jpg",
+        "backgroundColor": "#e1b0b2",
+        "description": "After a cyber-attack reveals the identity of all of the active undercover agents in Britain, Johnny English (Rowan Atkinson) is forced to come out of retirement to find the mastermind hacker.",
+        "director": "Peter Howitt",
+        "duration": 109,
+        "genre": Array [
+          "comedy",
+          "adventure",
+        ],
+        "id": "7",
+        "isFavorite": true,
+        "poster": "img/johnny-english.jpg",
+        "posterSmall": "img/johnny-english.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Rowan Atkinson",
+          "Natalie Imbruglia",
+          "Ben Miller",
+          "John Malkovich",
+          "Eddie Redmayne",
+          "Zoë Kravitz",
+          "Callum Turner",
+          "Derek Riddell",
+        ],
+        "title": "Johnny English",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 2003,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+  <FilmSmallCard
+    film={
+      Object {
+        "background": "img/seven-years-in-tibet.jpg",
+        "backgroundColor": "#e1b0b2",
+        "description": "True story of Heinrich Harrer, an Austrian mountain climber who became friends with the Dalai Lama at the time of China's takeover of Tibet.",
+        "director": "Jean-Jacques Annaud",
+        "duration": 125,
+        "genre": "drama",
+        "id": "8",
+        "isFavorite": false,
+        "poster": "img/seven-years-in-tibet.jpg",
+        "posterSmall": "img/seven-years-in-tibet.jpg",
+        "previewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "starring": Array [
+          "Brad Pitt",
+          "David Thewlis",
+          "BD Wong",
+          "Danny Denzongpa",
+          "Mako",
+          "Jamyang Jamtsho Wangchuk",
+          "Lhakpa Tsamchoe",
+          "Jetsun Pema",
+        ],
+        "title": "Seven Years in Tibet",
+        "videoSrc": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "year": 1997,
+      }
+    }
+    isCardActive={false}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />
+</div>
+`;
