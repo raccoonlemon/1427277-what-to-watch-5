@@ -11,7 +11,6 @@ export const ActionType = {
 };
 
 const initialState = {
-  // TODO: вернуть состояние по умолчанию AuthorizationStatus.NO_AUTH
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   user: {},
   requestStatus: RequestStatus.NOT_REQUESTED,
