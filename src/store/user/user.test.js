@@ -1,7 +1,6 @@
 
 import MockAdapter from "axios-mock-adapter";
 import {ApiURL, AuthorizationStatus, Path, RequestStatus} from "../../const";
-import {userAuthInfo} from "../../mocks/user";
 import {createAPI} from "../../services/api";
 import {logIn} from "../api-actions";
 import {ActionType, loadUser, setAuthorizationStatus, userReducer} from "../user/user";

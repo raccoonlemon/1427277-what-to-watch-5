@@ -8,16 +8,10 @@ import PlayButton from '../play-button/play-button';
 
 const FilmCard = (props) =>{
   const {film, isUserLogged} = props;
-  const {title, genre, year, poster, id, isFavorite} = film;
+  const {title, genre, year, id, isFavorite} = film;
 
 
   return (
-  // <div className="movie-card__wrap">
-  //   <div className="movie-card__info">
-  //     <div className="movie-card__poster">
-  //       <img src={poster} alt={title} width="218" height="327" />
-  //     </div>
-
     <div className="movie-card__desc">
       <h2 className="movie-card__title">{title}</h2>
       <p className="movie-card__meta">
@@ -31,9 +25,6 @@ const FilmCard = (props) =>{
         {isUserLogged && <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>}
       </div>
     </div>
-
-  //   </div>
-  // </div>
   );
 };
 
