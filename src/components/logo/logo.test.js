@@ -1,7 +1,7 @@
 import React from "react";
 import {MemoryRouter} from "react-router-dom";
 import renderer from "react-test-renderer";
-import Logo from "./Logo";
+import Logo from "./logo";
 
 it(`<Logo> renders correctly`, () => {
   const tree = renderer
