@@ -8,9 +8,9 @@ configure({adapter: new Adapter()});
 const id = `1`;
 const selector = `.btn--list`;
 
-describe(`<AddToListButton> renders correctly`, () => {
+describe(`Click on "Add to list" button works correctly`, () => {
 
-  it(`user is logged`, () => {
+  it(`when user is logged`, () => {
     const onClickAction = jest.fn();
     const redirectAction = jest.fn();
     const addToListButton = shallow(<AddToListButton
@@ -25,7 +25,7 @@ describe(`<AddToListButton> renders correctly`, () => {
     expect(redirectAction).toHaveBeenCalledTimes(0);
   });
 
-  it(`user is not logged`, () => {
+  it(`when user is not logged`, () => {
     const onClickAction = jest.fn();
     const redirectAction = jest.fn();
     const addToListButton = shallow(<AddToListButton

@@ -12,7 +12,7 @@ export const ActionType = {
 
 const initialState = {
   requestStatus: RequestStatus.NOT_REQUESTED,
-  errorCode: null,
+  errorCode: 0,
   postedReviews: [],
   reviews: [],
 };
@@ -31,7 +31,7 @@ export const reviewsReducer = (state = initialState, action) => {
     case ActionType.REVIEW_POST_FAILED:
       return extend(state, {requestStatus: RequestStatus.REQUEST_FAILED, errorCode: action.payload});
 
-    case ActionType.REVIEW_POST_RECEIVED:
+    case ActionType.REVIEW_POST_RECIEVED:
       return extend(state, {requestStatus: RequestStatus.RECIEVED});
 
     case ActionType.SET_POSTED_REVIEW:
@@ -63,9 +63,9 @@ export const reviewPostFailed = (error) => ({
   payload: error,
 });
 
-export const setPostedReview = (error) => ({
+export const setPostedReview = (review) => ({
   type: ActionType.SET_POSTED_REVIEW,
-  payload: error,
+  payload: review,
 });
 
 // Selectors

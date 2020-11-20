@@ -15,7 +15,6 @@ export const ActionType = {
 
 const initialState = {
   films: [],
-  reviews: [],
   promoFilm: {},
   film: {},
   filteredFilms: [],
