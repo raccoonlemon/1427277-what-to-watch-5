@@ -9,35 +9,35 @@ const texts = [
 export const reviews = [
   {
     id: 1,
-    date: new Date(20, 10, 10),
+    date: new Date(20, 10, 10, 0, 0, 0, 0),
     author: `Ellie`,
     rating: 10,
     text: texts[0],
   },
   {
     id: 2,
-    date: new Date(20, 10, 12),
+    date: new Date(20, 10, 12, 0, 0, 0, 0),
     author: `Max`,
     rating: 5,
     text: texts[1]
   },
   {
     id: 3,
-    date: new Date(20, 10, 12),
+    date: new Date(20, 10, 12, 0, 0, 0, 0),
     author: `Parvati`,
     rating: 8,
     text: texts[2]
   },
   {
     id: 4,
-    date: new Date(20, 10, 12),
+    date: new Date(20, 10, 12, 0, 0, 0, 0),
     author: `Felix`,
     rating: 8,
     text: texts[3]
   },
   {
     id: 5,
-    date: new Date(20, 10, 12),
+    date: new Date(20, 10, 12, 0, 0, 0, 0),
     author: `Nyoka`,
     rating: 4,
     text: texts[4]
