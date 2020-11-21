@@ -29,9 +29,9 @@ exports[`<FilmInfoReviews> renders correctly 1`] = `
             </cite>
             <time
               className="review__date"
-              dateTime="2020-11-10T00:00"
+              dateTime="2020-11-12T06:00"
             >
-              November 10, 2020
+              November 12, 2020
             </time>
           </footer>
         </blockquote>
@@ -62,7 +62,7 @@ exports[`<FilmInfoReviews> renders correctly 1`] = `
             </cite>
             <time
               className="review__date"
-              dateTime="2020-11-12T00:00"
+              dateTime="2020-11-12T06:00"
             >
               November 12, 2020
             </time>
@@ -95,7 +95,7 @@ exports[`<FilmInfoReviews> renders correctly 1`] = `
             </cite>
             <time
               className="review__date"
-              dateTime="2020-11-12T00:00"
+              dateTime="2020-11-12T06:00"
             >
               November 12, 2020
             </time>
@@ -132,7 +132,7 @@ exports[`<FilmInfoReviews> renders correctly 1`] = `
             </cite>
             <time
               className="review__date"
-              dateTime="2020-11-12T00:00"
+              dateTime="2020-11-12T06:00"
             >
               November 12, 2020
             </time>
@@ -165,7 +165,7 @@ exports[`<FilmInfoReviews> renders correctly 1`] = `
             </cite>
             <time
               className="review__date"
-              dateTime="2020-11-12T00:00"
+              dateTime="2020-11-12T06:00"
             >
               November 12, 2020
             </time>
