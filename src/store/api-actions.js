@@ -46,7 +46,7 @@ export const postReview = (id, rating, comment) => (dispatch, _getState, api) =>
       dispatch(reviewPostFailed(response.status)))
 );
 
-export const logIn = ({email, password}) => (dispatch, _getState, api) => (
+export const logInOriginal = ({email, password}) => (dispatch, _getState, api) => (
   api.post(ApiURL.LOGIN, {email, password})
     .then(({data}) => {
       dispatch(loadUser(adaptUserToClient(data)));
@@ -54,6 +54,20 @@ export const logIn = ({email, password}) => (dispatch, _getState, api) => (
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
     })
     .then(() => dispatch(redirectToRoute(Path.MAIN_PAGE)))
-    .catch(({response})=>
-      dispatch(userRequestFailed(response.status)))
+    .catch(({response})=> dispatch(userRequestFailed(response.status)))
+);
+
+export const logIn = ({email, password}) => (dispatch, _getState, api) => (
+  api.post(ApiURL.LOGIN, {email, password})
+    .then(({data}) => {
+      console.log(111111111111111111, data);
+      dispatch(loadUser(adaptUserToClient(data)));
+      dispatch(userReceived());
+      dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
+    })
+    .then(() => dispatch(redirectToRoute(Path.MAIN_PAGE)))
+    .catch(({response})=> {
+      console.log(222222222222, response);
+      dispatch(userRequestFailed(response.status));
+    })
 );

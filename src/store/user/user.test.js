@@ -1,10 +1,37 @@
 
-import {AuthorizationStatus, RequestStatus} from "../../const";
+import {ApiURL, AuthorizationStatus, Path, RequestStatus} from "../../const";
 import {ActionType, loadUser, setAuthorizationStatus, userReceived, userReducer, userRequested, userRequestFailed} from "../user/user";
+import {ActionType as RedirectActionType} from "../middlewares/redirect";
 import {user} from "../../mocks/user";
+import {logIn, logInOriginal} from "../api-actions";
+import {createAPI} from "../../services/api";
+import MockAdapter from "axios-mock-adapter";
+// import {adaptUserToClient} from "../../utils/data-adapter";
+
+
+// jest.mock(`../../utils/data-adapter`, () => {
+//   return {
+//     __esModule: true,
+//     adaptUserToClient: jest.fn(() => ({name: `name`})),
+//   };
+// });
+
+describe(`test`, () => {
+  const windowHeight = 1000;
+  const element = {};
+
+  const originalWindowHeight = window.innerHeight;
+  beforeAll(() => {
+    Object.defineProperty(window, `innerHeight`, {writable: true, value: windowHeight});
+  });
+  afterAll(() => {
+    Object.defineProperty(window, `innerHeight`, originalWindowHeight);
+  });
+
+  Object.defineProperty(element, `getBoundingClientRect`, {writable: true, value: () => ({height: 500, top: 700})});
+});
 
 describe(`User action creators returns correct actions`, () => {
-
   it(`set authorization status`, () => {
     const status = AuthorizationStatus.AUTH;
     expect(setAuthorizationStatus(status)).toEqual({
@@ -114,37 +141,134 @@ describe(`User reducer works correctly`, () => {
 
 });
 
-// describe(`Async operation work correctly`, () => {
+describe(`Async operation work correctly`, () => {
 
-//   const api = createAPI(() => {});
+  const api = createAPI(() => {});
 
-//   // TODO - Доделать тест.
-//   it(`Should make a correct API call to /login`, () => {
-//     const apiMock = new MockAdapter(api);
-//     const dispatch = jest.fn();
-//     const fakeUser = {email: `test@test.ru`, password: `123456`};
-//     const loginLoader = logIn(fakeUser);
+  // TODO - Доделать тест.
+  // it(`Should make a correct API call to /login`, () => {
+  //   const apiMock = new MockAdapter(api);
+  //   const dispatch = jest.fn();
+  //   const fakeUser = {email: `test@test.ru`, password: `123456`};
+  //   const loginLoader = logInOriginal(fakeUser);
 
-//     apiMock
-//         .onPost(ApiURL.LOGIN)
-//         .reply(200, [{fake: true}]);
+  //   apiMock
+  //       .onPost(ApiURL.LOGIN)
+  //       .reply(200, [{fake: true}]);
 
-//     return loginLoader(dispatch, () => {}, api)
-//         .then(() => {
-//           expect(dispatch).toHaveBeenCalledTimes(2);
 
-//           expect(dispatch).toHaveBeenNthCalledWith(1, {
-//             type: ActionType.REQUIRED_AUTHORIZATION,
-//             payload: AuthorizationStatus.AUTH,
-//           });
+  //   return loginLoader(dispatch, () => {}, api)
+  //   .then(() => {
+  //     expect(dispatch).toHaveBeenCalledTimes(2);
 
-//           expect(dispatch).toHaveBeenNthCalledWith(2, {
-//             type: ActionType.REDIRECT_TO_ROUTE,
-//             payload: Path.MAIN_PAGE,
-//           });
+  //     expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //       type: ActionType.REQUIRED_AUTHORIZATION,
+  //       payload: AuthorizationStatus.AUTH,
+  //     });
 
-//         });
-//   });
+  //     expect(dispatch).toHaveBeenNthCalledWith(2, {
+  //       type: ActionType.REDIRECT_TO_ROUTE,
+  //       payload: Path.MAIN_PAGE,
+  //     });
 
-// });
+  //   });
+  // });
+
+
+  it(`works properly with correct fake data`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fakeUser = {email: `test@test.ru`, password: `123456`};
+    const loginLoader = logIn(fakeUser);
+
+    apiMock
+        .onPost(ApiURL.LOGIN)
+        .reply(200, {id: 123});
+
+    return loginLoader(dispatch, () => {}, api)
+    .then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(4);
+
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_USER,
+        payload: {id: `123`, avatarSrc: undefined, email: undefined, name: undefined},
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.USER_RECEIVED,
+        payload: {},
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(3, {
+        type: ActionType.SET_AUTHORIZATION_STATUS,
+        payload: AuthorizationStatus.AUTH,
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(4, {
+        type: RedirectActionType.REDIRECT_TO_ROUTE,
+        payload: Path.MAIN_PAGE,
+      });
+    });
+  });
+
+
+  // it(`works properly with mock adapter`, () => {
+  //   const apiMock = new MockAdapter(api);
+  //   const dispatch = jest.fn();
+  //   const fakeUser = {email: `test@test.ru`, password: `123456`};
+  //   const loginLoader = logIn(fakeUser);
+
+  //   apiMock
+  //       .onPost(ApiURL.LOGIN)
+  //       .reply(200, {fake: `fake`});
+
+  //   return loginLoader(dispatch, () => {}, api)
+  //   .then(() => {
+  //     expect(dispatch).toHaveBeenCalledTimes(4);
+
+  //     expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //       type: ActionType.LOAD_USER,
+  //       payload: {id: undefined, avatarSrc: undefined, email: undefined, name: `name`},
+  //     });
+
+  //     expect(dispatch).toHaveBeenNthCalledWith(2, {
+  //       type: ActionType.USER_RECEIVED,
+  //       payload: {},
+  //     });
+
+  //     expect(dispatch).toHaveBeenNthCalledWith(3, {
+  //       type: ActionType.SET_AUTHORIZATION_STATUS,
+  //       payload: AuthorizationStatus.AUTH,
+  //     });
+
+  //     expect(dispatch).toHaveBeenNthCalledWith(4, {
+  //       type: RedirectActionType.REDIRECT_TO_ROUTE,
+  //       payload: Path.MAIN_PAGE,
+  //     });
+  //   });
+  // });
+
+
+  it(`works properly with status 500`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fakeUser = {email: `test@test.ru`, password: `123456`};
+    const loginLoader = logIn(fakeUser);
+
+    apiMock
+        .onPost(ApiURL.LOGIN)
+        .reply(500, {fake: `fake`});
+
+    return loginLoader(dispatch, () => {}, api)
+    .then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.USER_REQUEST_FAILED,
+        payload: 500,
+      });
+    });
+  });
+
+});
 
