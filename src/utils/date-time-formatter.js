@@ -10,8 +10,8 @@ export const getDateTimeForHTML = (date, withTime = true) => {
 
 export const formatTime = (date) => {
 
-  const hours = addZeroDigit(date.getHours() % 12);
-  const minutes = addZeroDigit(date.getMinutes());
+  const hours = addZeroDigit(date.getUTCHours() % 12);
+  const minutes = addZeroDigit(date.getUTCMinutes());
 
   return `${hours}:${minutes}`;
 };

@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
 import {Path} from '../../const';
-import {redirectToRoute} from '../../store/action';
 import {updateIsFilmFavorite} from '../../store/api-actions';
-import {selectIsUserLogged} from '../../store/selectors';
+import {redirectToRoute} from '../../store/middlewares/redirect';
+import {selectIsUserLogged} from '../../store/user/user';
 
 export const AddToListButton = (props)=>{
   const {id, isFavorite, onClickAction, redirectAction, isUserLogged} = props;
@@ -27,8 +27,8 @@ export const AddToListButton = (props)=>{
 };
 
 AddToListButton.propTypes = {
-  id: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
+  id: PropTypes.string,
+  isFavorite: PropTypes.bool,
   onClickAction: PropTypes.func.isRequired,
   redirectAction: PropTypes.func.isRequired,
   isUserLogged: PropTypes.bool.isRequired

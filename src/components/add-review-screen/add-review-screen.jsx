@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewTextLength} from "../../const";
+import {DEFAULT_RAITING_IN_REVIEW, MAX_RAITING_IN_REVIEW, ReviewPostErrorText, ReviewTextLength, UNKNOWN_ERROR} from "../../const";
 import {useForm} from '../../hooks/useForm';
-import {fetchFilmById} from '../../store/api-actions';
-import {selectFilm, selectIsFilmLoaded} from "../../store/selectors";
+import {userRequested} from '../../store/user/user';
+import {fetchFilmById, postReview} from '../../store/api-actions';
 import {filmShape} from "../../utils/props-validation";
 import Header from "../header/header";
+import {selectIsReviewPostFailed, selectIsReviewPostRequested, selectReviewErrorCode} from '../../store/reviews/reviews';
+import {selectFilm, selectIsFilmLoaded} from '../../store/films/films';
 
 const ratingItems = [];
 for (let index = 1; index <= MAX_RAITING_IN_REVIEW; index++) {
@@ -41,12 +43,12 @@ const validate = ({reviewText, rating})=>{
 };
 
 export const AddReviewScreen = (props) => {
-  const {film, isFilmLoaded, loadFilmInfo, id} = props;
+  const {film, isFilmLoaded, loadFilmAction, postReviewAction, id, isRequested, isRequestFailed, errorCode} = props;
   const {title, poster, background} = film;
 
   useEffect(() => {
     if (!isFilmLoaded) {
-      loadFilmInfo(id);
+      loadFilmAction(id);
     }
   });
 
@@ -58,7 +60,7 @@ export const AddReviewScreen = (props) => {
 
   useEffect(()=>{
     setIsSubmitButtonActive(validation.isValid);
-  }, [validation]);
+  }, [validation, isRequested]);
 
   const filmScreenLink = `/films/${id}`;
   return (
@@ -119,9 +121,17 @@ export const AddReviewScreen = (props) => {
                 value={reviewText}>
               </textarea>
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit" disabled={!isSubmitButtonActive}>Post</button>
+                <button
+                  className="add-review__btn"
+                  type="submit"
+                  disabled={!isSubmitButtonActive}
+                  onClick={(evt)=>{
+                    evt.preventDefault();
+                    postReviewAction(id, rating, reviewText);
+                  }}>Post</button>
               </div>
             </div>
+            {isRequestFailed && <div>{ReviewPostErrorText[errorCode] || UNKNOWN_ERROR}</div>}
             {validation.messages.map((item, index)=><div key={index}>{item}</div>)}
 
           </form>
@@ -135,19 +145,30 @@ export const AddReviewScreen = (props) => {
 AddReviewScreen.propTypes = {
   id: PropTypes.string.isRequired,
   film: filmShape.isRequired,
+  isRequested: PropTypes.bool.isRequired,
+  isRequestFailed: PropTypes.bool.isRequired,
+  errorCode: PropTypes.number,
   isFilmLoaded: PropTypes.bool.isRequired,
-  loadFilmInfo: PropTypes.func.isRequired
+  loadFilmAction: PropTypes.func.isRequired,
+  postReviewAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, {id}) => (
   {
     film: selectFilm(state),
-    isFilmLoaded: selectIsFilmLoaded(id)(state)
+    isFilmLoaded: selectIsFilmLoaded(id)(state),
+    isRequested: selectIsReviewPostRequested(state),
+    isRequestFailed: selectIsReviewPostFailed(state),
+    errorCode: selectReviewErrorCode(state),
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilmInfo(id) {
+  loadFilmAction(id) {
     dispatch(fetchFilmById(id));
+  },
+  postReviewAction(id, rating, comment) {
+    dispatch(userRequested());
+    dispatch(postReview(id, rating, comment));
   }
 });
 

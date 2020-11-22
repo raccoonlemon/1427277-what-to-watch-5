@@ -6,38 +6,40 @@ const texts = [
   `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
 ];
 
+const reviewDate = new Date(Date.UTC(2020, 10, 12, 0, 0, 0, 0));
+
 export const reviews = [
   {
     id: 1,
-    date: new Date(20, 10, 10),
+    date: reviewDate,
     author: `Ellie`,
     rating: 10,
     text: texts[0],
   },
   {
     id: 2,
-    date: new Date(20, 10, 12),
+    date: reviewDate,
     author: `Max`,
     rating: 5,
     text: texts[1]
   },
   {
     id: 3,
-    date: new Date(20, 10, 12),
+    date: reviewDate,
     author: `Parvati`,
     rating: 8,
     text: texts[2]
   },
   {
     id: 4,
-    date: new Date(20, 10, 12),
+    date: reviewDate,
     author: `Felix`,
     rating: 8,
     text: texts[3]
   },
   {
     id: 5,
-    date: new Date(20, 10, 12),
+    date: reviewDate,
     author: `Nyoka`,
     rating: 4,
     text: texts[4]

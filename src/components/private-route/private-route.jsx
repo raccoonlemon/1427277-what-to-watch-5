@@ -3,8 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Redirect, Route} from "react-router-dom";
 import {Path} from "../../const";
-import {selectIsUserLogged} from "../../store/selectors";
-
+import {selectIsUserLogged} from "../../store/user/user";
 
 const PrivateRoute = (props) => {
   const {render, path, exact, isUserAuthorized} = props;

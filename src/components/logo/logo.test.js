@@ -1,22 +1,11 @@
 import React from "react";
-import {MemoryRouter} from "react-router-dom";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import Logo from "./logo";
 
-describe(`<Logo> renders correctly`, () => {
-  it(`With active link`, () => {
-    const tree = renderer
-    .create(<MemoryRouter><Logo/></MemoryRouter>)
-    .toJSON();
+const renderer = new ShallowRenderer();
 
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`Without active link`, () => {
-    const tree = renderer
-    .create(<MemoryRouter><Logo isLinkActive={false}/></MemoryRouter>)
-    .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
+it(`<Logo> renders correctly`, () => {
+  renderer.render(<Logo/>);
+  const tree = renderer.getRenderOutput();
+  expect(tree).toMatchSnapshot();
 });

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilmCard> renders correctly 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <h2
+    className="movie-card__title"
+  >
+    The Grand Budapest Hotel
+  </h2>
+  <p
+    className="movie-card__meta"
+  >
+    <span
+      className="movie-card__genre"
+    >
+      crime
+      comedy
+    </span>
+    <span
+      className="movie-card__year"
+    >
+      2014
+    </span>
+  </p>
+  <div
+    className="movie-card__buttons"
+  >
+    <PlayButton
+      id="1"
+    />
+    <Memo(Connect(AddToListButton))
+      id="1"
+      isFavorite={true}
+    />
+    <Link
+      className="btn movie-card__button"
+      to="/films/1/review"
+    >
+      Add review
+    </Link>
+  </div>
+</div>
+`;

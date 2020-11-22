@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import {connect} from 'react-redux';
-import {selectFavoriteFilms} from '../../store/selectors';
+import {selectFavoriteFilms} from '../../store/films/films';
 import {filmShape} from "../../utils/props-validation";
 import FilmsList from "../films-list/films-list";
 import Footer from '../footer/footer';
 import Header from '../header/header';
 
-const MyListScreen = (props) => {
+export const MyListScreen = (props) => {
   const {films} = props;
 
   return (

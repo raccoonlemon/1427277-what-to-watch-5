@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer> renders correctly 1`] = `
+<footer
+  className="page-footer "
+>
+  <Logo
+    className="logo__link--light"
+  />
+  <div
+    className="copyright"
+  >
+    <p>
+      © 2019 What to watch Ltd.
+    </p>
+  </div>
+</footer>
+`;

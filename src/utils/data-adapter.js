@@ -29,3 +29,14 @@ export const adaptReviewToClient = (data)=>{
   };
   return review;
 };
+
+export const adaptUserToClient = (data)=>{
+  const user = {
+    id: data.id.toString(),
+    email: data.email,
+    name: data.name,
+    avatarSrc: data.avatar_url,
+  };
+  return user;
+};
+

@@ -10,17 +10,16 @@ exports[`<UserMenu> renders correctly With logged user 1`] = `
     <div
       className="user-block__avatar"
     >
-      <a
-        href="/mylist"
-        onClick={[Function]}
+      <Link
+        to="/mylist"
       >
         <img
           alt="User avatar"
           height="63"
-          src="img/avatar.jpg"
+          src="src"
           width="63"
         />
-      </a>
+      </Link>
     </div>
   </div>
 </div>
@@ -33,13 +32,12 @@ exports[`<UserMenu> renders correctly Without logged user 1`] = `
   <div
     className="user-block"
   >
-    <a
+    <Link
       className="user-block__link"
-      href="/login"
-      onClick={[Function]}
+      to="/login"
     >
       Sign in
-    </a>
+    </Link>
   </div>
 </div>
 `;

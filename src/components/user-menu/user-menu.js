@@ -3,10 +3,12 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import {Path} from '../../const';
-import {selectIsUserLogged} from "../../store/selectors";
+import {selectIsUserLogged, selectuser} from '../../store/user/user';
+import {userShape} from '../../utils/props-validation';
 
 export const UserMenu = (props)=>{
-  const {isUserLogged} = props;
+  const {isUserLogged, user} = props;
+  const {avatarSrc} = user;
 
   return (
     <div className="user-block">
@@ -15,7 +17,7 @@ export const UserMenu = (props)=>{
         {isUserLogged &&
         <div className="user-block__avatar">
           <Link to = {Path.MY_LIST}>
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <img src={avatarSrc} alt="User avatar" width="63" height="63" />
           </Link>
         </div>}
       </div>
@@ -24,11 +26,11 @@ export const UserMenu = (props)=>{
 
 UserMenu.propTypes = {
   isUserLogged: PropTypes.bool.isRequired,
+  user: userShape.isRequired
 };
-
 const mapStateToProps = (state) => ({
-  isUserLogged: selectIsUserLogged(state)
+  isUserLogged: selectIsUserLogged(state),
+  user: selectuser(state)
 });
-
 
 export default connect(mapStateToProps)(UserMenu);

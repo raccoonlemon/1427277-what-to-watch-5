@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {connect} from "react-redux";
 import {Path} from "../../const";
 import {fetchFilmById} from "../../store/api-actions";
-import {selectFilm, selectIsFilmLoaded} from "../../store/selectors";
+import {selectFilm, selectIsFilmLoaded} from '../../store/films/films';
 import browserHistory from "../../utils/browser-history";
 import {getFormattedVideoDuration} from "../../utils/date-time-formatter";
 import {filmShape} from "../../utils/props-validation";

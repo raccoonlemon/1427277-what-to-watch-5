@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import {RexExp} from '../../const';
+import {RexExp, UNKNOWN_ERROR, UserRequestErrorText} from '../../const';
 import {useForm} from '../../hooks/useForm';
+import {selectIsUserRequested, selectIsUserRequestFailed, selectUserRequestErrorCode, userRequested} from '../../store/user/user';
 import {logIn as logInAction} from "../../store/api-actions";
 import Footer from "../footer/footer";
 import Header from "../header/header";
@@ -29,13 +30,9 @@ const validate = ({email, password})=>{
   return {isValid, messages};
 };
 
-// TODO:
-// Обработка ошибок сервера.
-// Блокировка кнопки пока обрабатывается запрос на сервер.
+export const SignInScreen = (props) => {
 
-const SignInScreen = (props) => {
-
-  const {onSubmitAction} = props;
+  const {onSubmitAction, errorCode, isRequested, isRequestFailed} = props;
 
 
   const initialValues = {email: ``, password: ``};
@@ -45,8 +42,8 @@ const SignInScreen = (props) => {
   const [isSubmitButtonActive, setIsSubmitButtonActive] = useState(false);
 
   useEffect(()=>{
-    setIsSubmitButtonActive(validation.isValid);
-  }, [validation]);
+    setIsSubmitButtonActive(validation.isValid && !isRequested);
+  }, [validation, isRequested]);
 
   return (
     <div className="user-page">
@@ -56,6 +53,10 @@ const SignInScreen = (props) => {
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
+          <div className="sign-in__message">
+            {isRequestFailed && <p>{UserRequestErrorText[errorCode] || UNKNOWN_ERROR}</p>}
+            {validation.messages.map((item, index)=><div key={index}>{item}</div>)}
+          </div>
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input
@@ -91,7 +92,6 @@ const SignInScreen = (props) => {
                 onSubmitAction(values);
               }}>Sign in</button>}
           </div>
-          {validation.messages.map((item, index)=><div key={index}>{item}</div>)}
         </form>
       </div>
 
@@ -100,13 +100,23 @@ const SignInScreen = (props) => {
 };
 
 SignInScreen.propTypes = {
+  isRequested: PropTypes.bool.isRequired,
+  isRequestFailed: PropTypes.bool.isRequired,
+  errorCode: PropTypes.number.isRequired,
   onSubmitAction: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitAction(authData) {
+    dispatch(userRequested());
     dispatch(logInAction(authData));
   }
 });
 
-export default connect(null, mapDispatchToProps)(SignInScreen);
+const mapStateToProps = (state) => ({
+  errorCode: selectUserRequestErrorCode(state),
+  isRequested: selectIsUserRequested(state),
+  isRequestFailed: selectIsUserRequestFailed(state),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

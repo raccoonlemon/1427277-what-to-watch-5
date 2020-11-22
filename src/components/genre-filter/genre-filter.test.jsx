@@ -1,13 +1,18 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import GenreFilter from "./genre-filter";
 import {genres} from "../../mocks/films";
 
 const noop = ()=>{};
-it(`<GenreFilter> renders correctly`, () => {
-  const tree = renderer
-    .create(<GenreFilter onFilterChage={noop} activeFilter={genres[0]} genres={genres}/>)
-    .toJSON();
+const renderer = new ShallowRenderer();
 
+it(`<GenreFilter> renders correctly`, () => {
+  renderer.render(
+      <GenreFilter
+        onFilterChage={noop}
+        activeFilter={genres[0]}
+        genres={genres}/>);
+  const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });
+

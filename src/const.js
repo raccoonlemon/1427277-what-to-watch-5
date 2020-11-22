@@ -32,7 +32,6 @@ export const FilmInfoTab = {
   REVIEWS: `Reviews`
 };
 
-// TODO Рефакторинг. Перенести функции из перечисления
 export const Path = {
   MAIN_PAGE: `/`,
   FILM_SCREEN: `/films/:id`,
@@ -69,4 +68,29 @@ export const RexExp = {
   email: /^[a-zA-Z0-9.!#$%&'*+/=?^_\`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 };
 
+export const RequestStatus = {
+  NOT_REQUESTED: `NOT_REQUESTED`,
+  REQUESTED: `REQUESTED`,
+  RECIEVED: `RECIEVED`,
+  REQUEST_FAILED: `REQUEST_FAILED`,
+};
+
+export const HttpStatusCode = {
+  OK: 200,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+  SERVER_ERROR: 500,
+};
+
+export const UserRequestErrorText = {
+  [HttpStatusCode.SERVER_ERROR]: `Internal server error. Please, try again later.`,
+  [HttpStatusCode.BAD_REQUEST]: `We can’t recognize this email and password combination. Please try again.`
+};
+
+export const ReviewPostErrorText = {
+  [HttpStatusCode.SERVER_ERROR]: `Internal server error. Please, try again later.`,
+};
+
+export const UNKNOWN_ERROR = `Unknown error. Please, try again later.`;
 

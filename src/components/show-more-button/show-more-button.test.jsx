@@ -1,14 +1,12 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import ShallowRenderer from "react-test-renderer/shallow";
 import ShowMoreButton from "./show-more-button";
 
 const noop = () => {};
+const renderer = new ShallowRenderer();
 
 it(`<ShowMoreButton> renders correctly`, () => {
-  const tree = renderer
-    .create(<ShowMoreButton onClick={noop}/>)
-    .toJSON();
-
+  renderer.render(<ShowMoreButton onClick={noop}/>);
+  const tree = renderer.getRenderOutput();
   expect(tree).toMatchSnapshot();
 });
-

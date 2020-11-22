@@ -12,8 +12,7 @@ describe(`<AddToListButton> renders correctly`, () => {
       isFavorite = {true}
       isUserLogged = {true}
       onClickAction={noop}
-      redirectAction={noop}/>)
-    .toJSON();
+      redirectAction={noop}/>);
 
     expect(tree).toMatchSnapshot();
   });
@@ -25,8 +24,7 @@ describe(`<AddToListButton> renders correctly`, () => {
       isFavorite = {false}
       isUserLogged = {true}
       onClickAction={noop}
-      redirectAction={noop}/>)
-    .toJSON();
+      redirectAction={noop}/>);
 
     expect(tree).toMatchSnapshot();
   });

@@ -32,7 +32,7 @@ const FilmInfoTabs = (props) => {
 
 FilmInfoTabs.propTypes = {
   onTabChange: PropTypes.func.isRequired,
-  activeTab: PropTypes.string.isRequired,
+  activeTab: PropTypes.string,
 };
 
 export default FilmInfoTabs;

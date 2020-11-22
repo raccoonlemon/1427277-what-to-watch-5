@@ -2,7 +2,6 @@ import React from "react";
 import {capitalizeFirstLetter} from "../../utils/common";
 import PropTypes from 'prop-types';
 
-// TODO - переименовать activeFilter => currentGenre
 const GenreFilter = (props) => {
   const {onFilterChage, activeFilter, genres} = props;
   return (<ul className="catalog__genres-list">
