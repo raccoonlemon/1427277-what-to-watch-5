@@ -114,37 +114,3 @@ describe(`User reducer works correctly`, () => {
 
 });
 
-// describe(`Async operation work correctly`, () => {
-
-//   const api = createAPI(() => {});
-
-//   // TODO - Доделать тест.
-//   it(`Should make a correct API call to /login`, () => {
-//     const apiMock = new MockAdapter(api);
-//     const dispatch = jest.fn();
-//     const fakeUser = {email: `test@test.ru`, password: `123456`};
-//     const loginLoader = logIn(fakeUser);
-
-//     apiMock
-//         .onPost(ApiURL.LOGIN)
-//         .reply(200, [{fake: true}]);
-
-//     return loginLoader(dispatch, () => {}, api)
-//         .then(() => {
-//           expect(dispatch).toHaveBeenCalledTimes(2);
-
-//           expect(dispatch).toHaveBeenNthCalledWith(1, {
-//             type: ActionType.REQUIRED_AUTHORIZATION,
-//             payload: AuthorizationStatus.AUTH,
-//           });
-
-//           expect(dispatch).toHaveBeenNthCalledWith(2, {
-//             type: ActionType.REDIRECT_TO_ROUTE,
-//             payload: Path.MAIN_PAGE,
-//           });
-
-//         });
-//   });
-
-// });
-
