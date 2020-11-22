@@ -33,9 +33,12 @@ const App = () =>{
             return (
               <FilmScreen id = {id}/>);
           }}/>
-        <Route exact path={Path.PLAYER}>
-          <PlayerScreen/>
-        </Route>
+        <Route exact path={Path.PLAYER}
+          render={(routerProps)=>{
+            const id = routerProps.match.params.id;
+            return (
+              <PlayerScreen id = {id}/>);
+          }}/>
         <Route
           render={() => (
             <React.Fragment>

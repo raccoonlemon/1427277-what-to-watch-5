@@ -4,8 +4,7 @@ import {Link} from 'react-router-dom';
 import {Path} from '../../const';
 
 const Logo = (props) =>{
-  const {className} = props;
-  const isLinkActive = !(window.location.pathname === Path.MAIN_PAGE);
+  const {className, isLinkActive} = props;
 
   const logo = (
     <React.Fragment>
@@ -23,11 +22,13 @@ const Logo = (props) =>{
 };
 
 Logo.defaultProps = {
-  classNames: ``,
+  className: ``,
+  isLinkActive: true
 };
 
 Logo.propTypes = {
   className: PropTypes.string,
+  isLinkActive: PropTypes.bool
 };
 
 export default Logo;

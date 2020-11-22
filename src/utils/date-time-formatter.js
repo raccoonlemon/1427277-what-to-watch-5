@@ -38,6 +38,24 @@ export const getFormattedFilmDuration = (totalMimutes) =>{
   return result.join(` `);
 };
 
+export const getFormattedVideoDuration = (totalSeconds) =>{
+
+  totalSeconds = Math.trunc(totalSeconds);
+  const totalMimutes = Math.trunc(totalSeconds / 60);
+
+  const hours = Math.trunc(totalSeconds / 60 / 60);
+  const minutes = totalMimutes - hours * 60;
+  const seconds = totalSeconds - minutes * 60 - hours * 60 * 60;
+
+  const result = [];
+
+  result.push(`${hours}`);
+  result.push(`${addZeroDigit(minutes)}`);
+  result.push(`${addZeroDigit(seconds)}`);
+
+  return result.join(`:`);
+};
+
 export const getFormattedReviewDate = (date) =>{
   const month = date.toLocaleString(`en-US`, {month: `long`});
   const year = date.getFullYear();

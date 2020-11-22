@@ -1,11 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {Path} from "../../const";
 import {selectPromoFilm} from "../../store/selectors";
 import {filmShape} from "../../utils/props-validation";
 import AddToListButton from "../add-to-list-button/add-to-list-button";
 import FilmCatalog from '../film-catalog/film-catalog';
 import Footer from "../footer/footer";
 import Header from "../header/header";
+import PlayButton from "../play-button/play-button";
 
 export const MainScreen = ({film}) => {
   const {title, genre, year, poster, background, id, isFavorite} = film;
@@ -34,12 +37,13 @@ export const MainScreen = ({film}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <Link to={Path.playerScreen(id)} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
+                <PlayButton id = {id}></PlayButton>
                 <AddToListButton id = {id} isFavorite = {isFavorite}/>
               </div>
             </div>
@@ -48,7 +52,7 @@ export const MainScreen = ({film}) => {
       </section>
       <div className="page-content">
         <FilmCatalog/>
-        <Footer/>
+        <Footer isLinkActive = {false}/>
       </div>
     </React.Fragment>
   );

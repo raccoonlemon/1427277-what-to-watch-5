@@ -5,16 +5,12 @@ import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import App from "./components/app/app";
-import {films} from "./mocks/films.js";
-import {generateMockReviews} from "./mocks/reviews";
 import {createAPI} from "./services/api";
 import {fetchFavoriteFilms, fetchFilms, fetchPromoFilm} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
 import reducer from "./store/reducer";
 
 const api = createAPI(()=>{});
-
-const reviews = generateMockReviews(films);
 
 const composeWithEnhancers = composeWithDevTools({
   trace: true,
@@ -32,7 +28,7 @@ Promise.all(
   .then(()=>{
     ReactDOM.render(
         <Provider store={store}>
-          <App reviews = {reviews}/>
+          <App/>
         </Provider>,
         document.querySelector(`#root`)
     );

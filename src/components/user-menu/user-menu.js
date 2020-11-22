@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import {Path} from '../../const';
 import {selectIsUserLogged} from "../../store/selectors";
 
-const UserMenu = (props)=>{
+export const UserMenu = (props)=>{
   const {isUserLogged} = props;
 
   return (
@@ -22,12 +22,13 @@ const UserMenu = (props)=>{
     </div>);
 };
 
+UserMenu.propTypes = {
+  isUserLogged: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   isUserLogged: selectIsUserLogged(state)
 });
 
-UserMenu.propTypes = {
-  isUserLogged: PropTypes.bool.isRequired,
-};
 
 export default connect(mapStateToProps)(UserMenu);

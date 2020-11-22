@@ -7,6 +7,7 @@ import {fetchFilmById, fetchReviewsByFilmId} from '../../store/api-actions';
 import {selectFilm, selectIsFilmLoaded, selectIsUserLogged, selectReviews, selectSimilarFilms} from '../../store/selectors';
 import {filmShape, reviewShape} from "../../utils/props-validation";
 import AddToListButton from '../add-to-list-button/add-to-list-button';
+import PlayButton from '../play-button/play-button';
 import FilmInfo from '../film-info/film-info';
 import FilmsList from '../films-list/films-list';
 import Footer from '../footer/footer';
@@ -47,12 +48,7 @@ const FilmScreen = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
-                </svg>
-                <span>Play</span>
-              </button>
+              <PlayButton id = {id}></PlayButton>
               <AddToListButton id = {id} isFavorite = {isFavorite}/>
               {isUserLogged && <Link className="btn movie-card__button" to={Path.addReview(id)}>Add review</Link>}
             </div>
@@ -84,6 +80,16 @@ const FilmScreen = (props) => {
   </React.Fragment>);
 };
 
+FilmScreen.propTypes = {
+  loadFilmInfoAction: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  film: filmShape.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  reviews: PropTypes.arrayOf(reviewShape).isRequired,
+  similarFilms: PropTypes.arrayOf(filmShape).isRequired,
+  isUserLogged: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = (state, {id}) => ({
   film: selectFilm(state),
   isFilmLoaded: selectIsFilmLoaded(id)(state),
@@ -98,16 +104,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchReviewsByFilmId(id));
   },
 });
-
-FilmScreen.propTypes = {
-  loadFilmInfoAction: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  film: filmShape.isRequired,
-  isFilmLoaded: PropTypes.bool.isRequired,
-  reviews: PropTypes.arrayOf(reviewShape).isRequired,
-  similarFilms: PropTypes.arrayOf(filmShape).isRequired,
-  isUserLogged: PropTypes.bool.isRequired,
-};
 
 export {FilmScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(FilmScreen);

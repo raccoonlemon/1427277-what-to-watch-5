@@ -1,7 +1,3 @@
-import {Random} from "../utils/random";
-
-// TODO: удалить моковые данные. Пока что отзывы с сервера не загружаются.
-
 const texts = [
   `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
   `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight.`,
@@ -10,46 +6,40 @@ const texts = [
   `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
 ];
 
-const authors = [
-  `John Smith`,
-  `Kate Muir`,
-  `Bill Goodykoontz`,
-  `Amanda Greever`,
-  `Paula Fleri-Soler`,
-  `Matthew Lickona`
+export const reviews = [
+  {
+    id: 1,
+    date: new Date(20, 10, 10),
+    author: `Ellie`,
+    rating: 10,
+    text: texts[0],
+  },
+  {
+    id: 2,
+    date: new Date(20, 10, 12),
+    author: `Max`,
+    rating: 5,
+    text: texts[1]
+  },
+  {
+    id: 3,
+    date: new Date(20, 10, 12),
+    author: `Parvati`,
+    rating: 8,
+    text: texts[2]
+  },
+  {
+    id: 4,
+    date: new Date(20, 10, 12),
+    author: `Felix`,
+    rating: 8,
+    text: texts[3]
+  },
+  {
+    id: 5,
+    date: new Date(20, 10, 12),
+    author: `Nyoka`,
+    rating: 4,
+    text: texts[4]
+  }
 ];
-
-
-export const generateMockReviews = (films)=>{
-  const reviews = [];
-
-  films.forEach((film) => {
-    const MIN_REVIEWS_COUNT = 5;
-    const MAX_REVIEWS_COUNT = 10;
-
-    const reviewsCount = Random.getNumber(MIN_REVIEWS_COUNT, MAX_REVIEWS_COUNT);
-
-    for (let index = 1; index <= reviewsCount; index++) {
-      reviews.push(generateMockReview(film.id, index));
-    }
-  });
-
-  return reviews;
-};
-
-const generateMockReview = (filmId, id)=>{
-  const MAX_SCORE = 10;
-  const MIN_SCORE = 5;
-
-  const startDate = new Date();
-  const DAYS_RANGE = -500;
-
-  return {
-    id,
-    filmId,
-    date: Random.getDate(startDate, DAYS_RANGE),
-    author: Random.getArrayElement(authors),
-    rating: Random.getNumber(MIN_SCORE, MAX_SCORE),
-    text: Random.getArrayElement(texts)
-  };
-};

@@ -16,9 +16,10 @@ export const filmShape = PropTypes.shape({
   duration: numberValueRequired,
   description: stringValueRequired,
   background: stringValueRequired,
+  backgroundColor: stringValueRequired,
   poster: stringValueRequired,
   posterSmall: stringValueRequired,
-  video: stringValueRequired,
+  videoSrc: stringValueRequired,
   previewVideo: stringValueRequired,
   starring: PropTypes.arrayOf(PropTypes.string).isRequired,
   isFavorite: PropTypes.bool.isRequired
