@@ -32,7 +32,6 @@ export const FilmInfoTab = {
   REVIEWS: `Reviews`
 };
 
-// TODO Рефакторинг. Перенести функции из перечисления
 export const Path = {
   MAIN_PAGE: `/`,
   FILM_SCREEN: `/films/:id`,
