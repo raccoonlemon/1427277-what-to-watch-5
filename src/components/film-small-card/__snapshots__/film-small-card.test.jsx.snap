@@ -6,24 +6,24 @@ exports[`<FilmSmallCard> renders correctly when card is active 1`] = `
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <div
-    className="small-movie-card__image"
+  <Link
+    className="small-movie-card__link"
+    to="/films/1"
   >
-    <VideoPlayer
-      poster="img/the-grand-budapest-hotel-poster.jpg"
-      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-    />
-  </div>
-  <h3
-    className="small-movie-card__title"
-  >
-    <Link
-      className="small-movie-card__link"
-      to="/films/1"
+    <div
+      className="small-movie-card__image"
+    >
+      <VideoPlayer
+        poster="img/the-grand-budapest-hotel-poster.jpg"
+        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
     >
       The Grand Budapest Hotel
-    </Link>
-  </h3>
+    </h3>
+  </Link>
 </article>
 `;
 
@@ -33,25 +33,25 @@ exports[`<FilmSmallCard> renders correctly when card is not active 1`] = `
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <div
-    className="small-movie-card__image"
+  <Link
+    className="small-movie-card__link"
+    to="/films/1"
   >
-    <img
-      alt="The Grand Budapest Hotel"
-      height="175"
-      src="img/the-grand-budapest-hotel-poster.jpg"
-      width="280"
-    />
-  </div>
-  <h3
-    className="small-movie-card__title"
-  >
-    <Link
-      className="small-movie-card__link"
-      to="/films/1"
+    <div
+      className="small-movie-card__image"
+    >
+      <img
+        alt="The Grand Budapest Hotel"
+        height="175"
+        src="img/the-grand-budapest-hotel-poster.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
     >
       The Grand Budapest Hotel
-    </Link>
-  </h3>
+    </h3>
+  </Link>
 </article>
 `;
