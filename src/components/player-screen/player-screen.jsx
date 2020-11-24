@@ -24,6 +24,9 @@ export const PlayerScreen = (props)=>{
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [videoError, setVideoError] = useState(``);
+  const [canPlayThrough, setCanPlayThrough] = useState(false);
 
   const videoRef = useRef(null);
 
@@ -38,6 +41,14 @@ export const PlayerScreen = (props)=>{
       const video = videoRef.current;
       video.oncanplaythrough = () => {
         setDuration(Math.floor(video.duration));
+        setIsLoading(false);
+        setCanPlayThrough(true);
+      };
+      video.onerror = ()=>{
+        const {code, message} = video.error;
+        setIsLoading(false);
+        setVideoError(`Video is unavaliable. Error ${code}; details: ${message}`);
+        setCanPlayThrough(false);
       };
     }
   });
@@ -75,25 +86,29 @@ export const PlayerScreen = (props)=>{
         </div>
 
         <div className="player__controls-row">
-          {!isPlaying && <button type="button" className="player__play" onClick={()=>{
-            setIsPlaying(true);
-            videoRef.current.play();
-          }}>
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>}
+          {canPlayThrough && <div>
+            {!isPlaying && <button type="button" className="player__play" onClick={()=>{
+              setIsPlaying(true);
+              videoRef.current.play();
+            }}>
+              <svg viewBox="0 0 19 19" width="19" height="19">
+                <use xlinkHref="#play-s"></use>
+              </svg>
+              <span>Play</span>
+            </button>}
 
-          {isPlaying && <button type="button" className="player__play" onClick={()=>{
-            setIsPlaying(false);
-            videoRef.current.pause();
-          }}>
-            <svg viewBox="0 0 14 21" width="14" height="21">
-              <use xlinkHref="#pause"></use>
-            </svg>
-            <span>Pause</span>
-          </button>}
+            {isPlaying && <button type="button" className="player__play" onClick={()=>{
+              setIsPlaying(false);
+              videoRef.current.pause();
+            }}>
+              <svg viewBox="0 0 14 21" width="14" height="21">
+                <use xlinkHref="#pause"></use>
+              </svg>
+              <span>Pause</span>
+            </button>}
+          </div>}
+          {isLoading && <div className="player__name">Loading video...</div>}
+          {videoError && <div className="player__name">{videoError}</div>}
 
           <div className="player__name">{title}</div>
 
